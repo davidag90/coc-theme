@@ -1,7 +1,77 @@
-/*!
- * bootScore custom styles
- */
+/* ==================== */
+/* Custom Fonts */
+/* ==================== */
 
-// Add your own code here!
-// Because this file is compiled after Bootstrap, you're also able to use Bootstrap mixins for better code.
-// Some examples can be found here: https://bootscore.me/documentation/bootstrap-css-sass
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Albert Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/albert-sans-v1-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Albert Sans';
+  font-style: italic;
+  font-weight: 400;
+  src: url('../fonts/albert-sans-v1-latin-italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Albert Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../fonts/albert-sans-v1-latin-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Albert Sans';
+  font-style: italic;
+  font-weight: 700;
+  src: url('../fonts/albert-sans-v1-latin-700italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+
+
+/* Front-page */
+#front-carousel {
+  aspect-ratio: 1 / 1;
+}
+
+@include media-breakpoint-up(md) {
+  #front-carousel {
+    aspect-ratio: 16 / 6;
+  }
+}
+
+#socios-circulo {
+  padding: 3rem 0;
+}
+
+#socios-circulo h2 {
+  font-size: 4rem;
+  margin-bottom: 2.5rem;
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.5);
+  line-height: 1;
+}
+
+#socios-circulo p {
+  text-wrap: balance;
+  margin-bottom: 2rem;
+}
+
+#socios-circulo figure {
+  margin-bottom: 2rem;
+}
+
+#socios-circulo img {
+  display: block;
+  width: 100px;
+}
+
+#socios-circulo .btn {
+  margin-top: auto;
+}
