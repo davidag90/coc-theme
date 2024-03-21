@@ -1,3 +1,46 @@
+/* ============================ */
+/* Map: Colores institucionales */
+/* ============================ */
+$clrs-instit: (
+  "armonizacion-orofacial": #ef544d,
+  "asistente-dental": #ff7f00,
+  "atm": #007cbd,
+  "auditoria": #ff7f00,
+  "cirugia": #7ab51d,
+  "complementaria": #909bb2,
+  "diagnostico-imagenes": #009791,
+  "discapacidad": #c70119,
+  "endodoncia": #df047a,
+  "estetica": #f4a741,
+  "estomatologia": #ad727b,
+  "farmacologia": #ef8b9d,
+  "fotografia": #ffaa56,
+  "implantologia": #22bbe8,
+  "marketing": #ffaa56,
+  "multidisciplinario": #b194c0,
+  "odontologia-digital": #bdbb38,
+  "odontopediatria": #c70119,
+  "operatoria": #0e2068,
+  "ortodoncia-ortopedia": #86177f,
+  "ozonoterapia": #9ab0bc,
+  "todos": $primary,
+  "periodoncia": #7f2625,
+  "prevencion": #004393,
+  "prostodoncia": #006c32
+);
+
+@each $especialidad, $color in $clrs-instit {
+  // Generar una clase personalizada basada en el color actual
+  .btn-#{$especialidad} {
+    background-color: #{$color};
+    color: white;
+  }
+
+  .border-#{$especialidad} {
+    border-color: #{$color};
+  }
+}
+
 /* ==================== */
 /* Custom Fonts */
 /* ==================== */
@@ -33,8 +76,6 @@
   font-weight: 700;
   src: url('../fonts/albert-sans-v1-latin-700italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
-
-
 
 /* Front-page */
 #front-carousel {
@@ -74,4 +115,32 @@
 
 #socios-circulo .btn {
   margin-top: auto;
+}
+
+#capacitaciones-front #filtros-espec {
+  gap: 0.25rem;
+}
+
+#capacitaciones-front #capacitaciones {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@include media-breakpoint-up(sm) {
+  #capacitaciones-front #capacitaciones {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@include media-breakpoint-up(md) {
+  #capacitaciones-front #capacitaciones {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  #capacitaciones-front #capacitaciones {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
