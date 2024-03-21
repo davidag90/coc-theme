@@ -14,6 +14,9 @@ function bootscore_child_enqueue_styles()
 
   // custom.js
   wp_enqueue_script('custom-js', get_stylesheet_directory_uri() . '/js/custom.js', false, '', true);
+  if(is_front_page()):
+    wp_enqueue_script('capacitaciones-front', get_stylesheet_directory_uri() . '/js/capacitaciones-front.js', false, '', true);
+  endif;
 }
 
 require_once(__DIR__ . '/inc/shortcodes.php');
