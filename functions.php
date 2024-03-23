@@ -20,3 +20,10 @@ function bootscore_child_enqueue_styles()
 }
 
 require_once(__DIR__ . '/inc/shortcodes.php');
+
+// Desactiva Footer Widget 4 que viene por defecto para evitar confusiones
+function unregister_unused_sidebars() {
+  unregister_sidebar( 'footer-4' );
+}
+
+add_action( 'widgets_init', 'unregister_unused_sidebars', 11 );
