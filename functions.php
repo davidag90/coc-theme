@@ -23,7 +23,19 @@ require_once(__DIR__ . '/inc/shortcodes.php');
 
 // Desactiva Footer Widget 4 que viene por defecto para evitar confusiones
 function unregister_unused_sidebars() {
+  unregister_sidebar( 'footer-2' );
+  unregister_sidebar( 'footer-3' );
   unregister_sidebar( 'footer-4' );
+  unregister_sidebar( 'top-footer' );
 }
 
 add_action( 'widgets_init', 'unregister_unused_sidebars', 11 );
+
+function register_footer_menus () {
+  register_nav_menus(array(
+    'footer-menu-01' => 'Footer Menu 01',
+    'footer-menu-02' => 'Footer Menu 02')
+  );
+}
+
+add_action('after_setup_theme', 'register_footer_menus', 0);

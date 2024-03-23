@@ -35,6 +35,9 @@ $clrs-instit: (
     background-color: #{$color};
     color: white;
   }
+  .btn-#{$especialidad}:hover {
+    border: 1px solid #{$color};
+  }
 
   .border-#{$especialidad} {
     border-color: #{$color};
@@ -94,6 +97,10 @@ body {
   }
 }
 
+/* ==================== */
+/* Header               */
+/* ==================== */
+
 #nav-main {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -127,9 +134,38 @@ body {
   color: rgba(255,255,255,1);
 }
 
+/* ==================== */
+/* Footer               */
+/* ==================== */
+
+.footer-menu > .menu-item {
+  margin-bottom: 1rem;
+}
+
+#menu-coc-social-media > .menu-item > .nav-link::before {
+  display: inline-block;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  font: var(--fa-font-brands);
+  margin-right: $spacer * .5;
+}
+
+#menu-coc-social-media > .menu-item.facebook > .nav-link::before {
+  content: "\f09a"
+}
+
+#menu-coc-social-media > .menu-item.instagram > .nav-link::before {
+  content: "\f16d"
+}
+
+#menu-coc-social-media > .menu-item.youtube > .nav-link::before {
+  content: "\f167"
+}
+
 .footer-contact-info ul li {
   margin-bottom: 1rem;
 }
+
 
 /* ==================== */
 /* Front Page           */
@@ -183,6 +219,11 @@ body {
   gap: 1rem;
 }
 
+#capacitaciones-front #capacitaciones .capacitacion .card-img-top {
+  aspect-ratio: 16/10;
+  object-fit: cover;
+}
+
 @include media-breakpoint-up(sm) {
   #capacitaciones-front #capacitaciones {
     grid-template-columns: repeat(2, 1fr);
@@ -216,4 +257,9 @@ body {
 .detalles-header {
   height: 40vh;
   gap: 0.25rem;
+}
+
+#detalles-inscripcion > img {
+  aspect-ratio: 16/10;
+  object-fit: cover;
 }

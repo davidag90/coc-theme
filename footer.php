@@ -16,36 +16,45 @@
 
 <footer>
 
-  <div class="bootscore-footer text-bg-dark pt-5 pb-3">
+  <div class="bootscore-footer text-bg-dark pt-4">
     <div class="<?= bootscore_container_class(); ?>">
-
-      <!-- Top Footer Widget -->
-      <?php if (is_active_sidebar('top-footer')) : ?>
-        <?php dynamic_sidebar('top footer'); ?>
-      <?php endif; ?>
-
       <div class="row">
-
-        <!-- Footer 1 Widget -->
+        <!-- Menú Accesos Rápidos -->
+        <div class="d-none d-lg-block col-lg-4">
+          <h2 class="h5">Acceso Rápido</h2>
+          <?php
+            wp_nav_menu(array(
+              'theme_location'  => 'footer-menu-01',
+              'container'       => false,
+              'menu_class'      => 'footer-menu',
+              'fallback_cb'     => '__return_false',
+              'link_before'     => '<i class="fa-solid fa-caret-right me-2 fs-6"></i>',
+              'depth'           => 1,
+              'walker'          => new bootstrap_5_wp_nav_menu_walker()
+            ));
+          ?>
+        </div>
+        
+        <!-- Menú COC en Redes -->
         <div class="col-md-6 col-lg-4">
-          <?php if (is_active_sidebar('footer-1')) : ?>
-            <?php dynamic_sidebar('footer-1'); ?>
-          <?php endif; ?>
+          <h2 class="h5">COC en Redes</h2>
+          <?php
+            wp_nav_menu(array(
+              'theme_location' => 'footer-menu-02',
+              'container'      => false,
+              'menu_class'     => 'footer-menu',
+              'fallback_cb'    => '__return_false',
+              'depth'          => 1,
+              'walker'         => new bootstrap_5_wp_nav_menu_walker()
+            ));
+          ?>
         </div>
 
-        <!-- Footer 2 Widget -->
-        <div class="col-md-6 col-lg-4">
-          <?php if (is_active_sidebar('footer-2')) : ?>
-            <?php dynamic_sidebar('footer-2'); ?>
-          <?php endif; ?>
-        </div>
-
-        <!-- Footer 3 Widget -->
-        <div class="col-md-6 col-lg-4">
-          <?php if (is_active_sidebar('footer-3')) : ?>
-            <?php dynamic_sidebar('footer-3'); ?>
-          <?php endif; ?>
-        </div>
+      <!-- Footer 1 Widget -->
+      <div class="col-md-6 col-lg-4">
+        <?php if (is_active_sidebar('footer-1')) : ?>
+          <?php dynamic_sidebar('footer-1'); ?>
+        <?php endif; ?>
       </div>
 
       <!-- Bootstrap 5 Nav Walker Footer Menu -->
