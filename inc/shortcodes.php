@@ -6,13 +6,12 @@ function capacitaciones_front()
    $output = '';
 
    $especialidades = get_terms(array(
-      'taxonomy' => 'especialidad',
-      'hide_empty' => false
+      'taxonomy' => 'especialidad'
    ));
 
    if ($especialidades) {
       $output .= '<div id="capacitaciones-front" class="py-5">';
-         $output .= '<h2 class="mb-3 text-center">Capacitaciones por Especialidad</h2>';
+         $output .= '<h2 class="mb-4 text-center display-4">Capacitaciones por Especialidad</h2>';
 
          $output .= '<div class="d-flex flex-row flex-wrap justify-content-center mb-5" id="filtros-espec">';
             $output .= '<button type="button" class="btn btn-sm btn-todos text-nowrap filtro-espec" coc-especialidad="todos">Todos</button>';

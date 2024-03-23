@@ -4,7 +4,6 @@ jQuery(function($) {
 
       $('.filtro-espec').click( function() {
          let especialidad = $(this).attr('coc-especialidad');
-         let capacitacionesFilt = $(`.capacitacion[coc-especialidad="${especialidad}"]`);
          
          $('.filtro-espec').each(function() {
             $(this).removeClass(`btn-${$(this).attr('coc-especialidad')}`);
@@ -13,10 +12,23 @@ jQuery(function($) {
          
          $(this).addClass(`btn-${especialidad}`);
          
-         (especialidad === 'todos') ?
-         capacitaciones.fadeIn() :
-         capacitaciones.fadeOut(),
-         capacitacionesFilt.fadeIn();
+         if(especialidad === 'todos') {
+            setTimeout( () => {
+               $('.capacitacion').show();
+               $('.capacitacion').css('opacity', '1');
+            }, 250);
+         } else {
+            $('.capacitacion').css('opacity', 0);
+            setTimeout( () => {
+               $('.capacitacion').hide();
+
+            }, 250);
+            
+            setTimeout( () => {
+               $(`.capacitacion[coc-especialidad="${especialidad}"]`).show();
+               $(`.capacitacion[coc-especialidad="${especialidad}"]`).css('opacity', '1');
+            }, 250);
+         }
       });
    });
 });
