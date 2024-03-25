@@ -204,13 +204,15 @@ $extra = get_field('extra');
                   </div>
                </div>
             </aside>
-            <aside id="certificacion" class="bg-light border shadow-sm rounded-top overflow-hidden p-4 d-flex flex-row justify-content-between">
+            <aside id="certificacion" class="bg-light border shadow-sm rounded-top overflow-hidden p-4">
                <h4>Certifican esta propuesta:</h4>
-               <?php
-               foreach ($certificaciones as $certificacion) {
-                  echo '<img src="' . get_stylesheet_directory_uri() . '/img/instituciones/' . $certificacion . '.png alt="' . $certificacion . '" />';
-               }
-               ?>
+               <div id="certificantes" class="d-flex flex-row justify-content-between">
+                  <?php
+                  foreach ($certificaciones as $certificacion) {
+                     echo '<img src="' . get_stylesheet_directory_uri() . '/img/instituciones/' . $certificacion . '.png alt="' . $certificacion . '" />';
+                  }
+                  ?>
+               </div>
             </aside>
          </div><!-- .col-md-4 -->
       </div><!-- .row -->
