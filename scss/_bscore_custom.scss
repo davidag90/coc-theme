@@ -180,6 +180,19 @@ body {
   }
 }
 
+#pacientes {
+  background-image: linear-gradient(to right, #EDF4FC, #9CCCFC);
+}
+
+#pacientes figure {
+  margin: 0;
+  padding: 0;
+}
+
+#pacientes figure img {
+  width: 100%;
+}
+
 #socios-circulo {
   padding: 3rem 0;
 }
