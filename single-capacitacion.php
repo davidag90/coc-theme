@@ -8,8 +8,9 @@
 
 get_header();
 ?>
-<?php
-the_post();
+<?php the_post();
+
+// Info de la Capacitación
 $terms = get_the_terms(get_the_ID(), 'especialidad');
 $especialidad_name = $terms[0]->name;
 $especialidad_slug = $terms[0]->slug;
@@ -30,6 +31,10 @@ $detalles_adicionales = get_field('detalles_adicionales');
 $objetivos = get_field('objetivos');
 $temario = get_field('temario');
 $esquema_actividad = get_field('esquema_actividad');
+$beneficios = get_field('beneficios');
+$sponsors = get_field('sponsors');
+$extra = get_field('extra');
+
 ?>
 
 <header id="header-capacitacion" class="bg-<?php echo $especialidad_slug ?>">
@@ -151,6 +156,36 @@ $esquema_actividad = get_field('esquema_actividad');
                         </div><!-- .detalles-pedagogicos -->
                      </div><!-- .col-12 -->
                   </div><!-- .row -->
+                  
+                  <?php if (!empty($beneficios)) : ?>
+                  <div class="row">
+                     <div class="col-12">
+                        <div id="beneficios">
+                           <?php echo $beneficios; ?>
+                        </div><!-- #beneficios -->
+                     </div><!-- .col-12 -->
+                  </div><!-- .row -->
+                  <?php endif; ?>
+                  
+                  <?php if (!empty($sponsors)) : ?>
+                  <div class="row">
+                     <div class="col-12">
+                        <div id="apoyos">
+                           <?php echo $sponsors; ?>
+                        </div><!-- #apoyos -->
+                     </div><!-- .col-12 -->
+                  </div><!-- .row -->
+                  <?php endif; ?>
+
+                  <?php if (!empty($extra)) : ?>
+                  <div class="row">
+                     <div class="col-12">
+                        <div id="extra">
+                           <?php echo $extra; ?>
+                        </div><!-- #extra -->
+                     </div><!-- .col-12 -->
+                  </div><!-- .row -->
+                  <?php endif; ?>
                </div><!-- .entry-content -->
             </main><!-- #main -->
          </div><!-- .col-md-8 -->
@@ -169,11 +204,11 @@ $esquema_actividad = get_field('esquema_actividad');
                   </div>
                </div>
             </aside>
-            <aside id="certificacion" class="bg-light border shadow-sm rounded-top overflow-hidden p-4">
+            <aside id="certificacion" class="bg-light border shadow-sm rounded-top overflow-hidden p-4 d-flex flex-row justify-content-between">
                <h4>Certifican esta propuesta:</h4>
                <?php
                foreach ($certificaciones as $certificacion) {
-                  echo $certificacion;
+                  echo '<img src="' . get_stylesheet_directory_uri() . '/img/instituciones/' . $certificacion . '.png alt="' . $certificacion . '" />';
                }
                ?>
             </aside>
