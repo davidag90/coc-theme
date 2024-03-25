@@ -263,3 +263,18 @@ body {
   aspect-ratio: 16/10;
   object-fit: cover;
 }
+
+.highlights {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@include media-breakpoint-up(md) {
+  .highlights {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.highlight p {
+  margin-bottom: 0;
+}
