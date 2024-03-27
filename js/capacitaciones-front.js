@@ -30,5 +30,34 @@ jQuery(function($) {
             }, 250);
          }
       });
+
+      const splideCapacitaciones = new Splide( '.splide', {
+         type: 'slide',
+         mediaQuery: 'min',
+         gap: '1rem',
+         padding: '1rem',
+         pagination: false,
+         breakpoints: {
+            0: {
+               perPage: 1,
+               perMove: 1
+            },
+            576: {
+               perPage: 2,
+               perMove: 1
+            },
+            768: {
+               perPage: 3,
+               perMove: 1
+            },
+            1200: {
+               perPage: 4,
+               perMove: 1
+            }
+         }
+      });
+
+      splideCapacitaciones.mount();
    });
 });
+
