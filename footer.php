@@ -15,7 +15,6 @@
 ?>
 
 <footer>
-
   <div class="bootscore-footer text-bg-dark pt-4">
     <div class="<?= bootscore_container_class(); ?>">
       <div class="row">
