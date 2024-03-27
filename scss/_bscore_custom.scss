@@ -46,6 +46,14 @@ $clrs-instit: (
   .bg-#{$especialidad} {
     background-color: #{$color};
   }
+
+  .bg-header-#{$especialidad} {
+    background-image: url('../img/capacitaciones/header-#{$especialidad}.jpg'), linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,.5));
+    background-position: center;
+    background-repeat: none;
+    background-size: cover;
+    background-blend-mode: multiply;
+  }
 }
 
 /* ==================== */
@@ -226,34 +234,19 @@ body {
   gap: 0.25rem;
 }
 
-#capacitaciones-front #capacitaciones {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
+#capacitaciones-front .splide__arrow--prev {
+  left: -1.5rem;
+}
+
+#capacitaciones-front .splide__arrow--next {
+  right: -1.5rem;
 }
 
 #capacitaciones-front #capacitaciones .capacitacion .card-img-top {
-  aspect-ratio: 16/10;
+  aspect-ratio: 16/7;
   object-fit: cover;
 }
 
-@include media-breakpoint-up(sm) {
-  #capacitaciones-front #capacitaciones {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@include media-breakpoint-up(md) {
-  #capacitaciones-front #capacitaciones {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@include media-breakpoint-up(xl) {
-  #capacitaciones-front #capacitaciones {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
 
 #capacitaciones-front .capacitacion {
   transition: all 250ms;
@@ -267,9 +260,24 @@ body {
 /* ==================== */
 /* Capacitacion         */
 /* ==================== */
+#header-capacitacion {
+  border-bottom-style: solid;
+  border-bottom-width: 5px;
+}
+
 .detalles-header {
   height: 40vh;
   gap: 0.25rem;
+}
+
+#detalles-inscripcion {
+  margin-top: $spacer * 1.25;
+}
+
+@include media-breakpoint-up(md) {
+  #detalles-inscripcion {
+    margin-top: -10rem;
+  }
 }
 
 #detalles-inscripcion > img {
@@ -290,4 +298,46 @@ body {
 
 .highlight p {
   margin-bottom: 0;
+  text-align: center;
+  text-wrap: balance;
+}
+
+#certificantes img {
+  max-width: 140px;
+}
+
+#certificantes {
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+#capacitaciones-sugeridas {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@include media-breakpoint-up(sm) {
+  #capacitaciones-sugeridas {
+    grid-template-columns: repeat(2,1fr);
+    gap: 0.5rem;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  #capacitaciones-sugeridas {
+    grid-template-columns: repeat(3,1fr);
+    gap: 1rem;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  #capacitaciones-sugeridas {
+    grid-template-columns: repeat(4,1fr);
+    gap: 1.5rem;
+  }
+}
+
+#capacitaciones-sugeridas .card .card-img-top {
+	aspect-ratio: 16/7;
+	object-fit: cover;
 }
