@@ -230,7 +230,7 @@ body {
   margin-top: auto;
 }
 
-#capacitaciones-front #filtros-espec {
+#capacitaciones-front #filtros-espec-desk {
   gap: 0.25rem;
 }
 
@@ -340,4 +340,10 @@ body {
 #capacitaciones-sugeridas .card .card-img-top {
 	aspect-ratio: 16/7;
 	object-fit: cover;
+}
+
+/* Testing */
+#app-root .card-img-top {
+  aspect-ratio: 16/7;
+  object-fit: cover;
 }
