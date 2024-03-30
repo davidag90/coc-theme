@@ -11,8 +11,11 @@ function bootscore_child_enqueue_styles()
   // Compiled main.css
   $modified_bootscoreChildCss = date('YmdHi', filemtime(get_stylesheet_directory() . '/css/main.css'));
   wp_enqueue_style('main', get_stylesheet_directory_uri() . '/css/main.css', array('parent-style'), $modified_bootscoreChildCss);
+}
 
-  // custom.js
+
+add_action('wp_enqueue_scripts', 'custom_scripts_libs');
+function custom_scripts_libs() {
   wp_enqueue_script('custom-js', get_stylesheet_directory_uri() . '/js/custom.js', false, '', true);
   if(is_front_page()):
     wp_enqueue_script('splide-js', get_stylesheet_directory_uri() . '/js/splide.min.js', array(), null, true);
@@ -39,17 +42,29 @@ function bootscore_child_enqueue_styles()
   add_filter('script_loader_tag', 'add_module_attribute', 10, 3);
 }
 
-require_once(__DIR__ . '/inc/shortcodes.php');
 
+add_action('after_setup_theme', 'include_custom_shortcodes');
+function include_custom_shortcodes() {
+  require_once(__DIR__ . '/inc/shortcodes.php');
+}
+
+
+add_action( 'widgets_init', 'manage_custom_sidebars', 11 );
 // Desactiva Footer Widget 4 que viene por defecto para evitar confusiones
-function unregister_unused_sidebars() {
+function manage_custom_sidebars() {
   unregister_sidebar( 'footer-2' );
   unregister_sidebar( 'footer-3' );
   unregister_sidebar( 'footer-4' );
   unregister_sidebar( 'top-footer' );
+  register_sidebar(array(
+    'name'          => 'Páginas internas',
+    'id'            => 'sidebar-page-basic',
+    'description'   => 'Sidebar para mostrar en páginas internas',
+    'before_widget' => '<div class="widget bg-light border shadow-sm rounded overflow-hidden mb-4 p-3" id="widget-%1s">',
+    'after_widget'  => '</div>'
+  ));
 }
 
-add_action( 'widgets_init', 'unregister_unused_sidebars', 11 );
 
 function register_footer_menus () {
   register_nav_menus(array(
