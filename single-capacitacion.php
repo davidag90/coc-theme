@@ -205,7 +205,7 @@ foreach ($espec_rel as $especialidad_relativa) {
          </div><!-- .col-md-8 -->
 
          <div class="col-12 col-md-4">
-            <aside id="detalles-inscripcion" class="bg-light border shadow-sm rounded-top overflow-hidden mb-4">
+            <aside id="detalles-inscripcion" class="bg-light border shadow-sm rounded overflow-hidden mb-4">
                <img src="<?php echo $img_destacada; ?>" class="mb-4">
                <div class="botonera mb-4 px-4">
                   <a href="#" class="btn btn-warning w-100 py-2 link-light mb-2"><?php echo $tipo_inscripcion ?> &rarr;</a>
@@ -216,7 +216,7 @@ foreach ($espec_rel as $especialidad_relativa) {
                   <div><?php echo $aranceles; ?></div>
                </div>
             </aside>
-            <aside id="certificacion" class="bg-light border shadow-sm rounded-top overflow-hidden p-4">
+            <aside id="certificacion" class="bg-light border shadow-sm rounded overflow-hidden p-4">
                <h4 class="mb-3">Certifican esta propuesta:</h4>
                <div id="certificantes" class="d-flex flex-row justify-content-around">
                   <?php foreach ($certificaciones as $certificante) {
