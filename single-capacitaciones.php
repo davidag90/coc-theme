@@ -242,6 +242,7 @@ foreach ($espec_rel as $especialidad_relativa) {
                   <p class="h5">Curso con Aval Universitario</p>
                   <p>Certificación UCC opcional <em>(solicitar trámite y presupuesto en Secretaría de la EPO)</em></p>
                </div>
+               <?php endif;?>
             </aside>
          </div><!-- .col-md-4 -->
       </div><!-- .row -->
