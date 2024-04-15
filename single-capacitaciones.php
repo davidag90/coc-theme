@@ -14,6 +14,7 @@ get_header();
 $terms = get_the_terms(get_the_ID(), 'especialidad');
 $especialidad_name = $terms[0]->name;
 $especialidad_slug = $terms[0]->slug;
+$producto_relacionado = get_field('producto_relacionado');
 $tipo_capacitacion = get_field('tipo_capacitacion');
 $img_destacada = get_the_post_thumbnail_url();
 $dictantes = get_field('dictantes');
@@ -32,6 +33,7 @@ $detalles_adicionales = get_field('detalles_adicionales');
 $objetivos = get_field('objetivos');
 $temario = get_field('temario');
 $esquema_actividad = get_field('esquema_actividad');
+$listado_materiales = get_field('listado_materiales');
 $beneficios = get_field('beneficios');
 $sponsors = get_field('sponsors');
 $extra = get_field('extra');
@@ -132,7 +134,7 @@ foreach ($espec_rel as $especialidad_relativa) {
                   </div>
                   <div class="row">
                      <div class="col-12">
-                        <div class="detalles-pedagogicos pt-4">
+                        <div class="detalles-pedagogicos py-5">
                            <div class="accordion" id="acordeon-detalles">
                               <?php if (!empty($objetivos)) : ?>
                                  <div class="accordion-item">
@@ -166,6 +168,17 @@ foreach ($espec_rel as $especialidad_relativa) {
                                     </div><!-- .accordion-collapse -->
                                  </div><!-- .accordion-item -->
                               <?php endif; ?>
+
+                              <?php if (!empty($listado_materiales)) : ?>
+                                 <div class="accordion-item">
+                                    <h2 class="accordion-header" id="listado-materiales-enc">
+                                       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#listado-materiales-collapse" aria-expanded="false" aria-controls="listado-materiales-collapse">Listado de Materiales</button>
+                                    </h2><!-- .accordion-header -->
+                                    <div id="listado-materiales-collapse" class="accordion-collapse collapse" aria-labelledby="listado-materiales-enc" data-bs-parent="#acordeon-detalles">
+                                       <div class="accordion-body"><?php echo $listado_materiales; ?></div>
+                                    </div><!-- .accordion-collapse -->
+                                 </div><!-- .accordion-item -->
+                              <?php endif; ?>
                            </div><!-- #acordeon-detalles -->
                         </div><!-- .detalles-pedagogicos -->
                      </div><!-- .col-12 -->
@@ -185,6 +198,7 @@ foreach ($espec_rel as $especialidad_relativa) {
                      <div class="row">
                         <div class="col-12">
                            <div id="apoyos">
+                              <h3 class="mb-3">Apoyan esta capacitación:</h3>
                               <?php echo $sponsors; ?>
                            </div><!-- #apoyos -->
                         </div><!-- .col-12 -->
@@ -208,7 +222,7 @@ foreach ($espec_rel as $especialidad_relativa) {
             <aside id="detalles-inscripcion" class="bg-light border shadow-sm rounded overflow-hidden mb-4">
                <img src="<?php echo $img_destacada; ?>" class="mb-4">
                <div class="botonera mb-4 px-4">
-                  <a href="#" class="btn btn-warning w-100 py-2 link-light mb-2"><?php echo $tipo_inscripcion ?> &rarr;</a>
+                  <a href="<?php print(!empty($producto_relacionado) ? $producto_relacionado['url'] : '#'); ?>" class="btn btn-warning w-100 py-2 link-light mb-2"><?php echo $tipo_inscripcion ?> &rarr;</a>
                   <a href="#" class="btn btn-success w-100 py-2"><i class="fa-brands fa-whatsapp"></i> <span class="d-none d-lg-inline">Contactar por </span>WhatsApp</a>
                </div>
                <div id="detalles-aranceles" class="px-4">
@@ -237,7 +251,7 @@ foreach ($espec_rel as $especialidad_relativa) {
                         <div id="capacitaciones-sugeridas">
                         <?php
                            $capac_rel_args = array(
-                              'post_type' => 'capacitacion',
+                              'post_type' => 'capacitaciones',
                               'posts_per_page' => 6,
                               'post__not_in' => array(get_the_ID()),
                               'tax_query' => array(
@@ -297,7 +311,7 @@ foreach ($espec_rel as $especialidad_relativa) {
                               
                               if ($capac_restantes > 0) {
                                  $capac_restantes_args = array(
-                                    'post_type' => 'capacitacion',
+                                    'post_type' => 'capacitaciones',
                                     'posts_per_page' => $capac_restantes,
                                     'post__not_in' => $excluir_ids,
                                     'orderby' => 'date',
