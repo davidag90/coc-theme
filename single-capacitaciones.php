@@ -232,7 +232,7 @@ foreach ($espec_rel as $especialidad_relativa) {
             </aside>
             <aside id="certificacion" class="bg-light border shadow-sm rounded overflow-hidden p-4">
                <h4 class="mb-3">Certifican esta propuesta:</h4>
-               <div id="certificantes" class="d-flex flex-row justify-content-around mb-3">
+               <div id="certificantes" class="d-flex flex-row justify-content-around mb-4">
                   <?php foreach ($certificaciones as $certificante) {
                      echo '<img src="' . get_stylesheet_directory_uri() . '/img/instituciones/' . $certificante . '.png" alt="' . $certificante . '">';
                   } ?>
