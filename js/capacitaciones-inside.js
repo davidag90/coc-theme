@@ -1,5 +1,5 @@
 const appRoot = document.getElementById('app-root');
-const APIURL = 'http://coc-dev.local/wp-json/wp/v2/capacitaciones?_embed';
+const APIURL = 'https://dagdev.com.ar/coc-dev/wp-json/wp/v2/capacitaciones?_embed';
 
 async function fetchData(url) {
    const response = await fetch(url);
