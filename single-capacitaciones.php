@@ -238,7 +238,7 @@ foreach ($espec_rel as $especialidad_relativa) {
                   } ?>
                </div>
                <?php if(in_array('ucc', $certificaciones)): ?>
-               <div id="aclaracion-ucc text-center">
+               <div id="aclaracion-ucc" class="text-center">
                   <p class="h5">Curso con Aval Universitario</p>
                   <p>Certificación UCC opcional <em>(solicitar trámite y presupuesto en Secretaría de la EPO)</em></p>
                </div>
