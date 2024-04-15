@@ -1,5 +1,5 @@
 const appRoot = document.querySelector('.splide > .splide__track > .splide__list');
-const APIURL = 'http://coc-dev.local/wp-json/wp/v2/capacitacion?_embed';
+const APIURL = 'http://coc-dev.local/wp-json/wp/v2/capacitaciones?_embed';
 
 async function fetchData(url) {
    const response = await fetch(url);
