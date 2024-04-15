@@ -242,8 +242,8 @@ body {
   right: -1.5rem;
 }
 
-#capacitaciones-front #capacitaciones .capacitacion .card-img-top {
-  aspect-ratio: 16/7;
+#capacitaciones-front .capacitacion .card-img-top {
+  aspect-ratio: 16/9;
   object-fit: cover;
 }
 
@@ -342,8 +342,20 @@ body {
 	object-fit: cover;
 }
 
-/* Testing */
-#app-root .card-img-top {
-  aspect-ratio: 16/7;
+/* ==================== */
+/* Especialidades       */
+/* ==================== */
+#capacitaciones-inside .card + .card {
+  margin-top: $spacer;
+}
+
+#capacitaciones-inside .card img {
+  aspect-ratio: 16/9;
   object-fit: cover;
+}
+
+@include media-breakpoint-up(sm) {
+  #capacitaciones-inside .card img {
+    aspect-ratio: 4/3.5;
+  }
 }
