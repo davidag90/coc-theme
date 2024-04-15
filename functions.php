@@ -17,24 +17,25 @@ function bootscore_child_enqueue_styles()
 add_action('wp_enqueue_scripts', 'custom_scripts_libs');
 function custom_scripts_libs() {
   wp_enqueue_script('custom-js', get_stylesheet_directory_uri() . '/js/custom.js', false, '', true);
+
   if(is_front_page()):
     wp_enqueue_script('splide-js', get_stylesheet_directory_uri() . '/js/splide.min.js', array(), null, true);
     wp_enqueue_style('splide-css', get_stylesheet_directory_uri() . '/css/splide-default.min.css', array(), null);
     wp_enqueue_script('capacitaciones-front', get_stylesheet_directory_uri() . '/js/capacitaciones-front.js', false, array('splide-js'), true);
   endif;
 
-  if(is_page('test')):
-    wp_enqueue_script('test-js', get_stylesheet_directory_uri() . '/js/test.js', false, '', true);
+  if(is_page('especialidades')):
+    wp_enqueue_script('capacitaciones-inside', get_stylesheet_directory_uri() . '/js/capacitaciones-inside.js', array(), null, true);
   endif;
 
   function add_module_attribute($tag, $handle, $src) {
-    // if not your script, do nothing and return original $tag
-    if ( 'capacitaciones-front' !== $handle ) {
-        return $tag;
-    }
+    $handle_check = ($handle === 'capacitaciones-inside' || $handle === 'capacitaciones-front');
     
-    // change the script tag by adding type="module" and return it.
-    $tag = '<script type="module" src="' . esc_url( $src ) . '"></script>';
+    if ($handle_check) {
+      $tag = '<script type="module" src="' . esc_url( $src ) . '"></script>';
+      
+      return $tag;
+    }
     
     return $tag;
   }
@@ -74,3 +75,10 @@ function register_footer_menus () {
 }
 
 add_action('after_setup_theme', 'register_footer_menus', 0);
+
+
+// Disable AJAX Cart
+function register_ajax_cart() {
+}
+
+add_action('after_setup_theme', 'register_ajax_cart');
