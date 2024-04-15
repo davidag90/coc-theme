@@ -10,7 +10,7 @@ function capacitaciones_front()
    ));
 
    if($especialidades):
-      $output .= '<div id="capacitaciones-front" class="py-5 px-4">';
+      echo '<div id="capacitaciones-front" class="py-5 px-4">';
          $output .= '<h2 class="mb-4 text-center display-4 fw-bold">Capacitaciones por Especialidad</h2>';
 
          $output .= '<div class="d-block d-md-none mb-4" id="filtros-espec-mobile">';
@@ -36,7 +36,7 @@ function capacitaciones_front()
             $output .= '</div>'; // .splide__track
          $output .= '</div>'; // .splide
 
-         $output .= '<div id="acceso-capacitaciones-full" class="d-flex justify-content-center"><a class="btn btn-secondary btn-lg" href="' . home_url() . '/capacitacion/">Ver nuestra agenda completa</a></div>';
+         $output .= '<div id="acceso-capacitaciones-full" class="d-flex justify-content-center"><a class="btn btn-secondary btn-lg" href="' . home_url() . '/capacitacion/especialidades">Ver nuestra agenda completa</a></div>';
       $output .= '</div>'; // #capacitaciones-front
    endif;
 
@@ -45,3 +45,83 @@ function capacitaciones_front()
 }
 
 add_shortcode('capacitaciones-front', 'capacitaciones_front');
+
+
+function capacitaciones_iniciadas_front() {
+   ob_start();
+
+   $output = '';
+   
+   $args = array(
+      'post_type'    => 'capacitaciones',
+      'meta_key'     => 'fecha_inicio_dateformat',
+      'meta_value'   => date( "Ymd" ), // change to how "event date" is stored
+      'meta_compare' => '<',
+      'order_by'     => 'meta_value',
+      'order'        => 'ASC',
+      'meta_type'    => 'DATE'
+   );
+   
+   $query = new WP_Query($args);
+
+   if($query->have_posts()) {
+      $output .= '<div class="list-group">';
+
+      while($query->have_posts()) {
+         $query->the_post();
+         
+         $fecha_inicio_dateformat = get_field('fecha_inicio_dateformat');
+
+         $fecha_obj = DateTime::createFromFormat('Ymd', $fecha_inicio_dateformat);
+
+         $output .= '<a class="list-group-item list-group-item-secondary list-group-item-action" href="'. get_the_permalink() . '">' . get_the_title() . ' <small class="opacity-50">' . $fecha_obj->format('d-m-Y') . '</small></a>';
+      }
+
+      $output .= '</div>'; // .list-group
+   }
+
+   echo $output;
+   
+   return ob_get_clean();
+}
+
+add_shortcode('capacitaciones-iniciadas-front', 'capacitaciones_iniciadas_front');
+
+function capacitaciones_inside() {
+   ob_start();
+
+   $especialidades = get_terms(array(
+      'taxonomy' => 'especialidad'
+   ));
+
+   echo '<div id="capacitaciones-inside">';
+      echo '<div class="row">';
+         echo '<div class="col-12 col-md-4">';
+            if($especialidades) {
+               echo '<div class="d-block d-md-none mb-4" id="filtros-espec-mobile">';
+                  echo '<select class="form-select">';
+                     echo '<option value="todos" selected>Todos</option>';
+                     foreach ($especialidades as $especialidad) {
+                        echo '<option value="' . esc_attr($especialidad->slug) . '">' . esc_html($especialidad->name) . '</option>';
+                     }
+                  echo '</select>'; // .form-select
+               echo '</div>';// #filtros-espec-mobile
+
+               echo '<div class="list-group d-none d-md-block">';
+               echo '<button class="list-group-item list-group-item-action filtro-espec active" coc-especialidad="todos">Todas</button>';
+               foreach($especialidades as $especialidad) {
+                  echo '<button class="list-group-item list-group-item-action filtro-espec" coc-especialidad="' . esc_html($especialidad->slug) . '">' . esc_html($especialidad->name) . '</button>';
+               }
+               echo '</div>';
+            }
+         echo '</div>'; // .col
+         echo '<div class="col-12 col-md-8">';
+            echo '<div id="app-root"></div>';
+         echo '</div>'; // .col
+      echo '</div>'; // .row
+   echo '</div>'; // #capacitaciones-inside
+
+   return ob_get_clean();
+}
+
+add_shortcode('capacitaciones-inside', 'capacitaciones_inside');
