@@ -1,13 +1,7 @@
 {
   "folders": [
     {
-      "path": "."
-    },
-    {
-      "path": "../bootscore"
-    },
-    {
-      "path": "../../plugins/sibling-pages-plugin"
+      "path": "../../.."
     }
   ],
   "settings": {}
