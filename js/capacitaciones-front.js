@@ -1,4 +1,4 @@
-import * as ENV from "./env";
+import * as ENV from "./env.js";
 
 async function fetchData(url) {
    const response = await fetch(url);
