@@ -21,7 +21,7 @@ get_header();
     <div class="container">
       <div class="col-12">
         <header class="py-5">
-          <h1 class="m-0"><?php the_title(); ?></h1>
+          <h1 class="m-0 text-primary"><?php the_title(); ?></h1>
         </header>
       </div>
     </div>

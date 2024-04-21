@@ -17,11 +17,11 @@ get_header();
 ?>
 
   <?php the_post(); ?>
-  <div class="w-100 page-img-header border-bottom border-subtle-secondary" style="background-image: url('<?= get_stylesheet_directory_uri(); ?>/img/headers/header-especialidades.jpg');">
+  <div class="w-100 page-img-header border-bottom border-subtle-secondary" style="background-image: url('<?= get_stylesheet_directory_uri(); ?>/img/headers/header-periimplantologia.jpg');">
     <div class="container">
       <div class="col-12">
         <header class="py-5">
-          <h1 class="m-0 text-primary"><?php the_title(); ?></h1>
+         <h1 class="m-0 text-primary text-center"><?php the_title(); ?></h1>
         </header>
       </div>
     </div>
@@ -30,13 +30,15 @@ get_header();
   <div id="content" class="site-content <?= bootscore_container_class(); ?> py-5">
     <div id="primary" class="content-area">
       <div class="row">
-        <div class="col-12">
+        <div class="col-12 col-xl-8">
           <main id="main" class="site-main">
             <div class="entry-content">
               <?php the_content(); ?>
             </div>
           </main>
         </div>
+        
+        <?php get_sidebar('page'); ?>
       </div>
     </div>
   </div>
