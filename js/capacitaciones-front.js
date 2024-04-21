@@ -1,5 +1,4 @@
-const appRoot = document.querySelector('.splide > .splide__track > .splide__list');
-const APIURL = 'https://dagdev.com.ar/coc-dev/wp-json/wp/v2/capacitaciones?_embed';
+import * as ENV from "./env";
 
 async function fetchData(url) {
    const response = await fetch(url);
@@ -7,116 +6,42 @@ async function fetchData(url) {
    return await response.json();
 }
 
-async function setData(url) {
-   const data = await fetchData(url);
-   const posts = data.map((element) => {
-     return {
-       tipoCapacitacion: element.acf.tipo_capacitacion,
-       especialidadSlug: element._embedded['wp:term'][0][0].slug,
-       especialidadNombre: element._embedded['wp:term'][0][0].name,
-       titulo: element.title.rendered,
-       fechaInicio: element.acf.fecha_inicio,
-       thumbnail: element._embedded['wp:featuredmedia'][0].link,
-       link: element.link
-     }
-   });
-  
-  return posts;
+async function retrieveFeatImg(mediaId) {
+   const endpoint = ENV.API_MEDIA_BASE + mediaId;
+   const response = await fetch(endpoint);
+   const mediaData = await response.json();
+   
+   return mediaData.source_url;
 }
 
-const capacitaciones = await setData(APIURL);
+async function setData(url) {
+   const data = await fetchData(url);
+   
+   const posts = data.map( async (element) => {
+      let post = {};
 
-const fillCapacitaciones = (jsonCapacitaciones, especialidad = 'todos') => {
-   jsonCapacitaciones.forEach((element) => {
-      if(especialidad === 'todos') {
-         let card = document.createElement('div');
-         card.classList.add('card', 'capacitacion', `border-${element.especialidadSlug}`, 'h-100');
-         card.setAttribute('coc-especialidad', element.especialidadSlug);
+      post.tipoCapacitacion = element.acf.tipo_capacitacion;
+      post.especialidadSlug = element._embedded['wp:term'][0][0].slug;
+      post.especialidadNombre = element._embedded['wp:term'][0][0].name;
+      post.titulo = element.title.rendered;
+      post.fechaInicio = element.acf.fecha_inicio;
       
-         let cardImgTop = document.createElement('img');
-         cardImgTop.setAttribute('src', element.thumbnail);
-         cardImgTop.classList.add('card-img-top');
-         
-         let cardBody = document.createElement('div');
-         cardBody.classList.add('card-body', 'd-flex', 'flex-column');
-         
-         let cardTitle = document.createElement('h3');
-         cardTitle.classList.add('card-title', 'h5');
-         cardTitle.innerHTML = element.titulo;
-      
-         let cardSubtitle = document.createElement('span');
-         cardSubtitle.classList.add('d-block', 'text-secondary');
-         
-         let cardSubtitleInner = document.createElement('small');
-         cardSubtitleInner.innerHTML = `${element.tipoCapacitacion} en ${element.especialidadNombre}`;
-         
-         cardSubtitle.append(cardSubtitleInner);
-      
-         let cardText = document.createElement('p');
-         cardText.classList.add('card-text');
-         cardText.innerHTML = element.fechaInicio;
-      
-         let callToAction = document.createElement('a');
-         callToAction.setAttribute('href', element.link);
-         callToAction.classList.add('btn', 'btn-sm', `btn-${element.especialidadSlug}`, 'ms-auto', 'mt-auto');
-         callToAction.innerText = 'Más información';
-      
-         cardBody.append(cardSubtitle, cardTitle, cardText, callToAction);
-         
-         card.append(cardImgTop, cardBody);
-      
-         let slide = document.createElement('li');
-         slide.classList.add('splide__slide');
-         slide.append(card);
-         
-         appRoot.append(slide);
+      if(element.featured_media !== 0) {
+         const featImgUrl = await retrieveFeatImg(element.featured_media);
+         post.thumbnail = featImgUrl;
       } else {
-         if(especialidad === element.especialidadSlug) {
-            let card = document.createElement('div');
-            card.classList.add('card', 'capacitacion', `border-${element.especialidadSlug}`, 'h-100');
-            card.setAttribute('coc-especialidad', element.especialidadSlug);
-         
-            let cardImgTop = document.createElement('img');
-            cardImgTop.setAttribute('src', element.thumbnail);
-            cardImgTop.classList.add('card-img-top');
-            
-            let cardBody = document.createElement('div');
-            cardBody.classList.add('card-body', 'd-flex', 'flex-column');
-            
-            let cardTitle = document.createElement('h3');
-            cardTitle.classList.add('card-title', 'h5');
-            cardTitle.innerHTML = element.titulo;
-         
-            let cardSubtitle = document.createElement('span');
-            cardSubtitle.classList.add('d-block', 'text-secondary');
-            
-            let cardSubtitleInner = document.createElement('small');
-            cardSubtitleInner.innerHTML = `${element.tipoCapacitacion} en ${element.especialidadNombre}`;
-            
-            cardSubtitle.append(cardSubtitleInner);
-         
-            let cardText = document.createElement('p');
-            cardText.classList.add('card-text');
-            cardText.innerHTML = element.fechaInicio;
-         
-            let callToAction = document.createElement('a');
-            callToAction.setAttribute('href', element.link);
-            callToAction.classList.add('btn', 'btn-sm', `btn-${element.especialidadSlug}`, 'ms-auto', 'mt-auto');
-            callToAction.innerText = 'Más información';
-         
-            cardBody.append(cardSubtitle, cardTitle, cardText, callToAction);
-            
-            card.append(cardImgTop, cardBody);
-         
-            let slide = document.createElement('li');
-            slide.classList.add('splide__slide');
-            slide.append(card);
-            
-            appRoot.append(slide);
-         }
+         post.thumbnail = ENV.THEME_URL + 'img/capacitaciones/placeholder.jpg';
       }
-   });
+      
+      post.link = element.link;
 
+      return post;
+   });
+  
+  return Promise.all(posts);
+}
+
+function startSplide() {
    const splideCapacitaciones = new Splide( '.splide', {
       type: 'slide',
       mediaQuery: 'min',
@@ -146,34 +71,72 @@ const fillCapacitaciones = (jsonCapacitaciones, especialidad = 'todos') => {
    splideCapacitaciones.mount();
 }
 
-document.addEventListener('DOMContentLoaded', fillCapacitaciones(capacitaciones));
+function createSlide(objCapacitacion) {
+   let slide = `
+      <li class="splide__slide">
+         <div class="card capacitacion border-${objCapacitacion.especialidadSlug} h-100" coc-especialidad="${objCapacitacion.especialidadSlug}">
+            <img src="${objCapacitacion.thumbnail}" class="card-img-top" />
+            <div class="card-body d-flex flex-column">
+               <h3 class="h5 card-title">${objCapacitacion.titulo}</h3>
+               <span class="d-block text-secondary"><small>${objCapacitacion.tipoCapacitacion} en ${objCapacitacion.especialidadNombre}</small></span>
+               <p class="card-text">${objCapacitacion.fechaInicio}</p>
+               <a href="${objCapacitacion.link}" class="btn btn-sm btn-${objCapacitacion.especialidadSlug} ms-auto mt-auto">Más información &rarr;</a>
+            </div><!-- .card-body -->
+         </div><!-- .capacitacion -->
+      </li><!-- .splide__slide -->
+   `;
 
-const filtros = document.querySelectorAll('.filtro-espec');
+   appRoot.innerHTML += slide;
+}
 
-filtros.forEach( (filtro) => {
-   let especialidad = filtro.getAttribute('coc-especialidad');
-   
-   filtro.addEventListener('click', (event) => {
-      appRoot.innerHTML = '';
-      fillCapacitaciones(capacitaciones, especialidad);
-      
-      filtros.forEach(elem => {
-         let especialidadIn = elem.getAttribute('coc-especialidad');
-         elem.classList.remove(`btn-${especialidadIn}`);
-         elem.classList.add(`btn-outline-dark`);
-      });
-      
-      event.target.classList.remove(`btn-outline-dark`);
-      event.target.classList.add(`btn-${especialidad}`);
+function fillCapacitaciones(jsonCapacitaciones, especialidad = 'todos') {
+   jsonCapacitaciones.forEach((element) => {
+      if(especialidad === 'todos') {
+         createSlide(element);
+      } else {
+         if(especialidad === element.especialidadSlug) {
+            createSlide(element);
+         }
+      }
    });
-});
 
-const filtrosMobile = document.querySelector('#filtros-espec-mobile > select');
+   startSplide();
+}
 
-filtrosMobile.addEventListener('change', (event) => {
-   let especialidad = event.target.value;
-
-   appRoot.innerHTML = '';
+function setFiltros() {
+   const filtros = document.querySelectorAll('.filtro-espec');
    
-   fillCapacitaciones(capacitaciones, especialidad);
-});
+   filtros.forEach( (filtro) => {
+      let especialidad = filtro.getAttribute('coc-especialidad');
+      
+      filtro.addEventListener('click', (event) => {
+         appRoot.innerHTML = '';
+         fillCapacitaciones(capacitaciones, especialidad);
+         
+         filtros.forEach(elem => {
+            let especialidadIn = elem.getAttribute('coc-especialidad');
+            elem.classList.remove(`btn-${especialidadIn}`);
+            elem.classList.add(`btn-outline-dark`);
+         });
+         
+         event.target.classList.remove(`btn-outline-dark`);
+         event.target.classList.add(`btn-${especialidad}`);
+      });
+   });
+   
+   const filtrosMobile = document.querySelector('#filtros-espec-mobile > select');
+   
+   filtrosMobile.addEventListener('change', (event) => {
+      let especialidad = event.target.value;
+   
+      appRoot.innerHTML = '';
+      
+      fillCapacitaciones(capacitaciones, especialidad);
+   });
+}
+
+const appRoot = document.querySelector('.splide > .splide__track > .splide__list');
+const capacitaciones = await setData(ENV.API_CAPACITACIONES_URL);
+
+document.addEventListener('DOMContentLoaded', fillCapacitaciones(capacitaciones));
+document.addEventListener('DOMContentLoaded', setFiltros());
