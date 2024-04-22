@@ -20,7 +20,7 @@ function capacitaciones_front()
                   $output .= '<option value="' . esc_attr($especialidad->slug) . '">' . esc_html($especialidad->name) . '</option>';
                }
             $output .='</select>'; // .form-select
-         $output .= '</div>';// #filtros-espec-mobile
+         $output .= '</div>'; // #filtros-espec-mobile
          $output .= '<div class="d-none d-md-flex flex-row flex-wrap justify-content-center mb-4" id="filtros-espec-desk">';
             $output .= '<button type="button" class="btn btn-sm btn-todos text-nowrap filtro-espec" coc-especialidad="todos">Todos</button>';
 
@@ -36,7 +36,9 @@ function capacitaciones_front()
             $output .= '</div>'; // .splide__track
          $output .= '</div>'; // .splide
 
-         $output .= '<div id="acceso-capacitaciones-full" class="d-flex justify-content-center"><a class="btn btn-secondary btn-lg" href="' . home_url() . '/capacitacion/especialidades">Ver nuestra agenda completa</a></div>';
+         $output .= '<div id="acceso-capacitaciones-full" class="d-flex justify-content-center">';
+            $output .= '<a class="btn btn-secondary btn-lg" href="' . home_url() . '/capacitacion/especialidades">Ver nuestra agenda completa</a>';
+         $output .= '</div>';
       $output .= '</div>'; // #capacitaciones-front
    endif;
 
