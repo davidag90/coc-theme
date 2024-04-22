@@ -1,5 +1,4 @@
-const appRoot = document.getElementById('app-root');
-const APIURL = 'https://dagdev.com.ar/coc-dev/wp-json/wp/v2/capacitaciones?_embed';
+import * as ENV from "./env.js";
 
 async function fetchData(url) {
    const response = await fetch(url);
@@ -7,24 +6,39 @@ async function fetchData(url) {
    return await response.json();
 }
 
-async function setData(url) {
-   const data = await fetchData(url);
-   const posts = data.map((element) => {
-     return {
-       tipoCapacitacion: element.acf.tipo_capacitacion,
-       especialidadSlug: element._embedded['wp:term'][0][0].slug,
-       especialidadNombre: element._embedded['wp:term'][0][0].name,
-       titulo: element.title.rendered,
-       fechaInicio: element.acf.fecha_inicio,
-       thumbnail: element._embedded['wp:featuredmedia'][0].link,
-       link: element.link
-     }
-   });
-  
-  return posts;
+async function retrieveFeatImg(mediaId) {
+   const endpoint = ENV.API_MEDIA_BASE + mediaId;
+   const response = await fetch(endpoint);
+   const mediaData = await response.json();
+   
+   return mediaData.source_url;
 }
 
-const capacitaciones = await setData(APIURL);
+async function setData(url) {
+   const data = await fetchData(url);
+
+   const posts = data.map( async(element) => {
+      let post = {};
+
+      post.tipoCapacitacion = element.acf.tipo_capacitacion;
+      post.especialidadSlug = element._embedded['wp:term'][0][0].slug;
+      post.especialidadNombre = element._embedded['wp:term'][0][0].name;
+      post.titulo = element.title.rendered;
+      post.fechaInicio = element.acf.fecha_inicio;
+      post.link = element.link;
+
+      if(element.featured_media !== 0) {
+         const featImgUrl = await retrieveFeatImg(element.featured_media);
+         post.thumbnail = featImgUrl;
+      } else {
+         post.thumbnail = ENV.THEME_URL + 'img/capacitaciones/placeholder.jpg';
+      }
+
+      return post;
+   });
+  
+  return Promise.all(posts);
+}
 
 const fillCapacitaciones = (jsonCapacitaciones, especialidad = 'todos') => {
    jsonCapacitaciones.forEach((element) => {
@@ -140,31 +154,37 @@ const fillCapacitaciones = (jsonCapacitaciones, especialidad = 'todos') => {
    });
 }
 
-document.addEventListener('DOMContentLoaded', fillCapacitaciones(capacitaciones));
-
-const filtros = document.querySelectorAll('.filtro-espec');
-
-filtros.forEach( (filtro) => {
-   let especialidad = filtro.getAttribute('coc-especialidad');
+function setFiltros() {
+   const filtros = document.querySelectorAll('.filtro-espec');
    
-   filtro.addEventListener('click', (event) => {
-      appRoot.innerHTML = '';
-      fillCapacitaciones(capacitaciones, especialidad);
+   filtros.forEach( (filtro) => {
+      let especialidad = filtro.getAttribute('coc-especialidad');
       
-      filtros.forEach(elem => {
-         elem.classList.remove('active');
+      filtro.addEventListener('click', (event) => {
+         appRoot.innerHTML = '';
+         fillCapacitaciones(capacitaciones, especialidad);
+         
+         filtros.forEach(elem => {
+            elem.classList.remove('active');
+         });
+      
+         event.target.classList.add('active');
       });
-   
-      event.target.classList.add('active');
    });
-});
-
-const filtrosMobile = document.querySelector('#filtros-espec-mobile > select');
-
-filtrosMobile.addEventListener('change', (event) => {
-   let especialidad = event.target.value;
-
-   appRoot.innerHTML = '';
    
-   fillCapacitaciones(capacitaciones, especialidad);
-});
+   const filtrosMobile = document.querySelector('#filtros-espec-mobile > select');
+   
+   filtrosMobile.addEventListener('change', (event) => {
+      let especialidad = event.target.value;
+   
+      appRoot.innerHTML = '';
+      
+      fillCapacitaciones(capacitaciones, especialidad);
+   });
+}
+
+const appRoot = document.getElementById('app-root');
+const capacitaciones = await setData(ENV.API_CAPACITACIONES_URL);
+
+document.addEventListener('DOMContentLoaded', fillCapacitaciones(capacitaciones));
+document.addEventListener('DOMContentLoaded', setFiltros());
