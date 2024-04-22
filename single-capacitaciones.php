@@ -73,7 +73,6 @@ foreach ($espec_rel as $especialidad_relativa) {
                      </div><!-- .col-lg-4 -->
                      <div class="col-md-7 col-lg-8 col-xl-9">
                         <div class="d-flex flex-column">
-                           <h2>Dictantes</h2>
                            <div class="dictantes mb-4">
                               <?php echo $dictantes ?>
                               <?php if (!empty($curriculum_dictante)) : ?>
@@ -256,9 +255,11 @@ foreach ($espec_rel as $especialidad_relativa) {
                         <h2 class="text-center mb-4">Otras capacitaciones que podrían interesarte</h2>
                         <div id="capacitaciones-sugeridas">
                         <?php
+                           $limite_capac = 4;
+
                            $capac_rel_args = array(
                               'post_type' => 'capacitaciones',
-                              'posts_per_page' => 6,
+                              'posts_per_page' => $limite_capac,
                               'post__not_in' => array(get_the_ID()),
                               'tax_query' => array(
                                  'relation' => 'OR',
@@ -277,7 +278,7 @@ foreach ($espec_rel as $especialidad_relativa) {
 
                            $capac_rel_query = new WP_Query($capac_rel_args);
 
-                           $capac_restantes = 6 - $capac_rel_query->post_count;
+                           $capac_restantes = $limite_capac - $capac_rel_query->post_count;
 
                            $excluir_ids = array(get_the_ID());
 
