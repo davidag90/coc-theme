@@ -365,6 +365,10 @@ foreach ($espec_rel as $especialidad_relativa) {
                               echo 'No se encontraron posts relacionados.';
                            } ?>
                         </div><!-- #capacitaciones-sugeridas -->
+                        
+                        <div id="acceso-capacitaciones-full" class="d-flex justify-content-center">
+                           <a class="btn btn-secondary btn-lg" href="' . home_url() . '/capacitacion/especialidades">Ver nuestra agenda completa</a>
+                        </div>
                      </div>
                   </div>
                </div>
