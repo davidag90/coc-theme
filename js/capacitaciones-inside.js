@@ -40,115 +40,35 @@ async function setData(url) {
   return Promise.all(posts);
 }
 
+function createItem(objCapacitacion) {
+   let item = `
+      <div class="card capacitacion border-${objCapacitacion.especialidadSlug}" coc-especialidad="${objCapacitacion.especialidadSlug}">
+         <div class="row g-0">
+            <div class="col-sm-4">
+               <img src="${objCapacitacion.thumbnail}" class="img-fluid rounded-start" />
+            </div><!-- .col-sm-4 -->
+            <div class="col-sm-8">
+               <div class="card-body d-flex flex-column h-100">
+                  <h3 class="card-title h5">${objCapacitacion.titulo}</h3>
+                  <span class="d-block text-secondary"><small>${objCapacitacion.tipoCapacitacion} en ${objCapacitacion.especialidadNombre}</small></span>
+                  <p class="card-text">${objCapacitacion.fechaInicio}</p>
+                  <a href="${objCapacitacion.link}" class="btn btn-sm btn-${objCapacitacion.especialidadSlug} d-inline-block ms-auto mt-auto">Más información &rarr;</a>
+               </div><!-- .card-body -->
+            </div><!-- .col-sm-8 -->
+         </div><!-- .row -->
+      </div><!-- .card -->
+   `;
+
+   appRoot.innerHTML += item;
+}
+
 const fillCapacitaciones = (jsonCapacitaciones, especialidad = 'todos') => {
    jsonCapacitaciones.forEach((element) => {
       if(especialidad === 'todos') {
-         let card = document.createElement('div');
-         card.classList.add('card', 'capacitacion', `border-${element.especialidadSlug}`);
-         card.setAttribute('coc-especialidad', element.especialidadSlug);
-         
-         let row = document.createElement('div');
-         row.classList.add('row', 'g-0');
-
-         let colImg = document.createElement('div');
-         colImg.classList.add('col-sm-4');
-
-         let cardImg = document.createElement('img');
-         cardImg.setAttribute('src', element.thumbnail);
-         cardImg.classList.add('img-fluid', 'rounded-start', 'h-100');
-
-         colImg.append(cardImg);
-
-         let colContent = document.createElement('div');
-         colContent.classList.add('col-sm-8');
-         
-         let cardBody = document.createElement('div');
-         cardBody.classList.add('card-body');
-         
-         let cardTitle = document.createElement('h3');
-         cardTitle.classList.add('card-title', 'h5');
-         cardTitle.innerHTML = element.titulo;
-      
-         let cardSubtitle = document.createElement('span');
-         cardSubtitle.classList.add('d-block', 'text-secondary');
-         
-         let cardSubtitleInner = document.createElement('small');
-         cardSubtitleInner.innerHTML = `${element.tipoCapacitacion} en ${element.especialidadNombre}`;
-         
-         cardSubtitle.append(cardSubtitleInner);
-      
-         let cardText = document.createElement('p');
-         cardText.classList.add('card-text');
-         cardText.innerHTML = element.fechaInicio;
-      
-         let callToAction = document.createElement('a');
-         callToAction.setAttribute('href', element.link);
-         callToAction.classList.add('btn', 'btn-sm', `btn-${element.especialidadSlug}`, 'ms-auto');
-         callToAction.innerText = 'Más información';
-      
-         cardBody.append(cardSubtitle, cardTitle, cardText, callToAction);
-
-         colContent.append(cardBody);
-         
-         row.append(colImg, colContent);
-
-         card.append(row);
-      
-         appRoot.append(card);
+         createItem(element);
       } else {
          if(especialidad === element.especialidadSlug) {
-            let card = document.createElement('div');
-            card.classList.add('card', 'capacitacion', `border-${element.especialidadSlug}`);
-            card.setAttribute('coc-especialidad', element.especialidadSlug);
-            
-            let row = document.createElement('div');
-            row.classList.add('row', 'g-0');
-   
-            let colImg = document.createElement('div');
-            colImg.classList.add('col-sm-4');
-   
-            let cardImg = document.createElement('img');
-            cardImg.setAttribute('src', element.thumbnail);
-            cardImg.classList.add('img-fluid', 'rounded-start', 'h-100');
-   
-            colImg.append(cardImg);
-   
-            let colContent = document.createElement('div');
-            colContent.classList.add('col-sm-8');
-            
-            let cardBody = document.createElement('div');
-            cardBody.classList.add('card-body');
-            
-            let cardTitle = document.createElement('h3');
-            cardTitle.classList.add('card-title', 'h5');
-            cardTitle.innerHTML = element.titulo;
-         
-            let cardSubtitle = document.createElement('span');
-            cardSubtitle.classList.add('d-block', 'text-secondary');
-            
-            let cardSubtitleInner = document.createElement('small');
-            cardSubtitleInner.innerHTML = `${element.tipoCapacitacion} en ${element.especialidadNombre}`;
-            
-            cardSubtitle.append(cardSubtitleInner);
-         
-            let cardText = document.createElement('p');
-            cardText.classList.add('card-text');
-            cardText.innerHTML = element.fechaInicio;
-         
-            let callToAction = document.createElement('a');
-            callToAction.setAttribute('href', element.link);
-            callToAction.classList.add('btn', 'btn-sm', `btn-${element.especialidadSlug}`, 'ms-auto');
-            callToAction.innerText = 'Más información';
-         
-            cardBody.append(cardSubtitle, cardTitle, cardText, callToAction);
-   
-            colContent.append(cardBody);
-            
-            row.append(colImg, colContent);
-   
-            card.append(row);
-         
-            appRoot.append(card);
+            createItem(element);
          }
       }
    });

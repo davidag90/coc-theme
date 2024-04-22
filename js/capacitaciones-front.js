@@ -73,13 +73,13 @@ function startSplide() {
 function createSlide(objCapacitacion) {
    let slide = `
       <li class="splide__slide">
-         <div class="card capacitacion border-${objCapacitacion.especialidadSlug} h-100" coc-especialidad="${objCapacitacion.especialidadSlug}">
+         <div class="card capacitacion border-${objCapacitacion.especialidadSlug} h-100 position-relative" coc-especialidad="${objCapacitacion.especialidadSlug}">
             <img src="${objCapacitacion.thumbnail}" class="card-img-top" />
             <div class="card-body d-flex flex-column">
                <h3 class="h5 card-title">${objCapacitacion.titulo}</h3>
                <span class="d-block text-secondary"><small>${objCapacitacion.tipoCapacitacion} en ${objCapacitacion.especialidadNombre}</small></span>
                <p class="card-text">${objCapacitacion.fechaInicio}</p>
-               <a href="${objCapacitacion.link}" class="btn btn-sm btn-${objCapacitacion.especialidadSlug} ms-auto mt-auto">Más información &rarr;</a>
+               <a href="${objCapacitacion.link}" class="btn btn-sm btn-${objCapacitacion.especialidadSlug} ms-auto mt-auto stretched-link">Más información &rarr;</a>
             </div><!-- .card-body -->
          </div><!-- .capacitacion -->
       </li><!-- .splide__slide -->
