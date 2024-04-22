@@ -253,7 +253,8 @@ foreach ($espec_rel as $especialidad_relativa) {
                   <div class="row">
                      <div class="col">
                         <h2 class="text-center mb-4">Otras capacitaciones que podrían interesarte</h2>
-                        <div id="capacitaciones-sugeridas">
+                        
+                        <div id="capacitaciones-sugeridas" class="mb-5">
                         <?php
                            $limite_capac = 4;
 
