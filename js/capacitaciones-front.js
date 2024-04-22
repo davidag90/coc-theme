@@ -17,7 +17,7 @@ async function retrieveFeatImg(mediaId) {
 async function setData(url) {
    const data = await fetchData(url);
    
-   const posts = data.map( async (element) => {
+   const posts = data.map( async(element) => {
       let post = {};
 
       post.tipoCapacitacion = element.acf.tipo_capacitacion;
@@ -25,15 +25,14 @@ async function setData(url) {
       post.especialidadNombre = element._embedded['wp:term'][0][0].name;
       post.titulo = element.title.rendered;
       post.fechaInicio = element.acf.fecha_inicio;
-      
+      post.link = element.link;
+
       if(element.featured_media !== 0) {
          const featImgUrl = await retrieveFeatImg(element.featured_media);
          post.thumbnail = featImgUrl;
       } else {
          post.thumbnail = ENV.THEME_URL + 'img/capacitaciones/placeholder.jpg';
       }
-      
-      post.link = element.link;
 
       return post;
    });
