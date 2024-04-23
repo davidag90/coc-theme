@@ -20,7 +20,7 @@ get_header();
   <div class="w-100 page-img-header border-bottom border-subtle-secondary">
     <div class="container">
       <div class="col-12">
-        <header class="py-5">
+        <header class="py-3 py-lg-5">
           <h1 class="m-0 text-primary"><?php the_title(); ?></h1>
         </header>
       </div>
