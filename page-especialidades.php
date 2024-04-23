@@ -17,7 +17,7 @@ get_header();
 ?>
 
   <?php the_post(); ?>
-  <div class="w-100 page-img-header border-bottom border-subtle-secondary" style="background-image: url('<?= get_stylesheet_directory_uri(); ?>/img/headers/header-especialidades.jpg');">
+  <div class="w-100 page-img-header border-bottom border-subtle-secondary">
     <div class="container">
       <div class="col-12">
         <header class="py-5">

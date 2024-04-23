@@ -16,16 +16,21 @@
 get_header();
 ?>
 
-  <div id="content" class="site-content <?= bootscore_container_class(); ?> py-5">
-    <div id="primary" class="content-area">
+  <?php the_post(); ?>
+  <div class="w-100 page-img-header border-bottom border-subtle-secondary">
+    <div class="container">
       <div class="row">
         <div class="col-12">
-          <header class="entry-header">
-            <?php the_post(); ?>
-            <h1><?php the_title(); ?></h1>
+          <header class="py-5">
+            <h1 class="m-0 text-primary"><?php the_title(); ?></h1>
           </header>
-        </div><!-- .col-12 -->
-      </div><!-- .row -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="content" class="site-content <?= bootscore_container_class(); ?> py-5">
+    <div id="primary" class="content-area">
       <div class="row">
         <div class="col-12 col-lg-8">
           <main id="main" class="site-main">
@@ -40,5 +45,4 @@ get_header();
     </div>
   </div>
 
-<?php
-get_footer();
+<?php get_footer();
