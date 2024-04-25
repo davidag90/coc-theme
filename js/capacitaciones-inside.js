@@ -1,5 +1,3 @@
-import * as ENV from "./env.js";
-
 async function fetchData(url) {
    const response = await fetch(url);
    
@@ -7,7 +5,7 @@ async function fetchData(url) {
 }
 
 async function retrieveFeatImg(mediaId) {
-   const endpoint = ENV.API_MEDIA_BASE + mediaId;
+   const endpoint = API_MEDIA_BASE + mediaId;
    const response = await fetch(endpoint);
    const mediaData = await response.json();
    
@@ -31,7 +29,7 @@ async function setData(url) {
          const featImgUrl = await retrieveFeatImg(element.featured_media);
          post.thumbnail = featImgUrl;
       } else {
-         post.thumbnail = ENV.THEME_URL + 'img/capacitaciones/placeholder.jpg';
+         post.thumbnail = THEME_URL + 'img/capacitaciones/placeholder.jpg';
       }
 
       return post;
@@ -104,7 +102,7 @@ function setFiltros() {
 }
 
 const appRoot = document.getElementById('app-root');
-const capacitaciones = await setData(ENV.API_CAPACITACIONES_URL);
+const capacitaciones = await setData(API_CAPACITACIONES_URL);
 
 document.addEventListener('DOMContentLoaded', fillCapacitaciones(capacitaciones));
 document.addEventListener('DOMContentLoaded', setFiltros());

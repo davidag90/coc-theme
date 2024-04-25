@@ -16,16 +16,20 @@ function bootscore_child_enqueue_styles()
 add_action('wp_enqueue_scripts', 'custom_scripts_libs');
 function custom_scripts_libs() {
   wp_enqueue_script('custom-js', get_stylesheet_directory_uri() . '/js/custom.js', false, '', true);
+  wp_enqueue_script('env', get_stylesheet_directory_uri() . '/js/env.js', array(), false, false);
+  wp_localize_script('env', 'envParams', array(
+    'SITE_URL' => esc_url(home_url())
+  ));
 
   if(is_front_page()):
     wp_enqueue_script('splide-js', get_stylesheet_directory_uri() . '/js/splide.min.js', array(), null, true);
     wp_enqueue_style('splide-css', get_stylesheet_directory_uri() . '/css/splide-default.min.css', array(), null);
 
-    wp_enqueue_script('capacitaciones-front', get_stylesheet_directory_uri() . '/js/capacitaciones-front.js', false, array('splide-js'), true);
+    wp_enqueue_script('capacitaciones-front', get_stylesheet_directory_uri() . '/js/capacitaciones-front.js', false, array('env', 'splide-js'), true);
   endif;
 
   if(is_page('especialidades')):
-    wp_enqueue_script('capacitaciones-inside', get_stylesheet_directory_uri() . '/js/capacitaciones-inside.js', array(), null, true);
+    wp_enqueue_script('capacitaciones-inside', get_stylesheet_directory_uri() . '/js/capacitaciones-inside.js', array('env'), null, true);
   endif;
 
   function add_module_attribute($tag, $handle, $src) {
