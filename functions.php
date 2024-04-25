@@ -18,7 +18,7 @@ function custom_scripts_libs() {
   wp_enqueue_script('custom-js', get_stylesheet_directory_uri() . '/js/custom.js', false, '', true);
   wp_enqueue_script('env', get_stylesheet_directory_uri() . '/js/env.js', array(), false, false);
   wp_localize_script('env', 'envParams', array(
-    'SITE_URL' => esc_url(home_url())
+    'SITE_URL' => esc_url(home_url('/'))
   ));
 
   if(is_front_page()):
