@@ -61,6 +61,8 @@ foreach ($espec_rel as $especialidad_relativa) {
    </div><!-- .container -->
 </header>
 
+<div class="py-5"><?php print_r($producto_relacionado); ?></div>
+
 <div id="content" class="site-content <?= bootscore_container_class(); ?>">
    <div id="primary" class="content-area">
       <div class="row">
