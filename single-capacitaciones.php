@@ -23,6 +23,7 @@ $dictantes_img = get_field('dictantes_img');
 $codictantes = get_field('co_dictantes');
 $dictantes_invitados = get_field('dictantes_invitados');
 $tipo_inscripcion = get_field('tipo_inscripcion');
+$estado_inscripciones = get_field('estado_inscripciones');
 $aranceles = get_field('aranceles');
 $fecha_inicio = get_field('fecha_inicio');
 $horarios = get_field('horarios');
@@ -221,7 +222,11 @@ foreach ($espec_rel as $especialidad_relativa) {
             <aside id="detalles-inscripcion" class="bg-light border shadow-sm rounded overflow-hidden mb-4">
                <img src="<?php echo $img_destacada; ?>" class="mb-4">
                <div class="botonera mb-4 px-4">
-                  <a href="<?php print(!empty($producto_relacionado) ? home_url() . '/checkout/?add-to-cart=' . strval($producto_relacionado->ID) : 'https://wa.me/3512373661'); ?>" class="btn btn-warning w-100 py-2 link-light mb-2"><?php echo $tipo_inscripcion ?> &rarr;</a>
+                  <?php if($estado_inscripciones === 'abiertas'): ?>
+                     <a href="<?php print(!empty($producto_relacionado) ? home_url() . '/checkout/?add-to-cart=' . strval($producto_relacionado->ID) : 'https://wa.me/3512373661'); ?>" class="btn btn-warning w-100 py-2 link-light mb-2"><?php echo $tipo_inscripcion ?> &rarr;</a>
+                  <?php else: ?>
+                     <button class="btn btn-warning w-100 py-2 link-light mb-2" disabled><?php echo $tipo_inscripcion ?> &rarr;</a>
+                  <?php endif; ?>
                   <a href="#" class="btn btn-success w-100 py-2"><i class="fa-brands fa-whatsapp"></i> <span class="d-none d-lg-inline">Contactar por </span>WhatsApp</a>
                </div>
                <div id="detalles-aranceles" class="px-4">
