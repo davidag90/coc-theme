@@ -43,9 +43,7 @@ $espec_rel_arr = [$especialidad_slug];
 
 foreach ($espec_rel as $especialidad_relativa) {
    $espec_rel_arr[] = $especialidad_relativa->slug;
-}
-
-?>
+} ?>
 
 <header id="header-capacitacion" class="bg-<?php echo $especialidad_slug ?> bg-header-<?php echo $especialidad_slug ?> border-<?php echo $especialidad_slug ?>">
    <div class="container">
@@ -60,7 +58,7 @@ foreach ($espec_rel as $especialidad_relativa) {
          </div><!-- .col -->
       </div><!-- .row -->
    </div><!-- .container -->
-</header>         
+</header>
 
 <div id="content" class="site-content <?= bootscore_container_class(); ?>">
    <div id="primary" class="content-area">
