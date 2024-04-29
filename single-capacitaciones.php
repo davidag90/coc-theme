@@ -221,7 +221,7 @@ foreach ($espec_rel as $especialidad_relativa) {
                <img src="<?php echo $img_destacada; ?>" class="mb-4">
                <div class="botonera mb-4 px-4">
                   <?php if($estado_inscripciones === 'abiertas'): ?>
-                     <a class="btn btn-warning w-100 py-2 link-light mb-2" href="<?php print(!empty($producto_relacionado) ? home_url() . '/checkout/?add-to-cart=' . strval($producto_relacionado->ID) : 'https://wa.me/3512373661'); ?>"><?php echo $tipo_inscripcion ?> &rarr;</a>
+                     <a class="btn btn-warning w-100 py-2 link-light mb-2" href="<?php print(!empty($producto_relacionado) ? home_url() . '/finalizar-compra/?add-to-cart=' . strval($producto_relacionado->ID) : 'https://wa.me/3512373661'); ?>"><?php echo $tipo_inscripcion ?> &rarr;</a>
                   <?php else: ?>
                      <button class="btn btn-warning w-100 py-2 link-light mb-2" disabled><i class="fa-solid fa-ban"></i> INSCRIPCIONES CERRADAS</button>
                   <?php endif; ?>
