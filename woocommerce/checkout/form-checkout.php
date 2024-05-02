@@ -28,7 +28,7 @@ if (!$checkout->is_registration_enabled() && $checkout->is_registration_required
   return;
 }
 
-if ($_GET['order-cancelled'] === true) {
+if ($_REQUEST['order-cancelled'] === true) {
   wc_print_notice('El procedimiento de pago ha sido cancelado. Intenta nuevamente con otro medio.', 'notice');
 }
 ?>
