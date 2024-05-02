@@ -30,7 +30,9 @@ if (!$checkout->is_registration_enabled() && $checkout->is_registration_required
 
 $orderCanceled = $_GET['order_canceled'];
 
-echo $orderCanceled;
+if ($orderCanceled) {
+   wc_print_notice('Prodecimiento de pago cancelado o fallido. Por favor, intenta nuevamente con otro medio de pago', 'error');
+}
 
 ?>
 
