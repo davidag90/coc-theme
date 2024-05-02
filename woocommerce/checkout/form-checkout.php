@@ -28,9 +28,9 @@ if (!$checkout->is_registration_enabled() && $checkout->is_registration_required
   return;
 }
 
-if ($_REQUEST['order-cancelled'] === true) {
+/* if ($_REQUEST['order-cancelled'] === true) {
   wc_print_notice('El procedimiento de pago ha sido cancelado. Intenta nuevamente con otro medio.', 'notice');
-}
+} */
 ?>
 
 <form name="checkout" method="post" class="row checkout woocommerce-checkout" action="<?php echo esc_url(wc_get_checkout_url()); ?>" enctype="multipart/form-data">
