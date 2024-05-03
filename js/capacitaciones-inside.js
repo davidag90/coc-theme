@@ -21,6 +21,7 @@ async function setData(url) {
       post.tipoCapacitacion = element.acf.tipo_capacitacion;
       post.especialidadSlug = element._embedded['wp:term'][0][0].slug;
       post.especialidadNombre = element._embedded['wp:term'][0][0].name;
+      post.dictante = element.acf.dictante_principal_txt;
       post.titulo = element.title.rendered;
       post.fechaInicio = element.acf.fecha_inicio;
       post.link = element.link;
@@ -48,8 +49,9 @@ function createItem(objCapacitacion) {
             <div class="col-sm-8">
                <div class="card-body d-flex flex-column h-100">
                   <h3 class="card-title h5">${objCapacitacion.titulo}</h3>
-                  <span class="d-block text-secondary"><small>${objCapacitacion.tipoCapacitacion} en ${objCapacitacion.especialidadNombre}</small></span>
-                  <p class="card-text">${objCapacitacion.fechaInicio}</p>
+                  <span class="d-block text-secondary mb-3"><small>${objCapacitacion.tipoCapacitacion} en ${objCapacitacion.especialidadNombre}</small></span>
+                  <p class="card-text">${objCapacitacion.dictante}</p>
+                  <p class="card-text opacity-75">${objCapacitacion.fechaInicio}</p>
                   <a href="${objCapacitacion.link}" class="btn btn-sm btn-${objCapacitacion.especialidadSlug} d-inline-block ms-auto mt-auto">Más información &rarr;</a>
                </div><!-- .card-body -->
             </div><!-- .col-sm-8 -->
