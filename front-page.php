@@ -26,8 +26,7 @@
   						<div class="carousel-item <?php if ($c == 0) : ?>active<?php endif; ?> position-relative">
   							<?php $link = get_field('content_link');
 
-								if ($link) : // Verifica si el slide tiene un link asociado 
-								?>
+								if ($link) : // Verifica si el slide tiene un link asociado ?>
   								<a class="d-block w-100" href="<?php echo $link['url']; ?>">
   								<?php endif; ?>
   								<picture>
@@ -39,8 +38,8 @@
   									<source srcset="<?php echo esc_url($slide_mobile['url']); ?>" class="d-block w-100" media="(max-width:768px)">
   									<img src="<?php echo esc_url($slide_desktop['url']); ?>" class="d-block w-100">
   								</picture>
-  								<?php if ($link) : // Verificación para cerrar el <a> en caso de haber link asociado 
-									?>
+  								<?php if ($link) : // Verificación para cerrar el <a> y agregar un boton ?>
+									<button class="btn btn-primary position-absolute">Más información &rarr;</button>
   								</a>
   							<?php endif; ?>
   						</div><!-- .carousel-item -->
