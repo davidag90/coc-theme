@@ -49,16 +49,16 @@
   				</div><!-- .carousel-inner -->
 				
 				<button class="carousel-control-prev" type="button" data-bs-target="#front-carousel" data-bs-slide="prev">
-					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="carousel-control-prev-icon" aria-hidden="true"><i class="fa-solid fa-circle-chevron-left"></i></span>
 					<span class="visually-hidden">Anterior</span>
 				</button>
 				
 				<button class="carousel-control-next" type="button" data-bs-target="#front-carousel" data-bs-slide="next">
-					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="carousel-control-next-icon" aria-hidden="true"><i class="fa-solid fa-circle-chevron-right"></i></span>
 					<span class="visually-hidden">Siguiente</span>
 				</button>
   			</div><!-- #front-carousel -->
-			
+
   			<?php wp_reset_postdata(); ?>
   		<?php endif; ?>
   	</div>

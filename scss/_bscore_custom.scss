@@ -26,7 +26,7 @@ $clrs-instit: (
   "todos": $primary,
   "periodoncia": #7f2625,
   "prevencion": #004393,
-  "prostodoncia": #006c32
+  "prostodoncia": #006c32,
 );
 
 @each $especialidad, $color in $clrs-instit {
@@ -48,7 +48,7 @@ $clrs-instit: (
   }
 
   .bg-header-#{$especialidad} {
-    background-image: url('../img/capacitaciones/header-#{$especialidad}.jpg'), linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,.5));
+    background-image: url("../img/capacitaciones/header-#{$especialidad}.jpg"), linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
     background-position: center;
     background-repeat: none;
     background-size: cover;
@@ -62,34 +62,34 @@ $clrs-instit: (
 
 @font-face {
   font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-  font-family: 'Albert Sans';
+  font-family: "Albert Sans";
   font-style: normal;
   font-weight: 400;
-  src: url('../fonts/albert-sans-v1-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("../fonts/albert-sans-v1-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
 @font-face {
   font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-  font-family: 'Albert Sans';
+  font-family: "Albert Sans";
   font-style: italic;
   font-weight: 400;
-  src: url('../fonts/albert-sans-v1-latin-italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("../fonts/albert-sans-v1-latin-italic.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
 @font-face {
   font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-  font-family: 'Albert Sans';
+  font-family: "Albert Sans";
   font-style: normal;
   font-weight: 700;
-  src: url('../fonts/albert-sans-v1-latin-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("../fonts/albert-sans-v1-latin-700.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
 @font-face {
   font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-  font-family: 'Albert Sans';
+  font-family: "Albert Sans";
   font-style: italic;
   font-weight: 700;
-  src: url('../fonts/albert-sans-v1-latin-700italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("../fonts/albert-sans-v1-latin-700italic.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
 /* ==================== */
@@ -135,11 +135,11 @@ body {
 }
 
 #bootscore-navbar.navbar-nav .nav-link {
-  color: rgba(255,255,255,.85);
+  color: rgba(255, 255, 255, 0.85);
 }
 
 #bootscore-navbar.navbar-nav .nav-link:hover {
-  color: rgba(255,255,255,1);
+  color: rgba(255, 255, 255, 1);
 }
 
 /* ==================== */
@@ -155,25 +155,24 @@ body {
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   font: var(--fa-font-brands);
-  margin-right: $spacer * .5;
+  margin-right: $spacer * 0.5;
 }
 
 #menu-coc-social-media > .menu-item.facebook > .nav-link::before {
-  content: "\f09a"
+  content: "\f09a";
 }
 
 #menu-coc-social-media > .menu-item.instagram > .nav-link::before {
-  content: "\f16d"
+  content: "\f16d";
 }
 
 #menu-coc-social-media > .menu-item.youtube > .nav-link::before {
-  content: "\f167"
+  content: "\f167";
 }
 
 .footer-contact-info ul li {
   margin-bottom: 1rem;
 }
-
 
 /* ==================== */
 /* Front Page           */
@@ -183,13 +182,18 @@ body {
 }
 
 @include media-breakpoint-up(md) {
-  #front-carousel {
-    aspect-ratio: 16 / 6;
-  }
+	#front-carousel {
+		aspect-ratio: 16 / 6;
+	}
+}
+
+#front-carousel .carousel-control-prev-icon,
+#front-carousel .carousel-control-next-icon {
+	background-image: none;
 }
 
 #pacientes {
-  background-image: linear-gradient(to right, #EDF4FC, #9CCCFC);
+  background-image: linear-gradient(to right, #edf4fc, #9cccfc);
 }
 
 #pacientes figure {
@@ -208,7 +212,7 @@ body {
 #socios-circulo h2 {
   font-size: 4rem;
   margin-bottom: 2.5rem;
-  text-shadow: 1px 1px 6px rgba(0,0,0,0.5);
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.5);
   line-height: 1;
 }
 
@@ -246,7 +250,6 @@ body {
   aspect-ratio: 16/9;
   object-fit: cover;
 }
-
 
 #capacitaciones-front .capacitacion {
   transition: all 250ms;
@@ -318,28 +321,28 @@ body {
 
 @include media-breakpoint-up(sm) {
   #capacitaciones-sugeridas {
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 0.5rem;
   }
 }
 
 @include media-breakpoint-up(md) {
   #capacitaciones-sugeridas {
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
   }
 }
 
 @include media-breakpoint-up(lg) {
   #capacitaciones-sugeridas {
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
   }
 }
 
 #capacitaciones-sugeridas .card .card-img-top {
-	aspect-ratio: 16/7;
-	object-fit: cover;
+  aspect-ratio: 16/7;
+  object-fit: cover;
 }
 
 /* ==================== */
@@ -364,7 +367,7 @@ body {
 /* Páginas              */
 /* ==================== */
 .page-img-header {
-  background-image: url('../img/headers/header-paginas.jpg');
+  background-image: url("../img/headers/header-paginas.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
