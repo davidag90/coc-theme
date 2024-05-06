@@ -39,7 +39,7 @@
   									<img src="<?php echo esc_url($slide_desktop['url']); ?>" class="d-block w-100">
   								</picture>
   								<?php if ($link) : // Verificación para cerrar el <a> y agregar un boton ?>
-									<button class="btn btn-primary slide-mas-info">Más información &rarr;</button>
+									<button class="btn btn-primary btn-lg slide-mas-info">Más información &rarr;</button>
   								</a>
   							<?php endif; ?>
   						</div><!-- .carousel-item -->
