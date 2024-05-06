@@ -391,7 +391,18 @@ body {
   text-wrap: nowrap;
 }
 
+.payment_box {
+  margin-bottom: 0 !important;
+}
+
 .payment_method_macro_click img {
   width: auto;
   height: 24px;
 }
+
+.wc_payment_method + .wc_payment_method {
+  margin-top: .75rem !important;
+  padding-top: .75rem !important;
+  border-top: 1px solid $border-color;
+}
+
