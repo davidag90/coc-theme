@@ -108,7 +108,6 @@ body {
 /* ==================== */
 /* Header               */
 /* ==================== */
-
 #nav-main {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -132,6 +131,14 @@ body {
   background: none;
   height: auto;
   width: auto;
+}
+
+.offcanvas-body {
+  gap: 0.25rem;
+}
+
+#plus-nav {
+  gap: 0.5rem;
 }
 
 #bootscore-navbar.navbar-nav .nav-link {
