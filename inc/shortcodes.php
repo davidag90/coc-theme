@@ -1,6 +1,5 @@
 <?php
-function capacitaciones_front()
-{
+function capacitaciones_front() {
    ob_start();
 
    $output = '';
@@ -127,3 +126,12 @@ function capacitaciones_inside() {
 }
 
 add_shortcode('capacitaciones-inside', 'capacitaciones_inside');
+
+
+function mostrar_beneficios() {
+   ob_start();
+   
+   return ob_get_clean();
+}
+
+add_shortcode('mostrar-beneficios', 'mostrar_beneficios');
