@@ -225,7 +225,17 @@ foreach ($espec_rel as $especialidad_relativa) {
                   <?php else: ?>
                      <button class="btn btn-warning w-100 py-2 link-light mb-2" disabled><i class="fa-solid fa-ban"></i> INSCRIPCIONES CERRADAS</button>
                   <?php endif; ?>
-                  <a class="btn btn-success w-100 py-2" href="https://wa.me/3512373661" target="_blank"><i class="fa-brands fa-whatsapp"></i> <span class="d-none d-lg-inline">Contactar por </span>WhatsApp</a>
+
+                  <?php $whatsapp_params = http_build_query(array(
+                     'send'   => '3512373661',
+                     'text'   => 'Hola, me interesa la capacitación ' . get_the_title() . 'dictada por ' . $dictante_principal_txt . ' y agendado para iniciarse ' . $fecha_inicio
+                  ));
+                  
+                  $whatsapp_contact_url = 'https://web.whatsapp.com/' . $whatsapp_params;
+                  
+                  ?>
+
+                  <a class="btn btn-success w-100 py-2" href="<?= $whatsapp_contact_url ?>" target="_blank"><i class="fa-brands fa-whatsapp"></i> <span class="d-none d-lg-inline">Contactar por </span>WhatsApp</a>
                </div>
                <div id="detalles-aranceles" class="px-4">
                   <h2>Aranceles</h2>
