@@ -1,7 +1,7 @@
 jQuery(function ($) {
     let homeItem = `<li class="menu-item menu-item-home nav-item">
-                        <a href="${envParams.SITE_URL}" class="nav-link">
-                            <i class="fa-solid fa-house-chimney"></i> <span class="d-none">Inicio</span>
+                        <a href="${envParams.SITE_URL}" class="btn btn-light">
+                            <i class="bi bi-house-fill"></i><span class="d-none">Inicio</span>
                         </a>
                     </li>`;
     
