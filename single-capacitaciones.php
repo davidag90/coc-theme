@@ -227,12 +227,12 @@ foreach ($espec_rel as $especialidad_relativa) {
                   <?php endif; ?>
 
                   <?php $whatsapp_params = http_build_query(array(
-                     'send'   => '3512373661',
-                     'text'   => 'Hola, me interesa la capacitación ' . get_the_title() . 'dictada por ' . $dictante_principal_txt . ' y agendado para iniciarse ' . $fecha_inicio
+                     'phone'  => '3512373661',
+                     'text'   => htmlentities('Hola, me interesa la capacitación ' . get_the_title() . 'dictada por ' . $dictante_principal_txt . ' y agendado para iniciarse ' . $fecha_inicio)
                   ));
                   
-                  $whatsapp_contact_url = 'https://web.whatsapp.com/' . $whatsapp_params;
-                  
+                  $whatsapp_contact_url = 'https://api.whatsapp.com/send/?' . $whatsapp_params;
+
                   ?>
 
                   <a class="btn btn-success w-100 py-2" href="<?= $whatsapp_contact_url ?>" target="_blank"><i class="fa-brands fa-whatsapp"></i> <span class="d-none d-lg-inline">Contactar por </span>WhatsApp</a>
