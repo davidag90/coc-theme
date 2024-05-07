@@ -54,6 +54,11 @@
 								<div id="plus-nav" class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center justify-content-lg-end mb-2 mb-lg-0">
 									<a href="http://certificaciones.coc-cordoba.org.ar/" class="btn btn-secondary btn-sm" target="_blank"><i class="bi bi-file-earmark-check-fill"></i> Certificaciones</a>
 									<a href="http://www.coc-autogestion.com.ar/" class="btn btn-secondary btn-sm" target="_blank"><i class="bi bi-person-fill"></i> Autogestión Socios</a>
+									
+									<div id="nav-search-wrap" class="input-group input-group-sm">
+										<input type="text" class="form-control bg-secondary text-light" placeholder="Buscar en el sitio..." aria-label="Buscar en el sitio" aria-describedby="button-search" style="--bs-border-opacity: .5;">
+										<button class="btn btn-secondary border-light" type="button" id="button-search" style="--bs-border-opacity: .5;"><i class="bi bi-search"></i><span aria-hidden="true" class="d-none">Buscar</span></button>
+									</div>
 								</div>
 								
 								<!-- Bootstrap 5 Nav Walker Main Menu -->

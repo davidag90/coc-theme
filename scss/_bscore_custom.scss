@@ -141,6 +141,15 @@ body {
   gap: 0.5rem;
 }
 
+#plus-nav > #nav-search-wrap {
+  max-width: 250px;
+} 
+
+#plus-nav > #nav-search-wrap > input::placeholder {
+  color: $light;
+  opacity: 0.5;
+}
+
 #bootscore-navbar.navbar-nav .nav-link {
   color: rgba(255, 255, 255, 0.85);
 }
