@@ -16,6 +16,10 @@ function bootscore_child_enqueue_styles()
 add_action('wp_enqueue_scripts', 'custom_scripts_libs');
 function custom_scripts_libs() {
   wp_enqueue_script('custom-js', get_stylesheet_directory_uri() . '/js/custom.js', false, '', true);
+  wp_localize_script('custom-js', 'envParams', array(
+    'SITE_URL' => esc_url(home_url()) . '/'
+  ));
+
   wp_enqueue_script('env', get_stylesheet_directory_uri() . '/js/env.js', array(), false, false);
   wp_localize_script('env', 'envParams', array(
     'SITE_URL' => esc_url(home_url()) . '/'
