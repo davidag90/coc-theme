@@ -51,6 +51,10 @@
 								<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"><i class="fa-regular fa-circle-xmark"></i></button>
 							</div>
 							<div class="offcanvas-body bg-primary">
+								<div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center justify-content-lg-end mb-2 mb-lg-0">
+									<a href="http://certificaciones.coc-cordoba.org.ar/" class="btn btn-secondary btn-sm"><i class="bi bi-file-earmark-check-fill"></i> Certificaciones</a>
+									<a href="http://www.coc-autogestion.com.ar/" class="btn btn-secondary btn-sm"><i class="bi bi-person-fill"></i> Autogestión Socios</a>
+								</div>
 								
 								<!-- Bootstrap 5 Nav Walker Main Menu -->
 								<?php
