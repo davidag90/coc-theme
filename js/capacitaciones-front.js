@@ -39,13 +39,16 @@ async function setData(url) {
 
    posts.sort((a,b) => {
       const keyA = new Date(a.fechaInicioDF);
+      console.log(keyA);
+      
       const keyB = new Date(b.fechaInicioDF);
+      console.log(keyB);
 
       if (keyA < keyB) return -1;
       if (keyA < keyB) return 1;
       
       return 0;
-   })
+   });
   
    return Promise.all(posts);
 }
