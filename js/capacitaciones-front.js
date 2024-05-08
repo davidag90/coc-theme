@@ -24,6 +24,7 @@ async function setData(url) {
       post.dictante = element.acf.dictante_principal_txt;
       post.titulo = element.title.rendered;
       post.fechaInicio = element.acf.fecha_inicio;
+      post.fechaInicioDF = element.acf.fecha_inicio_dateformat;
       post.link = element.link;
 
       if(element.featured_media !== 0) {
@@ -35,8 +36,18 @@ async function setData(url) {
 
       return post;
    });
+
+   posts.sort((a,b) => {
+      const keyA = new Date(a.fechaInicioDF);
+      const keyB = new Date(b.fechaInicioDF);
+
+      if (keyA < keyB) return -1;
+      if (keyA < keyB) return 1;
+      
+      return 0;
+   })
   
-  return Promise.all(posts);
+   return Promise.all(posts);
 }
 
 function startSplide() {
