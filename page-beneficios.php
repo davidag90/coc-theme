@@ -41,5 +41,6 @@ get_header();
     </div>
   </div>
 
+  <div id="modals"></div>
 <?php
 get_footer();

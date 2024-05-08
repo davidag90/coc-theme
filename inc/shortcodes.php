@@ -161,7 +161,9 @@ function mostrar_beneficios() {
          echo '</div>'; // .col
       echo '</div>'; // .row
    echo '</div>'; // #beneficios
-
+   
+   echo '<div id="modals"></div>';
+   
    return ob_get_clean();
 }
 
