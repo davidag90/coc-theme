@@ -24,7 +24,9 @@ async function setData(url) {
       post.dictante = element.acf.dictante_principal_txt;
       post.titulo = element.title.rendered;
       post.fechaInicio = element.acf.fecha_inicio;
-      post.fechaInicioDF = element.acf.fecha_inicio_dateformat;
+      post.fechaInicioY = element.acf.fecha_inicio_dateformat.slice(0,3);
+      post.fechaInicioD = element.acf.fecha_inicio_dateformat.slice(4,6);
+      post.fechaInicioM = element.acf.fecha_inicio_dateformat.slice(6,8);
       post.link = element.link;
 
       if(element.featured_media !== 0) {
@@ -38,10 +40,10 @@ async function setData(url) {
    });
 
    posts.sort((a,b) => {
-      const keyA = new Date(a.fechaInicioDF);
+      const keyA = new Date(`${a.fechaInicioY}-${a.fechaInicioM}-${a.fechaInicioD}`);
       console.log(keyA);
       
-      const keyB = new Date(b.fechaInicioDF);
+      const keyB = new Date(`${b.fechaInicioY}-${b.fechaInicioM}-${b.fechaInicioD}`);
       console.log(keyB);
 
       if (keyA < keyB) return -1;
