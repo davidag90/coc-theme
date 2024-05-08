@@ -90,6 +90,20 @@ function createSlide(objCapacitacion) {
 }
 
 function fillCapacitaciones(jsonCapacitaciones, especialidad = 'todos') {
+   jsonCapacitaciones.sort((a, b) => {
+      const dateA = new Date(
+        a.fechaInicioDF.slice(0, 4),
+        a.fechaInicioDF.slice(4, 6) - 1,
+        a.fechaInicioDF.slice(6, 8)
+      );
+      const dateB = new Date(
+        b.fechaInicioDF.slice(0, 4),
+        b.fechaInicioDF.slice(4, 6) - 1,
+        b.fechaInicioDF.slice(6, 8)
+      );
+      return dateA - dateB;
+    });
+
    jsonCapacitaciones.forEach((element) => {
       if(especialidad === 'todos') {
          createSlide(element);
