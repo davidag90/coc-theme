@@ -38,21 +38,6 @@ async function setData(url) {
 
       return post;
    });
-
-   posts.sort( async (a,b) => {
-      console.log(`${a.fechaInicioY}-${a.fechaInicioM}-${a.fechaInicioD}`);
-      const keyA = new Date(`${a.fechaInicioY}-${a.fechaInicioM}-${a.fechaInicioD}`);
-      console.log(keyA);
-      
-      console.log(`${b.fechaInicioY}-${b.fechaInicioM}-${b.fechaInicioD}`);
-      const keyB = new Date(`${b.fechaInicioY}-${b.fechaInicioM}-${b.fechaInicioD}`);
-      console.log(keyB);
-
-      if (keyA < keyB) return -1;
-      if (keyA < keyB) return 1;
-      
-      return 0;
-   });
   
    return Promise.all(posts);
 }
@@ -107,6 +92,22 @@ function createSlide(objCapacitacion) {
 }
 
 function fillCapacitaciones(jsonCapacitaciones, especialidad = 'todos') {
+
+   jsonCapacitaciones.sort( async (a,b) => {
+      console.log(`${a.fechaInicioY}-${a.fechaInicioM}-${a.fechaInicioD}`);
+      const keyA = new Date(`${a.fechaInicioY}-${a.fechaInicioM}-${a.fechaInicioD}`);
+      console.log(keyA);
+      
+      console.log(`${b.fechaInicioY}-${b.fechaInicioM}-${b.fechaInicioD}`);
+      const keyB = new Date(`${b.fechaInicioY}-${b.fechaInicioM}-${b.fechaInicioD}`);
+      console.log(keyB);
+
+      if (keyA < keyB) return -1;
+      if (keyA < keyB) return 1;
+      
+      return 0;
+   });
+
    jsonCapacitaciones.forEach((element) => {
       if(especialidad === 'todos') {
          createSlide(element);
