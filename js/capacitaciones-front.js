@@ -40,9 +40,11 @@ async function setData(url) {
    });
 
    posts.sort((a,b) => {
+      console.log(a);
       const keyA = new Date(`${a.fechaInicioY}-${a.fechaInicioM}-${a.fechaInicioD}`);
       console.log(keyA);
       
+      console.log(b);
       const keyB = new Date(`${b.fechaInicioY}-${b.fechaInicioM}-${b.fechaInicioD}`);
       console.log(keyB);
 
