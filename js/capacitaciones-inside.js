@@ -44,7 +44,7 @@ function createItem(objCapacitacion) {
       <div class="card capacitacion border-${objCapacitacion.especialidadSlug}" coc-especialidad="${objCapacitacion.especialidadSlug}">
          <div class="row g-0">
             <div class="col-sm-4">
-               <img src="${objCapacitacion.thumbnail}" class="img-fluid rounded-start" />
+               <img src="${objCapacitacion.thumbnail}" class="img-fluid rounded-start h-100" />
             </div><!-- .col-sm-4 -->
             <div class="col-sm-8">
                <div class="card-body d-flex flex-column h-100">
