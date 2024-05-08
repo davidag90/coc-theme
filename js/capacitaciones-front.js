@@ -24,7 +24,7 @@ async function setData(url) {
       post.dictante = element.acf.dictante_principal_txt;
       post.titulo = element.title.rendered;
       post.fechaInicio = element.acf.fecha_inicio;
-      post.fechaInicioY = element.acf.fecha_inicio_dateformat.slice(0,3);
+      post.fechaInicioY = element.acf.fecha_inicio_dateformat.slice(0,4);
       post.fechaInicioD = element.acf.fecha_inicio_dateformat.slice(4,6);
       post.fechaInicioM = element.acf.fecha_inicio_dateformat.slice(6,8);
       post.link = element.link;
