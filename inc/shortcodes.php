@@ -131,6 +131,37 @@ add_shortcode('capacitaciones-inside', 'capacitaciones_inside');
 function mostrar_beneficios() {
    ob_start();
    
+   $rubros = get_terms(array(
+      'taxonomy' => 'rubro'
+   ));
+
+   echo '<div id="beneficios">';
+      echo '<div class="row">';
+         echo '<div class="col-12 col-md-4">';
+            if($rubros) {
+               echo '<div class="d-block d-md-none mb-4" id="filtros-rubro-mobile">';
+                  echo '<select class="form-select">';
+                     echo '<option value="todos" selected>Todos</option>';
+                     foreach ($rubros as $rubro) {
+                        echo '<option value="' . esc_attr($rubro->slug) . '">' . esc_html($rubro->name) . '</option>';
+                     }
+                  echo '</select>'; // .form-select
+               echo '</div>';// #filtros-rubro-mobile
+
+               echo '<div class="list-group d-none d-md-block">';
+               echo '<button class="list-group-item list-group-item-action filtro-rubro active" coc-rubro="todos">Todas</button>';
+               foreach($rubros as $rubro) {
+                  echo '<button class="list-group-item list-group-item-action filtro-rubro" coc-rubro="' . esc_html($rubro->slug) . '">' . esc_html($rubro->name) . '</button>';
+               }
+               echo '</div>';
+            }
+         echo '</div>'; // .col
+         echo '<div class="col-12 col-md-8">';
+            echo '<div id="app-root"></div>';
+         echo '</div>'; // .col
+      echo '</div>'; // .row
+   echo '</div>'; // #beneficios
+
    return ob_get_clean();
 }
 
