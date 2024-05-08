@@ -24,9 +24,7 @@ async function setData(url) {
       post.dictante = element.acf.dictante_principal_txt;
       post.titulo = element.title.rendered;
       post.fechaInicio = element.acf.fecha_inicio;
-      post.fechaInicioY = element.acf.fecha_inicio_dateformat.slice(0,4);
-      post.fechaInicioD = element.acf.fecha_inicio_dateformat.slice(4,6);
-      post.fechaInicioM = element.acf.fecha_inicio_dateformat.slice(6,8);
+      post.fechaInicioDF = element.acf.fecha_inicio_dateformat;
       post.link = element.link;
 
       if(element.featured_media !== 0) {
@@ -92,22 +90,6 @@ function createSlide(objCapacitacion) {
 }
 
 function fillCapacitaciones(jsonCapacitaciones, especialidad = 'todos') {
-
-   jsonCapacitaciones.sort( async (a,b) => {
-      console.log(`${a.fechaInicioY}-${a.fechaInicioM}-${a.fechaInicioD}`);
-      const keyA = new Date(`${a.fechaInicioY}-${a.fechaInicioM}-${a.fechaInicioD}`);
-      console.log(keyA);
-      
-      console.log(`${b.fechaInicioY}-${b.fechaInicioM}-${b.fechaInicioD}`);
-      const keyB = new Date(`${b.fechaInicioY}-${b.fechaInicioM}-${b.fechaInicioD}`);
-      console.log(keyB);
-
-      if (keyA < keyB) return -1;
-      if (keyA < keyB) return 1;
-      
-      return 0;
-   });
-
    jsonCapacitaciones.forEach((element) => {
       if(especialidad === 'todos') {
          createSlide(element);
