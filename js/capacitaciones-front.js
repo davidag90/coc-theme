@@ -147,6 +147,7 @@ function setFiltros() {
 
 const appRoot = document.querySelector('.splide > .splide__track > .splide__list');
 const capacitaciones = await setData(API_CAPACITACIONES_URL);
+console.log(capacitaciones);
 
 document.addEventListener('DOMContentLoaded', fillCapacitaciones(capacitaciones));
 document.addEventListener('DOMContentLoaded', setFiltros());
