@@ -47,47 +47,6 @@ function capacitaciones_front() {
 
 add_shortcode('capacitaciones-front', 'capacitaciones_front');
 
-
-function capacitaciones_iniciadas_front() {
-   ob_start();
-
-   $output = '';
-   
-   $args = array(
-      'post_type'    => 'capacitaciones',
-      'meta_key'     => 'fecha_inicio_dateformat',
-      'meta_value'   => date( "Ymd" ), // change to how "event date" is stored
-      'meta_compare' => '<',
-      'order_by'     => 'meta_value',
-      'order'        => 'ASC',
-      'meta_type'    => 'DATE'
-   );
-   
-   $query = new WP_Query($args);
-
-   if($query->have_posts()) {
-      $output .= '<div class="list-group">';
-
-      while($query->have_posts()) {
-         $query->the_post();
-         
-         $fecha_inicio_dateformat = get_field('fecha_inicio_dateformat');
-
-         $fecha_obj = DateTime::createFromFormat('Ymd', $fecha_inicio_dateformat);
-
-         $output .= '<a class="list-group-item list-group-item-secondary list-group-item-action" href="'. get_the_permalink() . '">' . get_the_title() . ' <small class="opacity-50">' . $fecha_obj->format('d-m-Y') . '</small></a>';
-      }
-
-      $output .= '</div>'; // .list-group
-   }
-
-   echo $output;
-   
-   return ob_get_clean();
-}
-
-add_shortcode('capacitaciones-iniciadas-front', 'capacitaciones_iniciadas_front');
-
 function capacitaciones_inside() {
    ob_start();
 
@@ -126,6 +85,50 @@ function capacitaciones_inside() {
 }
 
 add_shortcode('capacitaciones-inside', 'capacitaciones_inside');
+
+
+
+function mostrar_capacitaciones_iniciadas() {
+   ob_start();
+
+   $especialidades = get_terms(array(
+      'taxonomy' => 'especialidad'
+   ));
+
+   echo '<div id="capacitaciones-iniciadas">';
+      echo '<div class="row">';
+         echo '<div class="col-12 col-md-4">';
+            if($especialidades) {
+               echo '<div class="d-block d-md-none mb-4" id="filtros-espec-mobile">';
+                  echo '<select class="form-select">';
+                     echo '<option value="todos" selected>Todos</option>';
+                     foreach ($especialidades as $especialidad) {
+                        echo '<option value="' . esc_attr($especialidad->slug) . '">' . esc_html($especialidad->name) . '</option>';
+                     }
+                  echo '</select>'; // .form-select
+               echo '</div>';// #filtros-espec-mobile
+
+               echo '<div class="list-group d-none d-md-block">';
+               echo '<button class="list-group-item list-group-item-action filtro-espec active" coc-especialidad="todos">Todas</button>';
+               foreach($especialidades as $especialidad) {
+                  echo '<button class="list-group-item list-group-item-action filtro-espec" coc-especialidad="' . esc_html($especialidad->slug) . '">' . esc_html($especialidad->name) . '</button>';
+               }
+               echo '</div>';
+            }
+         echo '</div>'; // .col
+         echo '<div class="col-12 col-md-8">';
+            echo '<div id="app-root"></div>';
+         echo '</div>'; // .col
+      echo '</div>'; // .row
+   echo '</div>'; // #capacitaciones-inside
+
+   return ob_get_clean();
+}
+
+add_shortcode('mostrar-capacitaciones-iniciadas', 'mostrar_capacitaciones_iniciadas');
+
+
+
 
 
 function mostrar_beneficios() {

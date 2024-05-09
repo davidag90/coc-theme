@@ -40,8 +40,17 @@ function custom_scripts_libs() {
     wp_enqueue_script('beneficios', get_stylesheet_directory_uri() . '/js/beneficios.js', array('env'), null, true);
   endif;
 
+  if(is_page('capacitaciones-iniciadas')):
+    wp_enqueue_script('capacitaciones-iniciadas', get_stylesheet_directory_uri() . '/js/capacitaciones-iniciadas.js', array('env'), null, true);
+  endif;
+
   function add_module_attribute($tag, $handle, $src) {
-    $handle_check = ($handle === 'capacitaciones-inside' || $handle === 'capacitaciones-front' || $handle === 'beneficios');
+    $handle_check = (
+      $handle === 'capacitaciones-inside'||
+      $handle === 'capacitaciones-front' ||
+      $handle === 'beneficios' ||
+      $handle === 'capacitaciones-iniciadas'
+    );
     
     if ($handle_check) {
       $tag = '<script type="module" src="' . esc_url( $src ) . '"></script>';
