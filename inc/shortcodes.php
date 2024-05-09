@@ -100,7 +100,7 @@ function mostrar_capacitaciones_iniciadas() {
       'posts_per_page' => -1, // Retrieve all posts
       'meta_query' => array(
          array(
-               'key' => 'fecha_inicio',
+               'key' => 'fecha_inicio_dateformat',
                'value' => $fechaHoy,
                'compare' => '<=',
                'type' => 'DATE',
