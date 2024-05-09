@@ -104,12 +104,22 @@ function fillCapacitaciones(jsonCapacitaciones, especialidad = 'todos') {
       return dateA - dateB;
     });
 
+   
    jsonCapacitaciones.forEach((element) => {
-      if(especialidad === 'todos') {
-         createSlide(element);
-      } else {
-         if(especialidad === element.especialidadSlug) {
+      const hoy = new Date();
+      const fechaCapacitacion = new Date(
+         element.fechaInicioDF.slice(0, 4),
+         element.fechaInicioDF.slice(4, 6) - 1,
+         element.fechaInicioDF.slice(6, 8)
+      );
+
+      if(hoy < fechaCapacitacion) {
+         if(especialidad === 'todos') {
             createSlide(element);
+         } else {
+            if(especialidad === element.especialidadSlug) {
+               createSlide(element);
+            }
          }
       }
    });
