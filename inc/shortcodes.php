@@ -91,18 +91,48 @@ add_shortcode('capacitaciones-inside', 'capacitaciones_inside');
 function mostrar_capacitaciones_iniciadas() {
    ob_start();
 
-   $especialidades = get_terms(array(
-      'taxonomy' => 'especialidad'
-   ));
+   // Get the current date
+   $fechaHoy = date('Ymd');
+
+   // Query arguments for the "capacitacion" custom post type
+   $args = array(
+      'post_type' => 'capacitacion',
+      'posts_per_page' => -1, // Retrieve all posts
+      'meta_query' => array(
+         array(
+               'key' => 'fecha_inicio',
+               'value' => $fechaHoy,
+               'compare' => '<=',
+               'type' => 'DATE',
+         ),
+      ),
+      'tax_query' => array(
+         array(
+               'taxonomy' => 'especialidades',
+               'field' => 'slug',
+               'operator' => 'EXISTS',
+         ),
+      ),
+   );
+
+   // Execute the query
+   $query = new WP_Query($args);
+
+   // Get the term IDs from the query results
+   $idsEspecialidades = wp_get_object_terms($query->posts, 'especialidades', array('fields' => 'ids'));
+
+   // Remove duplicates from the term IDs array
+   $idsEspecialidades = array_unique($idsEspecialidades);
 
    echo '<div id="capacitaciones-iniciadas">';
       echo '<div class="row">';
          echo '<div class="col-12 col-md-4">';
-            if($especialidades) {
+            if($idsEspecialidades) {
                echo '<div class="d-block d-md-none mb-4" id="filtros-espec-mobile">';
                   echo '<select class="form-select">';
                      echo '<option value="todos" selected>Todos</option>';
-                     foreach ($especialidades as $especialidad) {
+                     foreach ($idsEspecialidades as $idEspecialidad) {
+                        $especialidad = get_term_by('id', $idEspecialidad, 'especialidades');
                         echo '<option value="' . esc_attr($especialidad->slug) . '">' . esc_html($especialidad->name) . '</option>';
                      }
                   echo '</select>'; // .form-select
@@ -110,7 +140,8 @@ function mostrar_capacitaciones_iniciadas() {
 
                echo '<div class="list-group d-none d-md-block">';
                echo '<button class="list-group-item list-group-item-action filtro-espec active" coc-especialidad="todos">Todas</button>';
-               foreach($especialidades as $especialidad) {
+               foreach ($idsEspecialidades as $idEspecialidad) {
+                  $especialidad = get_term_by('id', $idEspecialidad, 'especialidades');
                   echo '<button class="list-group-item list-group-item-action filtro-espec" coc-especialidad="' . esc_html($especialidad->slug) . '">' . esc_html($especialidad->name) . '</button>';
                }
                echo '</div>';
@@ -121,7 +152,10 @@ function mostrar_capacitaciones_iniciadas() {
          echo '</div>'; // .col
       echo '</div>'; // .row
    echo '</div>'; // #capacitaciones-inside
-
+   
+   // Reset the query
+   wp_reset_postdata();
+   
    return ob_get_clean();
 }
 
