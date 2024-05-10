@@ -230,7 +230,7 @@ function mostrar_capacitaciones_iniciadas() {
                echo '<button class="list-group-item list-group-item-action filtro-espec active" coc-especialidad="todos">Todas</button>';
                foreach ($idEspecialidades as $idEspecialidad) {
                   $especialidad = get_term_by('id', $idEspecialidad, 'especialidad');
-                  echo '<button class="list-group-item list-group-item-action filtro-espec" coc-especialidad="' . esc_html($especialidad->slug) . '">' . esc_html($especialidad->name) . '</button>';
+                  echo '<button class="list-group-item list-group-item-action filtro-espec" coc-especialidad="' . esc_html($especialidad->slug) . '" coc-especialidad-id="' . esc_html($especialidad->term_id) . '">' . esc_html($especialidad->name) . '</button>';
                }
             echo '</div>';
          echo '</div>'; // .col
