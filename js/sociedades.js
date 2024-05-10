@@ -38,20 +38,14 @@ async function setData(url) {
 
 function createItem(objSociedad) {
    let item = `
-      <div class="card capacitacion border-secondary">
-         <div class="row g-0">
-            <div class="col-sm-4">
-               <img src="${objSociedad.thumbnail}" class="img-fluid rounded-start h-100" />
-            </div><!-- .col-sm-4 -->
-            <div class="col-sm-8">
-               <div class="card-body d-flex flex-column h-100">
-                  <h3 class="card-title h5">${objSociedad.title}</h3>
-                  <div>${objSociedad.integrantes}</div>
-                  <div>${objSociedad.infoAdicional}</div>
-                  <button class="btn btn-sm btn-primary d-inline-block ms-auto mt-auto" data-bs-toggle="modal" data-bs-target="#modal-${objSociedad.slug}">Más información &rarr;</button>
-               </div><!-- .card-body -->
-            </div><!-- .col-sm-8 -->
-         </div><!-- .row -->
+      <div class="card capacitacion border-secondary h-100">
+         <img src="${objSociedad.thumbnail}" class="card-img-top" />
+         <div class="card-body d-flex flex-column">
+            <h3 class="card-title h5">${objSociedad.title}</h3>
+            <div>${objSociedad.integrantes}</div>
+            <div>${objSociedad.infoAdicional}</div>
+            <button class="btn btn-sm btn-primary d-inline-block ms-auto mt-auto" data-bs-toggle="modal" data-bs-target="#modal-${objSociedad.slug}">Más información &rarr;</button>
+         </div><!-- .card-body -->
       </div><!-- .card -->
    `;
 

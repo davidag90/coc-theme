@@ -475,19 +475,25 @@ body {
   gap: 1rem;
 }
 
-@include media-breakpoint-up(lg) {
+@include media-breakpoint-up(md) {
   #sociedades-filiales #app-root {
     grid-template-columns: 1fr 1fr;
   }
 }
 
-#sociedades-filiales .card img {
-  aspect-ratio: 16/9;
-  object-fit: cover;
+@include media-breakpoint-up(lg) {
+  #sociedades-filiales #app-root {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
 
-@include media-breakpoint-up(sm) {
-  #sociedades-filiales .card img {
-    aspect-ratio: 4/3.5;
+@include media-breakpoint-up(xxl) {
+  #sociedades-filiales #app-root {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
+}
+
+#sociedades-filiales .card-img-top {
+  aspect-ratio: 1/1;
+  object-fit: cover;
 }
