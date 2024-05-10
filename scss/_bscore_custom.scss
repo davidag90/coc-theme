@@ -465,3 +465,20 @@ body {
     aspect-ratio: 4/3.5;
   }
 }
+
+/* ======================== */
+/* Sociedades Filiales      */
+/* ======================== */
+#sociedades-filiales #app-root {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@include media-breakpoint-up(md) {
+  grid-template-columns: 1fr 1fr;
+}
+
+@include media-breakpoint-up(xl) {
+  grid-template-columns: 1fr 1fr 1fr;
+}

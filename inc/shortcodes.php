@@ -297,7 +297,7 @@ function mostrar_sociedades_filiales() {
    echo '<div id="sociedades-filiales">';
       echo '<div class="row">';
          echo '<div class="col-12">';
-            echo '<div id="app-root d-flex"></div>';
+            echo '<div id="app-root"></div>';
          echo '</div>'; // .col
       echo '</div>'; // .row
    echo '</div>'; // #sociedades-filiales
