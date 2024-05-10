@@ -289,3 +289,22 @@ function mostrar_beneficios() {
 }
 
 add_shortcode('mostrar-beneficios', 'mostrar_beneficios');
+
+
+function mostrar_sociedades_filiales() {
+   ob_start();
+
+   echo '<div id="sociedades-filiales">';
+      echo '<div class="row">';
+         echo '<div class="col-12 col-md-8">';
+            echo '<div id="app-root"></div>';
+         echo '</div>'; // .col
+      echo '</div>'; // .row
+   echo '</div>'; // #sociedades-filiales
+   
+   echo '<div id="modals"></div>';
+   
+   return ob_get_clean();
+}
+
+add_shortcode('mostrar-sociedades-filiales', 'sociedades_sociedades_filiales');
