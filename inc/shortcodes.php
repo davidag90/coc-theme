@@ -125,13 +125,21 @@ function mostrar_capacitaciones_iniciadas() {
       while($query->have_posts()) {
          $query->the_post();
 
-         $especialidad = get_the_terms($query->post, 'especialidad');
-         echo '<p>' . print_r($especialidad) . '</p>';
+         $terms = get_the_terms($query->post, 'especialidad');
+
+         foreach ($terms as $especialidad) {
+            $idsEspecialidades[] = $especialidad[0]->term_id;
+         }
       }
    }
 
-   // Remove duplicates from the term IDs array
-   $idsEspecialidades = array_unique($idsEspecialidades);
+   echo '<ul>';
+   
+   foreach ($idsEspecialidades as $id) {
+      echo '<li>' . $id . '</li>';
+   }
+
+   echo '</ul>';  
 
    echo '<div id="capacitaciones-iniciadas">';
       echo '<div class="row">';
