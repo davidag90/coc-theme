@@ -119,7 +119,7 @@ function mostrar_capacitaciones_iniciadas() {
    // Execute the query
    $query = new WP_Query($args);
    
-   /* $idsEspecialidades = []; */
+   $idsEspecialidades = [];
 
    if($query->have_posts()) {
       while($query->have_posts()) {
@@ -128,16 +128,16 @@ function mostrar_capacitaciones_iniciadas() {
          $especialidad = get_the_terms(get_the_ID(), 'especialidad');
          echo $especialidad;
          
-         /* $idsEspecialidades[] = $especialidad->term_id; */
+         $idsEspecialidades[] = $especialidad["term_id"];
       }
    }
 
- /*   var_dump($idsEspecialidades); */
+   var_dump($idsEspecialidades);
 
    // Remove duplicates from the term IDs array
-   /* $idsEspecialidades = array_unique($idsEspecialidades); */
-
-   /* var_dump($idsEspecialidades); */
+   $idsEspecialidades = array_unique($idsEspecialidades); 
+   
+   var_dump($idsEspecialidades);
 
    echo '<div id="capacitaciones-iniciadas">';
       echo '<div class="row">';
