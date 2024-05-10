@@ -205,13 +205,20 @@ function mostrar_capacitaciones_iniciadas() {
          }
       }
    }
-   var_dump($idEspecialidades);
+   wp_reset_postdata();
+
+   function var_dump_pre($mixed = null) {
+      echo '<pre>';
+      var_dump($mixed);
+      echo '</pre>';
+      return null;
+   }
+   
+   var_dump_pre($idEspecialidades);
    
    array_unique($idEspecialidades, SORT_REGULAR);
    
-   var_dump($idEspecialidades);
-   
-   wp_reset_postdata();
+   var_dump_pre($idEspecialidades);
 
    echo '<div id="capacitaciones-iniciadas">';
       echo '<div class="row">';
