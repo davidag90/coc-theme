@@ -102,17 +102,17 @@ function mostrar_capacitaciones_iniciadas() {
          array(
                'key' => 'fecha_inicio_dateformat',
                'value' => $fechaHoy,
-               'compare' => '<=',
+               'compare' => '<',
                'type' => 'DATE',
          ),
       ),
-      /* 'tax_query' => array(
+      'tax_query' => array(
          array(
                'taxonomy' => 'especialidad',
                'field' => 'slug',
                'operator' => 'EXISTS',
          ),
-      ), */
+      ),
    );
 
    
