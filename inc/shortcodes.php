@@ -115,11 +115,20 @@ function mostrar_capacitaciones_iniciadas() {
       ),
    );
 
+   
    // Execute the query
    $query = new WP_Query($args);
+   
+   $idsEspecialidades = [];
 
-   // Get the term IDs from the query results
-   $idsEspecialidades = wp_get_object_terms($query->posts, 'especialidades', array('fields' => 'ids'));
+   if($query->have_posts()) {
+      while($query->have_posts()) {
+         $query->the_post();
+         $especialidad = get_the_terms();
+         
+         $idsEspecialidades[] = $especialidad->term_id;
+      }
+   }
 
    // Remove duplicates from the term IDs array
    $idsEspecialidades = array_unique($idsEspecialidades);
