@@ -207,18 +207,18 @@ function mostrar_capacitaciones_iniciadas() {
    }
    wp_reset_postdata();
 
-   function var_dump_pre($mixed = null) {
+   /* function var_dump_pre($mixed = null) {
       echo '<pre>';
       var_dump($mixed);
       echo '</pre>';
       return null;
    }
    
-   var_dump_pre($idEspecialidades);
+   var_dump_pre($idEspecialidades); */
    
    $idEspecialidadesFilt = array_unique($idEspecialidades, SORT_REGULAR);
    
-   var_dump_pre($idEspecialidadesFilt);
+   /* var_dump_pre($idEspecialidadesFilt); */
 
    echo '<div id="capacitaciones-iniciadas">';
       echo '<div class="row">';
@@ -226,7 +226,7 @@ function mostrar_capacitaciones_iniciadas() {
             echo '<div class="d-block d-md-none mb-4" id="filtros-espec-mobile">';
                echo '<select class="form-select">';
                   echo '<option value="todos" selected>Todos</option>';
-                  foreach ($idEspecialidades as $idEspecialidad) {
+                  foreach ($idEspecialidadesFilt as $idEspecialidad) {
                      $especialidad = get_term_by('id', $idEspecialidad, 'especialidad');
                      echo '<option value="' . esc_attr($especialidad->slug) . '">' . esc_html($especialidad->name) . '</option>';
                   }
@@ -235,7 +235,7 @@ function mostrar_capacitaciones_iniciadas() {
 
             echo '<div class="list-group d-none d-md-block">';
                echo '<button class="list-group-item list-group-item-action filtro-espec active" coc-especialidad="todos">Todas</button>';
-               foreach ($idEspecialidades as $idEspecialidad) {
+               foreach ($idEspecialidadesFilt as $idEspecialidad) {
                   $especialidad = get_term_by('id', $idEspecialidad, 'especialidad');
                   echo '<button class="list-group-item list-group-item-action filtro-espec" coc-especialidad="' . esc_html($especialidad->slug) . '" coc-especialidad-id="' . esc_html($especialidad->term_id) . '">' . esc_html($especialidad->name) . '</button>';
                }
