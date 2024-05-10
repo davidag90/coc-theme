@@ -82,10 +82,8 @@ function createModals(objSociedad) {
 
 function fillSociedades(jsonSociedades) {
    jsonSociedades.forEach((element) => {
-      if(rubro === element.rubroSlug) {
-         createItem(element);
-         createModals(element);
-      }
+      createItem(element);
+      createModals(element);
    });
 }
 
