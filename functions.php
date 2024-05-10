@@ -44,7 +44,7 @@ function custom_scripts_libs() {
     wp_enqueue_script('beneficios', get_stylesheet_directory_uri() . '/js/beneficios.js', array('env'), null, true);
   endif;
 
-  if(is_page('sociedades')):
+  if(is_page('sociedades-filiales')):
     wp_enqueue_script('sociedades', get_stylesheet_directory_uri() . '/js/sociedades.js', array('env'), null, true);
   endif;
 
