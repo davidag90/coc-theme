@@ -140,7 +140,7 @@ function mostrar_capacitaciones_iniciadas() {
                echo '<select class="form-select">';
                   echo '<option value="todos" selected>Todos</option>';
                   foreach ($idsEspecialidades as $idEspecialidad) {
-                     $especialidad = get_term_by('id', $idEspecialidad, 'especialidades');
+                     $especialidad = get_term_by('term_id', $idEspecialidad, 'especialidades');
                      echo '<span>' . print_r($especialidad) . '</span>';
                      echo '<option value="' . esc_attr($especialidad->slug) . '">' . esc_html($especialidad->name) . '</option>';
                   }
