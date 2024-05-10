@@ -133,14 +133,6 @@ function mostrar_capacitaciones_iniciadas() {
       }
    }
 
-   echo '<ul>';
-   
-   foreach ($idsEspecialidades as $id) {
-      echo '<li>' . $id . '</li>';
-   }
-
-   echo '</ul>';  
-
    echo '<div id="capacitaciones-iniciadas">';
       echo '<div class="row">';
          echo '<div class="col-12 col-md-4">';
@@ -149,6 +141,7 @@ function mostrar_capacitaciones_iniciadas() {
                   echo '<option value="todos" selected>Todos</option>';
                   foreach ($idsEspecialidades as $idEspecialidad) {
                      $especialidad = get_term_by('id', $idEspecialidad, 'especialidades');
+                     echo '<span>' . print_r($especialidad) . '</span>';
                      echo '<option value="' . esc_attr($especialidad->slug) . '">' . esc_html($especialidad->name) . '</option>';
                   }
                echo '</select>'; // .form-select
