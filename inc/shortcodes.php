@@ -206,11 +206,11 @@ function mostrar_capacitaciones_iniciadas() {
       }
    }
 
-   print_r('<p>' . $especialidades . '</p>');
+   echo '<p>' . var_dump($especialidades) . '</p>';   
    
    array_unique($especialidades, SORT_REGULAR);
 
-   print_r('<p>' . $especialidades . '</p>');
+   echo '<p>' . var_dump($especialidades) . '</p>';
    
    wp_reset_postdata();
 
