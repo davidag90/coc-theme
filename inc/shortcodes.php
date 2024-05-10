@@ -4,9 +4,45 @@ function capacitaciones_front() {
 
    $output = '';
 
-   $especialidades = get_terms(array(
-      'taxonomy' => 'especialidad'
-   ));
+   $fechaHoy = date('Ymd');
+
+   $args = array(
+      'post_type' => 'capacitaciones',
+      'posts_per_page' => -1, // Retrieve all posts
+      'meta_query' => array(
+         array(
+               'key' => 'fecha_inicio_dateformat',
+               'value' => $fechaHoy,
+               'compare' => '>',
+               'type' => 'DATE',
+         ),
+      ),
+      'tax_query' => array(
+         array(
+               'taxonomy' => 'especialidad',
+               'field' => 'slug',
+               'operator' => 'EXISTS',
+         ),
+      ),
+   );
+
+   $query = new WP_Query($args);
+   
+   $especialidades = [];
+
+   if($query->have_posts()) {
+      while($query->have_posts()) {
+         $query->the_post();
+
+         $terms = get_the_terms($query->post, 'especialidad');
+
+         foreach ($terms as $especialidad) {
+            $especialidades[] = $especialidad;
+         }
+      }
+   }
+
+   wp_reset_postdata();
 
    if($especialidades):
       echo '<div id="capacitaciones-front" class="py-5 px-4">';
@@ -50,9 +86,45 @@ add_shortcode('capacitaciones-front', 'capacitaciones_front');
 function capacitaciones_inside() {
    ob_start();
 
-   $especialidades = get_terms(array(
-      'taxonomy' => 'especialidad'
-   ));
+   $fechaHoy = date('Ymd');
+
+   $args = array(
+      'post_type' => 'capacitaciones',
+      'posts_per_page' => -1, // Retrieve all posts
+      'meta_query' => array(
+         array(
+               'key' => 'fecha_inicio_dateformat',
+               'value' => $fechaHoy,
+               'compare' => '>',
+               'type' => 'DATE',
+         ),
+      ),
+      'tax_query' => array(
+         array(
+               'taxonomy' => 'especialidad',
+               'field' => 'slug',
+               'operator' => 'EXISTS',
+         ),
+      ),
+   );
+
+   $query = new WP_Query($args);
+   
+   $especialidades = [];
+
+   if($query->have_posts()) {
+      while($query->have_posts()) {
+         $query->the_post();
+
+         $terms = get_the_terms($query->post, 'especialidad');
+
+         foreach ($terms as $especialidad) {
+            $especialidades[] = $especialidad;
+         }
+      }
+   }
+
+   wp_reset_postdata();
 
    echo '<div id="capacitaciones-inside">';
       echo '<div class="row">';
@@ -91,10 +163,8 @@ add_shortcode('capacitaciones-inside', 'capacitaciones_inside');
 function mostrar_capacitaciones_iniciadas() {
    ob_start();
 
-   // Get the current date
    $fechaHoy = date('Ymd');
 
-   // Query arguments for the "capacitacion" custom post type
    $args = array(
       'post_type' => 'capacitaciones',
       'posts_per_page' => -1, // Retrieve all posts
@@ -102,7 +172,7 @@ function mostrar_capacitaciones_iniciadas() {
          array(
                'key' => 'fecha_inicio_dateformat',
                'value' => $fechaHoy,
-               'compare' => '<',
+               'compare' => '<=',
                'type' => 'DATE',
          ),
       ),
@@ -115,8 +185,6 @@ function mostrar_capacitaciones_iniciadas() {
       ),
    );
 
-   
-   // Execute the query
    $query = new WP_Query($args);
    
    $especialidades = [];
@@ -132,6 +200,8 @@ function mostrar_capacitaciones_iniciadas() {
          }
       }
    }
+
+   wp_reset_postdata();
 
    echo '<div id="capacitaciones-iniciadas">';
       echo '<div class="row">';
@@ -157,9 +227,6 @@ function mostrar_capacitaciones_iniciadas() {
          echo '</div>'; // .col
       echo '</div>'; // .row
    echo '</div>'; // #capacitaciones-inside
-   
-   // Reset the query
-   wp_reset_postdata();
    
    return ob_get_clean();
 }
