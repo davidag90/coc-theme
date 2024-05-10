@@ -124,7 +124,7 @@ function mostrar_capacitaciones_iniciadas() {
    if($query->have_posts()) {
       while($query->have_posts()) {
          $query->the_post();
-         $especialidad = get_the_terms();
+         $especialidad = get_the_terms($query->post, 'especialidad');
          
          $idsEspecialidades[] = $especialidad->term_id;
       }
