@@ -205,8 +205,11 @@ function mostrar_capacitaciones_iniciadas() {
          }
       }
    }
-
+   var_dump($idEspecialidades);
+   
    array_unique($idEspecialidades);
+   
+   var_dump($idEspecialidades);
    
    wp_reset_postdata();
 
