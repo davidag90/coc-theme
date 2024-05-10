@@ -32,6 +32,10 @@ function custom_scripts_libs() {
     wp_enqueue_script('capacitaciones-front', get_stylesheet_directory_uri() . '/js/capacitaciones-front.js', false, array('env', 'splide-js'), true);
   endif;
 
+  if(is_page('capacitaciones-iniciadas')):
+    wp_enqueue_script('capacitaciones-iniciadas', get_stylesheet_directory_uri() . '/js/capacitaciones-iniciadas.js', array('env'), null, true);
+  endif;
+
   if(is_page('especialidades')):
     wp_enqueue_script('capacitaciones-inside', get_stylesheet_directory_uri() . '/js/capacitaciones-inside.js', array('env'), null, true);
   endif;
@@ -40,16 +44,17 @@ function custom_scripts_libs() {
     wp_enqueue_script('beneficios', get_stylesheet_directory_uri() . '/js/beneficios.js', array('env'), null, true);
   endif;
 
-  if(is_page('capacitaciones-iniciadas')):
-    wp_enqueue_script('capacitaciones-iniciadas', get_stylesheet_directory_uri() . '/js/capacitaciones-iniciadas.js', array('env'), null, true);
+  if(is_page('sociedades')):
+    wp_enqueue_script('sociedades', get_stylesheet_directory_uri() . '/js/sociedades.js', array('env'), null, true);
   endif;
 
   function add_module_attribute($tag, $handle, $src) {
     $handle_check = (
       $handle === 'capacitaciones-inside'||
       $handle === 'capacitaciones-front' ||
-      $handle === 'beneficios' ||
-      $handle === 'capacitaciones-iniciadas'
+      $handle === 'capacitaciones-iniciadas' ||
+      $handle === 'sociedades' ||
+      $handle === 'beneficios'
     );
     
     if ($handle_check) {
