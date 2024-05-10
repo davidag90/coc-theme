@@ -39,7 +39,7 @@ async function setData(url) {
 function createItem(objSociedad) {
    let item = `
       <div class="card capacitacion border-secondary h-100">
-         <img src="${objSociedad.thumbnail}" class="card-img-top" />
+         <img src="${objSociedad.thumbnail}" class="card-img-top border-secondary border-bottom" />
          <div class="card-body d-flex flex-column">
             <h3 class="card-title h5">${objSociedad.title}</h3>
             <div>${objSociedad.integrantes}</div>
