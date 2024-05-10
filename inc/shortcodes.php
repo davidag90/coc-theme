@@ -42,7 +42,7 @@ function capacitaciones_front() {
       }
    }
 
-   array_unique($especialidades);
+   array_unique($especialidades, SORT_REGULAR);
 
    wp_reset_postdata();
 
@@ -127,7 +127,7 @@ function capacitaciones_inside() {
       }
    }
 
-   array_unique($especialidades);
+   array_unique($especialidades, SORT_REGULAR);
 
    wp_reset_postdata();
 
@@ -206,8 +206,8 @@ function mostrar_capacitaciones_iniciadas() {
       }
    }
 
-   array_unique($especialidades);
-
+   array_unique($especialidades, SORT_REGULAR);
+   
    wp_reset_postdata();
 
    echo '<div id="capacitaciones-iniciadas">';
@@ -239,6 +239,8 @@ function mostrar_capacitaciones_iniciadas() {
 }
 
 add_shortcode('mostrar-capacitaciones-iniciadas', 'mostrar_capacitaciones_iniciadas');
+
+
 
 
 
