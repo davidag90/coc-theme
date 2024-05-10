@@ -42,6 +42,8 @@ function capacitaciones_front() {
       }
    }
 
+   array_unique($especialidades);
+
    wp_reset_postdata();
 
    if($especialidades):
@@ -78,6 +80,7 @@ function capacitaciones_front() {
    endif;
 
    echo $output;
+
    return ob_get_clean();
 }
 
@@ -123,6 +126,8 @@ function capacitaciones_inside() {
          }
       }
    }
+
+   array_unique($especialidades);
 
    wp_reset_postdata();
 
@@ -201,6 +206,8 @@ function mostrar_capacitaciones_iniciadas() {
       }
    }
 
+   array_unique($especialidades);
+
    wp_reset_postdata();
 
    echo '<div id="capacitaciones-iniciadas">';
@@ -232,8 +239,6 @@ function mostrar_capacitaciones_iniciadas() {
 }
 
 add_shortcode('mostrar-capacitaciones-iniciadas', 'mostrar_capacitaciones_iniciadas');
-
-
 
 
 
