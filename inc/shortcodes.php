@@ -216,9 +216,9 @@ function mostrar_capacitaciones_iniciadas() {
    
    var_dump_pre($idEspecialidades);
    
-   array_unique($idEspecialidades, SORT_REGULAR);
+   $idEspecialidadesFilt = array_unique($idEspecialidades, SORT_REGULAR);
    
-   var_dump_pre($idEspecialidades);
+   var_dump_pre($idEspecialidadesFilt);
 
    echo '<div id="capacitaciones-iniciadas">';
       echo '<div class="row">';
