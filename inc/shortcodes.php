@@ -92,13 +92,13 @@ function mostrar_capacitaciones_iniciadas() {
    ob_start();
 
    // Get the current date
-   /* $fechaHoy = date('Ymd'); */
+   $fechaHoy = date('Ymd');
 
    // Query arguments for the "capacitacion" custom post type
    $args = array(
-      'post_type' => 'capacitacion',
+      'post_type' => 'capacitaciones',
       'posts_per_page' => -1, // Retrieve all posts
-      /* 'meta_query' => array(
+      'meta_query' => array(
          array(
                'key' => 'fecha_inicio_dateformat',
                'value' => $fechaHoy,
@@ -112,7 +112,7 @@ function mostrar_capacitaciones_iniciadas() {
                'field' => 'slug',
                'operator' => 'EXISTS',
          ),
-      ), */
+      ),
    );
 
    
