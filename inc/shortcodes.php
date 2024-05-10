@@ -28,7 +28,7 @@ function capacitaciones_front() {
 
    $query = new WP_Query($args);
    
-   $especialidades = [];
+   $idEspecialidades = [];
 
    if($query->have_posts()) {
       while($query->have_posts()) {
@@ -36,24 +36,25 @@ function capacitaciones_front() {
 
          $terms = get_the_terms($query->post, 'especialidad');
 
-         foreach ($terms as $especialidad) {
-            $especialidades[] = $especialidad;
+         foreach ($terms as $term) {
+            $idEspecialidades[] = $term->term_id;
          }
       }
    }
 
-   array_unique($especialidades, SORT_REGULAR);
-
    wp_reset_postdata();
 
-   if($especialidades):
+   $idEspecialidadesFilt = array_unique($idEspecialidades, SORT_REGULAR);
+
+   if($idEspecialidadesFilt):
       echo '<div id="capacitaciones-front" class="py-5 px-4">';
          $output .= '<h2 class="mb-4 text-center display-4 fw-bold">Capacitaciones por Especialidad</h2>';
 
          $output .= '<div class="d-block d-md-none mb-4" id="filtros-espec-mobile">';
             $output .= '<select class="form-select">';
                $output .= '<option value="todos" selected>Todos</option>';
-               foreach ($especialidades as $especialidad) {
+               foreach ($idEspecialidadesFilt as $idEspecialidad) {
+                  $especialidad = get_term_by('id', $idEspecialidad, 'especialidad');
                   $output .= '<option value="' . esc_attr($especialidad->slug) . '">' . esc_html($especialidad->name) . '</option>';
                }
             $output .='</select>'; // .form-select
@@ -61,7 +62,8 @@ function capacitaciones_front() {
          $output .= '<div class="d-none d-md-flex flex-row flex-wrap justify-content-center mb-4" id="filtros-espec-desk">';
             $output .= '<button type="button" class="btn btn-sm btn-todos text-nowrap filtro-espec" coc-especialidad="todos">Todos</button>';
 
-            foreach ($especialidades as $especialidad) {
+            foreach ($idEspecialidadesFilt as $idEspecialidad) {
+               $especialidad = get_term_by('id', $idEspecialidad, 'especialidad');
                $output .= '<button type="button" class="btn btn-sm btn-outline-dark text-nowrap filtro-espec" coc-especialidad="' . esc_attr($especialidad->slug) . '">' . esc_html($especialidad->name) . '</button>';
             }
          $output .= '</div>'; // #filtros-espec-desk
@@ -113,7 +115,7 @@ function capacitaciones_inside() {
 
    $query = new WP_Query($args);
    
-   $especialidades = [];
+   $idEspecialidades = [];
 
    if($query->have_posts()) {
       while($query->have_posts()) {
@@ -121,34 +123,36 @@ function capacitaciones_inside() {
 
          $terms = get_the_terms($query->post, 'especialidad');
 
-         foreach ($terms as $especialidad) {
-            $especialidades[] = $especialidad;
+         foreach ($terms as $term) {
+            $idEspecialidades[] = $term->term_id;
          }
       }
    }
 
-   array_unique($especialidades, SORT_REGULAR);
-
    wp_reset_postdata();
+
+   $idEspecialidadesFilt = array_unique($idEspecialidades, SORT_REGULAR);
 
    echo '<div id="capacitaciones-inside">';
       echo '<div class="row">';
          echo '<div class="col-12 col-md-4">';
-            if($especialidades) {
+            if($idEspecialidadesFilt) {
                echo '<div class="d-block d-md-none mb-4" id="filtros-espec-mobile">';
                   echo '<select class="form-select">';
                      echo '<option value="todos" selected>Todos</option>';
-                     foreach ($especialidades as $especialidad) {
+                     foreach ($idEspecialidadesFilt as $idEspecialidad) {
+                        $especialidad = get_term_by('id', $idEspecialidad, 'especialidad');
                         echo '<option value="' . esc_attr($especialidad->slug) . '">' . esc_html($especialidad->name) . '</option>';
                      }
                   echo '</select>'; // .form-select
                echo '</div>';// #filtros-espec-mobile
 
                echo '<div class="list-group d-none d-md-block">';
-               echo '<button class="list-group-item list-group-item-action filtro-espec active" coc-especialidad="todos">Todas</button>';
-               foreach($especialidades as $especialidad) {
-                  echo '<button class="list-group-item list-group-item-action filtro-espec" coc-especialidad="' . esc_html($especialidad->slug) . '">' . esc_html($especialidad->name) . '</button>';
-               }
+                  echo '<button class="list-group-item list-group-item-action filtro-espec active" coc-especialidad="todos">Todas</button>';
+                  foreach ($idEspecialidadesFilt as $idEspecialidad) {
+                     $especialidad = get_term_by('id', $idEspecialidad, 'especialidad');
+                     echo '<button class="list-group-item list-group-item-action filtro-espec" coc-especialidad="' . esc_html($especialidad->slug) . '">' . esc_html($especialidad->name) . '</button>';
+                  }
                echo '</div>';
             }
          echo '</div>'; // .col
@@ -207,18 +211,7 @@ function mostrar_capacitaciones_iniciadas() {
    }
    wp_reset_postdata();
 
-   /* function var_dump_pre($mixed = null) {
-      echo '<pre>';
-      var_dump($mixed);
-      echo '</pre>';
-      return null;
-   }
-   
-   var_dump_pre($idEspecialidades); */
-   
    $idEspecialidadesFilt = array_unique($idEspecialidades, SORT_REGULAR);
-   
-   /* var_dump_pre($idEspecialidadesFilt); */
 
    echo '<div id="capacitaciones-iniciadas">';
       echo '<div class="row">';
@@ -237,7 +230,7 @@ function mostrar_capacitaciones_iniciadas() {
                echo '<button class="list-group-item list-group-item-action filtro-espec active" coc-especialidad="todos">Todas</button>';
                foreach ($idEspecialidadesFilt as $idEspecialidad) {
                   $especialidad = get_term_by('id', $idEspecialidad, 'especialidad');
-                  echo '<button class="list-group-item list-group-item-action filtro-espec" coc-especialidad="' . esc_html($especialidad->slug) . '" coc-especialidad-id="' . esc_html($especialidad->term_id) . '">' . esc_html($especialidad->name) . '</button>';
+                  echo '<button class="list-group-item list-group-item-action filtro-espec" coc-especialidad="' . esc_html($especialidad->slug) . '">' . esc_html($especialidad->name) . '</button>';
                }
             echo '</div>';
          echo '</div>'; // .col
