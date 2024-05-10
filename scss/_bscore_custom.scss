@@ -475,15 +475,9 @@ body {
   gap: 1rem;
 }
 
-@include media-breakpoint-up(md) {
+@include media-breakpoint-up(lg) {
   #sociedades-filiales #app-root {
     grid-template-columns: 1fr 1fr;
-  }
-}
-
-@include media-breakpoint-up(xl) {
-  #sociedades-filiales #app-root {
-    grid-template-columns: 1fr 1fr 1fr;
   }
 }
 
