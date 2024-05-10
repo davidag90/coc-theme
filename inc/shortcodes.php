@@ -106,13 +106,13 @@ function mostrar_capacitaciones_iniciadas() {
                'type' => 'DATE',
          ),
       ),
-      'tax_query' => array(
+      /* 'tax_query' => array(
          array(
                'taxonomy' => 'especialidad',
                'field' => 'slug',
                'operator' => 'EXISTS',
          ),
-      ),
+      ), */
    );
 
    
