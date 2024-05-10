@@ -108,7 +108,7 @@ function mostrar_capacitaciones_iniciadas() {
       ),
       'tax_query' => array(
          array(
-               'taxonomy' => 'especialidades',
+               'taxonomy' => 'especialidad',
                'field' => 'slug',
                'operator' => 'EXISTS',
          ),
