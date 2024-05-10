@@ -31,17 +31,11 @@ get_header();
 
   <div id="content" class="site-content <?= bootscore_container_class(); ?> py-5">
     <div id="primary" class="content-area">
-      <div class="row">
-        <div class="col-12 col-lg-8">
-          <main id="main" class="site-main">
-            <div class="entry-content">
-              <?php the_content(); ?>
-            </div>
-          </main>
+      <main id="main" class="site-main">
+        <div class="entry-content">
+          <?php the_content(); ?>
         </div>
-        
-        <?php get_sidebar('page'); ?>
-      </div>
+      </main>
     </div>
   </div>
 
