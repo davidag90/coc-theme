@@ -130,8 +130,12 @@ function mostrar_capacitaciones_iniciadas() {
       }
    }
 
+   var_dump($idsEspecialidades);
+
    // Remove duplicates from the term IDs array
    $idsEspecialidades = array_unique($idsEspecialidades);
+
+   var_dump($idsEspecialidades);
 
    echo '<div id="capacitaciones-iniciadas">';
       echo '<div class="row">';
