@@ -207,7 +207,7 @@ function mostrar_capacitaciones_iniciadas() {
    }
    var_dump($idEspecialidades);
    
-   array_unique($idEspecialidades);
+   array_unique($idEspecialidades, SORT_NUMERIC);
    
    var_dump($idEspecialidades);
    
