@@ -307,4 +307,4 @@ function mostrar_sociedades_filiales() {
    return ob_get_clean();
 }
 
-add_shortcode('mostrar-sociedades-filiales', 'sociedades_sociedades_filiales');
+add_shortcode('mostrar-sociedades-filiales', 'mostrar_sociedades_filiales');
