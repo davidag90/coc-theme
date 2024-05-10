@@ -128,7 +128,7 @@ function mostrar_capacitaciones_iniciadas() {
          $terms = get_the_terms($query->post, 'especialidad');
 
          foreach ($terms as $especialidad) {
-            $idsEspecialidades[] = $especialidad[0]->term_id;
+            $idsEspecialidades[] = $especialidad->term_id;
          }
       }
    }
