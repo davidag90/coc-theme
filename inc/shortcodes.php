@@ -119,7 +119,7 @@ function mostrar_capacitaciones_iniciadas() {
    // Execute the query
    $query = new WP_Query($args);
    
-   $idsEspecialidades = [];
+   $especialidades = [];
 
    if($query->have_posts()) {
       while($query->have_posts()) {
@@ -128,7 +128,7 @@ function mostrar_capacitaciones_iniciadas() {
          $terms = get_the_terms($query->post, 'especialidad');
 
          foreach ($terms as $especialidad) {
-            $idsEspecialidades[] = $especialidad->term_id;
+            $especialidades[] = $especialidad;
          }
       }
    }
@@ -139,9 +139,7 @@ function mostrar_capacitaciones_iniciadas() {
             echo '<div class="d-block d-md-none mb-4" id="filtros-espec-mobile">';
                echo '<select class="form-select">';
                   echo '<option value="todos" selected>Todos</option>';
-                  foreach ($idsEspecialidades as $idEspecialidad) {
-                     $especialidad = get_term_by('term_id', $idEspecialidad, 'especialidades');
-                     echo '<span>' . print_r($especialidad) . '</span>';
+                  foreach ($especialidades as $especialidad) {
                      echo '<option value="' . esc_attr($especialidad->slug) . '">' . esc_html($especialidad->name) . '</option>';
                   }
                echo '</select>'; // .form-select
@@ -149,8 +147,7 @@ function mostrar_capacitaciones_iniciadas() {
 
             echo '<div class="list-group d-none d-md-block">';
                echo '<button class="list-group-item list-group-item-action filtro-espec active" coc-especialidad="todos">Todas</button>';
-               foreach ($idsEspecialidades as $idEspecialidad) {
-                  $especialidad = get_term_by('id', $idEspecialidad, 'especialidades');
+               foreach ($especialidades as $especialidad) {
                   echo '<button class="list-group-item list-group-item-action filtro-espec" coc-especialidad="' . esc_html($especialidad->slug) . '">' . esc_html($especialidad->name) . '</button>';
                }
             echo '</div>';
