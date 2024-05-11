@@ -38,13 +38,11 @@ async function setData(url) {
 
 function createItem(objSociedad) {
    let item = `
-      <div class="card capacitacion border-secondary h-100">
+      <div class="card bg-secondary bg-opacity-10 capacitacion border-secondary h-100">
          <img src="${objSociedad.thumbnail}" class="card-img-top border-secondary border-bottom" />
          <div class="card-body d-flex flex-column">
             <h3 class="card-title h5">${objSociedad.title}</h3>
-            <div>${objSociedad.integrantes}</div>
-            <div>${objSociedad.infoAdicional}</div>
-            <button class="btn btn-sm btn-primary d-inline-block ms-auto mt-auto" data-bs-toggle="modal" data-bs-target="#modal-${objSociedad.slug}">Más información &rarr;</button>
+            <button class="btn btn-sm btn-primary d-inline-block ms-auto mt-auto" data-bs-toggle="modal" data-bs-target="#modal-${objSociedad.slug}">Integrantes &rarr;</button>
          </div><!-- .card-body -->
       </div><!-- .card -->
    `;
