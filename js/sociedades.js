@@ -41,7 +41,7 @@ function createItem(objSociedad) {
       <div class="card bg-secondary bg-opacity-10 capacitacion border-secondary h-100">
          <img src="${objSociedad.thumbnail}" class="card-img-top border-secondary border-bottom" />
          <div class="card-body d-flex flex-column">
-            <h3 class="card-title h5">${objSociedad.title}</h3>
+            <h3 class="card-title h5 mb-4">${objSociedad.title}</h3>
             <button class="btn btn-sm btn-primary d-inline-block ms-auto mt-auto" data-bs-toggle="modal" data-bs-target="#modal-${objSociedad.slug}">Integrantes &rarr;</button>
          </div><!-- .card-body -->
       </div><!-- .card -->
