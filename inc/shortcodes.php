@@ -196,7 +196,7 @@ function mostrar_capacitaciones_iniciadas() {
 
    $query = new WP_Query($args);
    
-   $idEspecialidades = [];
+   $slugEspecialidades = [];
 
    if($query->have_posts()) {
       while($query->have_posts()) {
@@ -205,13 +205,16 @@ function mostrar_capacitaciones_iniciadas() {
          $terms = get_the_terms($query->post, 'especialidad');
 
          foreach ($terms as $term) {
-            $idEspecialidades[] = $term->term_id;
+            $slugEspecialidades[] = $term->slug;
          }
       }
    }
+
    wp_reset_postdata();
 
-   $idEspecialidadesFilt = array_unique($idEspecialidades, SORT_REGULAR);
+   $slugEspecialidadesFilt = array_unique($slugEspecialidades, SORT_REGULAR);
+
+   sort($slugEspecialidadesFilt);
 
    echo '<div id="capacitaciones-iniciadas">';
       echo '<div class="row">';
@@ -219,8 +222,8 @@ function mostrar_capacitaciones_iniciadas() {
             echo '<div class="d-block d-md-none mb-4" id="filtros-espec-mobile">';
                echo '<select class="form-select">';
                   echo '<option value="todos" selected>Todos</option>';
-                  foreach ($idEspecialidadesFilt as $idEspecialidad) {
-                     $especialidad = get_term_by('id', $idEspecialidad, 'especialidad');
+                  foreach ($slugEspecialidadesFilt as $slugEspecialidad) {
+                     $especialidad = get_term_by('slug', $slugEspecialidad, 'especialidad');
                      echo '<option value="' . esc_attr($especialidad->slug) . '">' . esc_html($especialidad->name) . '</option>';
                   }
                echo '</select>'; // .form-select
@@ -228,8 +231,8 @@ function mostrar_capacitaciones_iniciadas() {
 
             echo '<div class="list-group d-none d-md-block">';
                echo '<button class="list-group-item list-group-item-action filtro-espec active" coc-especialidad="todos">Todas</button>';
-               foreach ($idEspecialidadesFilt as $idEspecialidad) {
-                  $especialidad = get_term_by('id', $idEspecialidad, 'especialidad');
+               foreach ($slugEspecialidadesFilt as $slugEspecialidad) {
+                  $especialidad = get_term_by('slug', $slugEspecialidad, 'especialidad');
                   echo '<button class="list-group-item list-group-item-action filtro-espec" coc-especialidad="' . esc_html($especialidad->slug) . '">' . esc_html($especialidad->name) . '</button>';
                }
             echo '</div>';
@@ -244,9 +247,6 @@ function mostrar_capacitaciones_iniciadas() {
 }
 
 add_shortcode('mostrar-capacitaciones-iniciadas', 'mostrar_capacitaciones_iniciadas');
-
-
-
 
 
 function mostrar_beneficios() {
