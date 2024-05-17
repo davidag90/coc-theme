@@ -24,6 +24,7 @@ async function setData(url) {
       post.dictante = element.acf.dictante_principal_txt;
       post.titulo = element.title.rendered;
       post.fechaInicio = element.acf.fecha_inicio;
+      post.fechaInicioDF = element.acf.fecha_inicio_dateformat;
       post.link = element.link;
 
       if(element.featured_media !== 0) {
@@ -62,13 +63,37 @@ function createItem(objCapacitacion) {
    appRoot.innerHTML += item;
 }
 
-const fillCapacitaciones = (jsonCapacitaciones, especialidad = 'todos') => {
+function fillCapacitaciones(jsonCapacitaciones, especialidad = 'todos') {
+   jsonCapacitaciones.sort((a, b) => {
+      const dateA = new Date(
+         a.fechaInicioDF.slice(0, 4),
+         a.fechaInicioDF.slice(4, 6) - 1,
+         a.fechaInicioDF.slice(6, 8)
+      );
+      const dateB = new Date(
+         b.fechaInicioDF.slice(0, 4),
+         b.fechaInicioDF.slice(4, 6) - 1,
+         b.fechaInicioDF.slice(6, 8)
+      );
+      
+      return dateA - dateB;
+   });
+
    jsonCapacitaciones.forEach((element) => {
-      if(especialidad === 'todos') {
-         createItem(element);
-      } else {
-         if(especialidad === element.especialidadSlug) {
+      const hoy = new Date();
+      const fechaCapacitacion = new Date(
+         element.fechaInicioDF.slice(0, 4),
+         element.fechaInicioDF.slice(4, 6) - 1,
+         element.fechaInicioDF.slice(6, 8)
+      );
+      
+      if(hoy < fechaCapacitacion) {
+         if(especialidad === 'todos') {
             createItem(element);
+         } else {
+            if(especialidad === element.especialidadSlug) {
+               createItem(element);
+            }
          }
       }
    });
