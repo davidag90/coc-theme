@@ -28,8 +28,6 @@ function capacitaciones_front() {
 
    $query = new WP_Query($args);
    
-   $query = new WP_Query($args);
-   
    $slugEspecialidades = [];
 
    if($query->have_posts()) {
