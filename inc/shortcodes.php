@@ -2,8 +2,6 @@
 function capacitaciones_front() {
    ob_start();
 
-   $output = '';
-
    $fechaHoy = date('Ymd');
 
    $args = array(
@@ -50,40 +48,38 @@ function capacitaciones_front() {
 
    if($slugEspecialidadesFilt):
       echo '<div id="capacitaciones-front" class="py-5 px-4">';
-         $output .= '<h2 class="mb-4 text-center display-4 fw-bold">Capacitaciones por Especialidad</h2>';
+         echo '<h2 class="mb-4 text-center display-4 fw-bold">Capacitaciones por Especialidad</h2>';
 
-         $output .= '<div class="d-block d-md-none mb-4" id="filtros-espec-mobile">';
-            $output .= '<select class="form-select">';
-               $output .= '<option value="todos" selected>Todos</option>';
+         echo '<div class="d-block d-md-none mb-4" id="filtros-espec-mobile">';
+            echo '<select class="form-select">';
+               echo '<option value="todos" selected>Todos</option>';
                foreach ($slugEspecialidadesFilt as $slugEspecialidad) {
                   $especialidad = get_term_by('slug', $slugEspecialidad, 'especialidad');
-                  $output .= '<option value="' . esc_attr($especialidad->slug) . '">' . esc_html($especialidad->name) . '</option>';
+                  echo '<option value="' . esc_attr($especialidad->slug) . '">' . esc_html($especialidad->name) . '</option>';
                }
-            $output .='</select>'; // .form-select
-         $output .= '</div>'; // #filtros-espec-mobile
-         $output .= '<div class="d-none d-md-flex flex-row flex-wrap justify-content-center mb-4" id="filtros-espec-desk">';
-            $output .= '<button type="button" class="btn btn-sm btn-todos text-nowrap filtro-espec" coc-especialidad="todos">Todos</button>';
+            echo '</select>'; // .form-select
+         echo '</div>'; // #filtros-espec-mobile
+         echo '<div class="d-none d-md-flex flex-row flex-wrap justify-content-center mb-4" id="filtros-espec-desk">';
+            echo '<button type="button" class="btn btn-sm btn-todos text-nowrap filtro-espec" coc-especialidad="todos">Todos</button>';
 
             foreach ($slugEspecialidadesFilt as $slugEspecialidad) {
                $especialidad = get_term_by('slug', $slugEspecialidad, 'especialidad');
-               $output .= '<button type="button" class="btn btn-sm btn-outline-dark text-nowrap filtro-espec" coc-especialidad="' . esc_attr($especialidad->slug) . '">' . esc_html($especialidad->name) . '</button>';
+               echo '<button type="button" class="btn btn-sm btn-outline-dark text-nowrap filtro-espec" coc-especialidad="' . esc_attr($especialidad->slug) . '">' . esc_html($especialidad->name) . '</button>';
             }
-         $output .= '</div>'; // #filtros-espec-desk
+         echo '</div>'; // #filtros-espec-desk
 
-         $output .= '<div id="app-root" class="splide mb-5">';
-            $output .= '<div class="splide__track">';
-               $output .= '<ul class="splide__list">';
-               $output .= '</ul>'; // .splide__list
-            $output .= '</div>'; // .splide__track
-         $output .= '</div>'; // .splide
+         echo '<div id="app-root" class="splide mb-5">';
+            echo '<div class="splide__track">';
+               echo '<ul class="splide__list">';
+               echo '</ul>'; // .splide__list
+            echo '</div>'; // .splide__track
+         echo '</div>'; // .splide
 
-         $output .= '<div id="acceso-capacitaciones-full" class="d-flex justify-content-center">';
-            $output .= '<a class="btn btn-secondary btn-lg" href="' . home_url() . '/capacitacion/especialidades">Ver nuestra agenda completa</a>';
-         $output .= '</div>';
-      $output .= '</div>'; // #capacitaciones-front
+         echo '<div id="acceso-capacitaciones-full" class="d-flex justify-content-center">';
+            echo '<a class="btn btn-secondary btn-lg" href="' . home_url() . '/capacitacion/especialidades">Ver nuestra agenda completa</a>';
+         echo '</div>';
+      echo '</div>'; // #capacitaciones-front
    endif;
-
-   echo $output;
 
    return ob_get_clean();
 }
@@ -159,6 +155,8 @@ function capacitaciones_inside() {
                   }
                echo '</div>';
             }
+
+            echo '<a href="' . home_url() . '/capacitacion/capacitaciones-iniciadas" class="btn btn-success btn-lg d-block mt-4" target="_blank"><i class="fa-solid fa-flag-checkered me-1"></i> Ver Capacitaciones Iniciadas</a>';
          echo '</div>'; // .col
          echo '<div class="col-12 col-md-8">';
             echo '<div id="app-root"></div>';
