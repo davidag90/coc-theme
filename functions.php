@@ -14,6 +14,7 @@ function bootscore_child_enqueue_styles()
 }
 
 add_action('wp_enqueue_scripts', 'custom_scripts_libs');
+
 function custom_scripts_libs() {
   wp_enqueue_script('custom-js', get_stylesheet_directory_uri() . '/js/custom.js', false, '', true);
   wp_localize_script('custom-js', 'envParams', array(
@@ -46,6 +47,10 @@ function custom_scripts_libs() {
 
   if(is_page('sociedades-filiales')):
     wp_enqueue_script('sociedades', get_stylesheet_directory_uri() . '/js/sociedades.js', array('env'), null, true);
+  endif;
+
+  if(is_singular('capacitaciones')):
+    wp_enqueue_script('handler-inscripcion', get_stylesheet_directory_uri() . '/js/handler-inscripcion.js', array('env'), null, true);
   endif;
 
   function add_module_attribute($tag, $handle, $src) {

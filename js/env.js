@@ -5,3 +5,4 @@ const API_CAPACITACIONES_URL = API_BASE_URL + 'capacitaciones?_embed&per_page=50
 const API_BENEFICIOS_URL = API_BASE_URL + 'beneficio?_embed&per_page=50&acf_format=standard';
 const API_SOCIEDADES_URL = API_BASE_URL + 'sociedad?_embed&per_page=50&acf_format=standard';
 const API_MEDIA_BASE = API_BASE_URL + 'media/';
+const CHECKOUT_URL = SITE_URL + 'finalizar-compra/?add-to-cart=';

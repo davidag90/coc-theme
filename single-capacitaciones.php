@@ -222,15 +222,24 @@ foreach ($espec_rel as $especialidad_relativa) {
                <div class="botonera mb-4 px-4">
                   <?php if($estado_inscripciones === 'abiertas'): ?>
                      <?php if($tipo_inscripcion['value'] === 'inscripcion'): ?>
-                        <div class="mb-3">
-                           <select class="form-select form-select-lg" name="tipo-estudiante" id="tipo-estudiante">
-                              <option selected>Selecciona tu situación:</option>
-                              <option value="estudiante">Estudiante</option>
-                              <option value="socio">Socio</option>
-                              <option value="socio_convenio">Socio con Convenio</option>
-                              <option value="no_socio">No socio</option>
-                           </select>
-                        </div>
+                     <div class="mb-3">
+                        <select class="form-select" name="tipo-estudiante" id="tipo-estudiante">
+                           <option selected>Selecciona tu situación:</option>
+                           <?php
+                           $product_id = $producto_relacionado; 
+                           $product = wc_get_product( $product_id );
+                           $variations_ids = $product->get_children(); ?>
+                           
+                           <?php
+                              foreach ($variations_ids as $variation) {
+                                 $variation_product = wc_get_product($variation);
+                                 echo '<option value="' . $variation_product->get_id() . '">' . $variation_product->get_attribute('inscripcion') . '</option>';
+                              }
+                           ?>
+                        </select>
+                     </div>
+                     
+                     <a id="btn-inscripcion" class="btn btn-warning w-100 py-2 link-light mb-2 d-none" href="<?php print(home_url() . '/finalizar-compra/?add-to-cart=') ?>"><?php echo $tipo_inscripcion['label'] ?> &rarr;</a>
                      <?php else: ?>
                         <a class="btn btn-warning w-100 py-2 link-light mb-2" href="<?php print(!empty($producto_relacionado) ? home_url() . '/finalizar-compra/?add-to-cart=' . strval($producto_relacionado->ID) : 'https://wa.me/3512373661'); ?>"><?php echo $tipo_inscripcion['label'] ?> &rarr;</a>
                      <?php endif; ?>
