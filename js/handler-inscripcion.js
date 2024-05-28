@@ -6,6 +6,5 @@ selectInscripcion.addEventListener('change', (event) => {
    let btnInscripcionHREF = CHECKOUT_URL + variationID;
 
    btnInscripcion.setAttribute('href', btnInscripcionHREF);
-   btnInscripcion.classList.remove('d-none');
-   btnInscripcion.classList.add('d-block');
+   btnInscripcion.classList.remove('disabled');
 });
