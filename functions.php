@@ -107,6 +107,17 @@ function register_footer_menus () {
 
 add_action('after_setup_theme', 'register_footer_menus', 0);
 
+/* Vacía el Carrito antes de agregar cualquier producto nuevo para asegurar que no se hagan
+inscripciones múltiples */
+function single_item_cart( $new_item, $product_id, $quantity ) {
+  if( ! WC()->cart->is_empty() ) {
+    WC()->cart->empty_cart();
+  }
+  
+  return $new_item;
+}
+
+add_filter( 'woocommerce_add_to_cart_validation', 'single_item_cart', 20, 3 );
 
 // Disable AJAX Cart
 function register_ajax_cart() {
