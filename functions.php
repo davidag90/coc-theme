@@ -119,19 +119,17 @@ function single_item_cart( $new_item, $product_id, $quantity ) {
 
 add_filter( 'woocommerce_add_to_cart_validation', 'single_item_cart', 20, 3 );
 
-/**
- * Add a custom field (in an order) to the emails
- */
-add_filter( 'woocommerce_email_order_meta_fields', 'custom_woocommerce_email_order_meta_fields', 20, 3 );
+function add_custom_checkout_field_to_emails_notifications( $order, $sent_to_admin, $plain_text, $email ) {
+  $output = '';
+  $billing_dni = get_post_meta( $order->id, 'billing_wooccm12', true );
+  
+  if ( !empty($billing_dni) )
+  $output .= '<div><strong>DNI</strong> <span class="text">' . $billing_dni . '</span></div>';
 
-function custom_woocommerce_email_order_meta_fields( $fields, $sent_to_admin, $order ) {
-    $fields['billing_wooccm12'] = array(
-        'label' => 'DNI',
-        'value' => get_post_meta( $order->id, 'billing_wooccm12', true ),
-    );
-
-    return $fields;
+  echo $output;
 }
+
+add_action('woocommerce_email_customer_details','add_custom_checkout_field_to_emails_notifications', 25, 4 );
 
 // Disable AJAX Cart
 function register_ajax_cart() {
