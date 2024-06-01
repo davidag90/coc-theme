@@ -125,7 +125,7 @@ function add_custom_checkout_field_to_emails_notifications( $order, $sent_to_adm
   if ( !empty($billing_dni) ) {
     echo '<div><strong>DNI</strong> <span class="text">' . $billing_dni . '</span></div>';
   } else {
-    echo '<div><pre>' . var_dump($order) . '</pre></div>';
+    echo '<div><pre>' . print_r($order, true) . '</pre></div>';
   }
 }
 
