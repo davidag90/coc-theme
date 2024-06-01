@@ -123,8 +123,11 @@ function add_custom_checkout_field_to_emails_notifications( $order, $sent_to_adm
   $output = '';
   $billing_dni = get_post_meta( $order->id, 'billing_wooccm12', true );
   
-  if ( !empty($billing_dni) )
-  $output .= '<div><strong>DNI</strong> <span class="text">' . $billing_dni . '</span></div>';
+  if ( !empty($billing_dni) ) {
+    $output .= '<div><strong>DNI</strong> <span class="text">' . $billing_dni . '</span></div>';
+  } else {
+    $output .= '<div><strong>Error</strong> <span class="text">Fallo la clave pero esto funciona</span></div>';
+  }
 
   echo $output;
 }
