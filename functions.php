@@ -120,6 +120,8 @@ function single_item_cart( $new_item, $product_id, $quantity ) {
 add_filter( 'woocommerce_add_to_cart_validation', 'single_item_cart', 20, 3 );
 
 function add_custom_checkout_field_to_emails_notifications( $order, $sent_to_admin, $plain_text, $email ) {
+  echo '<h3>Datos adicionales</h3>';
+
   $order_data = $order->get_data();
   $order_metadata = $order_data['meta_data'];
 
