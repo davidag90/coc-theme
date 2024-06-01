@@ -124,7 +124,19 @@ function add_custom_checkout_field_to_emails_notifications( $order, $sent_to_adm
   $order_metadata = $order_data['meta_data'];
 
   foreach ($order_metadata as $metadata_obj) {
-    echo '<pre>' . print_r($metadata_obj->get_data(), true) . '</pre>';
+    $metadata_obj_arr = $metadata_obj->get_data();
+
+    $metadata_obj_key = $metadata_obj_arr['key'];
+
+    switch ($metadata_obj_key) {
+      case '_billing_wooccm11':
+        echo '<p><strong>Categoría</strong> ' . $metadata_obj_arr['value'] . '</p>';
+      break;
+
+      case '_billing_wooccm12':
+        echo '<p><strong>DNI</strong> ' . $metadata_obj_arr['value'] . '</p>';
+      break;
+    }
   }
   
 }
