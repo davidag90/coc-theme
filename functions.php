@@ -120,9 +120,11 @@ function single_item_cart( $new_item, $product_id, $quantity ) {
 add_filter( 'woocommerce_add_to_cart_validation', 'single_item_cart', 20, 3 );
 
 function add_custom_checkout_field_to_emails_notifications( $order, $sent_to_admin, $plain_text, $email ) {
-  $billing_meta = get_post_meta( $order->id, '', true );
+  $order_obj = new WC_Order();
   
-  echo '<div><pre>' . print_r($billing_meta, true) . '</pre></div>';
+  $metadata = $order_obj->get_meta();
+
+  echo '<div><pre>' . print_r($metadata, true) . '</pre></div>';
 }
 
 add_action('woocommerce_email_customer_details','add_custom_checkout_field_to_emails_notifications', 25, 4 );
