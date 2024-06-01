@@ -120,15 +120,13 @@ function single_item_cart( $new_item, $product_id, $quantity ) {
 add_filter( 'woocommerce_add_to_cart_validation', 'single_item_cart', 20, 3 );
 
 function add_custom_checkout_field_to_emails_notifications( $order, $sent_to_admin, $plain_text, $email ) {
-  $output_arr = [];
-  
   $order_data = $order->get_data();
   $order_metadata = $order_data['meta_data'];
 
-  /* foreach ($order_metadata as $metadata_obj) {
-    if($metadata_obj->)
-  } */
-  echo '<pre>' . print_r($order_metadata, true) . '</pre>';
+  foreach ($order_metadata as $metadata_obj) {
+    echo '<pre>' . print_r($metadata_obj->get_data(), true) . '</pre>';
+  }
+  
 }
 
 add_action('woocommerce_email_customer_details','add_custom_checkout_field_to_emails_notifications', 25, 4 );
