@@ -120,8 +120,6 @@ function single_item_cart( $new_item, $product_id, $quantity ) {
 add_filter( 'woocommerce_add_to_cart_validation', 'single_item_cart', 20, 3 );
 
 function add_custom_checkout_field_to_emails_notifications( $order, $sent_to_admin, $plain_text, $email ) {
-  ob_start();
-
   $billing_dni = get_post_meta( $order->id, 'billing_wooccm12', true );
   
   if ( !empty($billing_dni) ) {
@@ -129,8 +127,6 @@ function add_custom_checkout_field_to_emails_notifications( $order, $sent_to_adm
   } else {
     echo '<div><pre>' . var_dump($order) . '</pre></div>';
   }
-
-  return ob_get_clean();
 }
 
 add_action('woocommerce_email_customer_details','add_custom_checkout_field_to_emails_notifications', 25, 4 );
