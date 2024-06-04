@@ -220,9 +220,21 @@ foreach ($espec_rel as $especialidad_relativa) {
             <aside id="detalles-inscripcion" class="bg-light border shadow-sm rounded overflow-hidden mb-4">
                <img src="<?php echo $img_destacada; ?>" class="mb-4">
                <div class="botonera mb-4 px-4">
+                  <?php $whatsapp_params = http_build_query(array(
+                     'phone'  => '3512373661',
+                     'text'   => htmlentities('Hola, me interesa la capacitación ' . get_the_title() . 'dictada por ' . $dictante_principal_txt . ' y agendado para iniciarse ' . $fecha_inicio)
+                  ));
+                  
+                  $whatsapp_contact_url = 'https://api.whatsapp.com/send/?' . $whatsapp_params;
+
+                  ?>
+
+                  <a class="btn btn-success w-100 py-2" href="<?= $whatsapp_contact_url ?>" target="_blank"><i class="fa-brands fa-whatsapp"></i> <span class="d-none d-lg-inline">Contactar por </span>WhatsApp</a>
+
+                  <div class="inscripcion my-4">
                   <?php if($estado_inscripciones === 'abiertas'): ?>
                      <?php if($tipo_inscripcion['value'] === 'inscripcion'): ?>
-                     <div class="mb-3">
+                        <h2>Inscripción</h2>
                         <p>Selecciona una categoría con la cual inscribirte:</p>
                         <select class="form-select" name="tipo-estudiante" id="tipo-estudiante">
                            <option selected>Selecciona una categoría</option>
@@ -238,8 +250,6 @@ foreach ($espec_rel as $especialidad_relativa) {
                               }
                            ?>
                         </select>
-                     </div>
-                     
                      <a id="btn-inscripcion" class="btn btn-warning w-100 py-2 link-light mb-2 d-block disabled" href="<?php print(home_url() . '/finalizar-compra/?add-to-cart=') ?>"><?php echo $tipo_inscripcion['label'] ?> &rarr;</a>
                      <?php else: ?>
                         <a class="btn btn-warning w-100 py-2 link-light mb-2" href="<?php print(!empty($producto_relacionado) ? home_url() . '/finalizar-compra/?add-to-cart=' . strval($producto_relacionado->ID) : 'https://wa.me/3512373661'); ?>"><?php echo $tipo_inscripcion['label'] ?> &rarr;</a>
@@ -247,18 +257,8 @@ foreach ($espec_rel as $especialidad_relativa) {
                   <?php else: ?>
                      <button class="btn btn-warning w-100 py-2 link-light mb-2" disabled><i class="fa-solid fa-ban"></i> INSCRIPCIONES CERRADAS</button>
                   <?php endif; ?>
-
-                  <?php $whatsapp_params = http_build_query(array(
-                     'phone'  => '3512373661',
-                     'text'   => htmlentities('Hola, me interesa la capacitación ' . get_the_title() . 'dictada por ' . $dictante_principal_txt . ' y agendado para iniciarse ' . $fecha_inicio)
-                  ));
-                  
-                  $whatsapp_contact_url = 'https://api.whatsapp.com/send/?' . $whatsapp_params;
-
-                  ?>
-
-                  <a class="btn btn-success w-100 py-2" href="<?= $whatsapp_contact_url ?>" target="_blank"><i class="fa-brands fa-whatsapp"></i> <span class="d-none d-lg-inline">Contactar por </span>WhatsApp</a>
-               </div>
+                  </div><!-- .inscripcion -->
+               </div><!-- .botonera -->
                <div id="detalles-aranceles" class="px-4">
                   <h2>Aranceles</h2>
                   <div><?php echo $aranceles; ?></div>
