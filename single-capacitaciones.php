@@ -231,25 +231,27 @@ foreach ($espec_rel as $especialidad_relativa) {
 
                   <a class="btn btn-success w-100 py-2" href="<?= $whatsapp_contact_url ?>" target="_blank"><i class="fa-brands fa-whatsapp"></i> <span class="d-none d-lg-inline">Contactar por </span>WhatsApp</a>
 
-                  <div class="inscripcion my-4">
+                  <div class="inscripcion my-3">
                   <?php if($estado_inscripciones === 'abiertas'): ?>
                      <?php if($tipo_inscripcion['value'] === 'inscripcion'): ?>
                         <h2>Inscripción</h2>
                         <p>Selecciona una categoría con la cual inscribirte:</p>
-                        <select class="form-select" name="tipo-estudiante" id="tipo-estudiante">
-                           <option selected>Selecciona una categoría</option>
-                           <?php
-                           $product_id = $producto_relacionado; 
-                           $product = wc_get_product( $product_id );
-                           $variations_ids = $product->get_children(); ?>
-                           
-                           <?php
-                              foreach ($variations_ids as $variation) {
-                                 $variation_product = wc_get_product($variation);
-                                 echo '<option value="' . $variation_product->get_id() . '">' . $variation_product->get_attribute('inscripcion') . '</option>';
-                              }
-                           ?>
-                        </select>
+                        <div class="wrap-categoria mb-3">
+                           <select class="form-select" name="tipo-estudiante" id="tipo-estudiante">
+                              <option selected>Selecciona una categoría</option>
+                              <?php
+                              $product_id = $producto_relacionado; 
+                              $product = wc_get_product( $product_id );
+                              $variations_ids = $product->get_children(); ?>
+                              
+                              <?php
+                                 foreach ($variations_ids as $variation) {
+                                    $variation_product = wc_get_product($variation);
+                                    echo '<option value="' . $variation_product->get_id() . '">' . $variation_product->get_attribute('inscripcion') . '</option>';
+                                 }
+                              ?>
+                           </select>
+                        </div>
                      <a id="btn-inscripcion" class="btn btn-warning w-100 py-2 link-light mb-2 d-block disabled" href="<?php print(home_url() . '/finalizar-compra/?add-to-cart=') ?>"><?php echo $tipo_inscripcion['label'] ?> &rarr;</a>
                      <?php else: ?>
                         <a class="btn btn-warning w-100 py-2 link-light mb-2" href="<?php print(!empty($producto_relacionado) ? home_url() . '/finalizar-compra/?add-to-cart=' . strval($producto_relacionado->ID) : 'https://wa.me/3512373661'); ?>"><?php echo $tipo_inscripcion['label'] ?> &rarr;</a>
