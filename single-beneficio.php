@@ -24,10 +24,10 @@ get_header();
             <header class="entry-header">
               <?php the_post(); ?>
               <h1><?php the_title(); ?></h1>
-              <?php bootscore_post_thumbnail(); ?>
             </header>
 
             <div class="entry-content">
+              <?php bootscore_post_thumbnail(); ?>
               <?= get_field('detalles'); ?>
             </div>
 
