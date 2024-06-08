@@ -141,13 +141,21 @@ body {
   gap: 0.5rem;
 }
 
-#plus-nav > #nav-search-wrap {
+#plus-nav .searchform {
   max-width: 250px;
 } 
 
-#plus-nav > #nav-search-wrap > input::placeholder {
+#plus-nav .searchform > input::placeholder {
   color: $light;
   opacity: 0.5;
+}
+
+#plus-nav .searchform .form-control:focus {
+  color: var(--bs-body-color);
+  background-color: var(--bs-body-bg);
+  border-color: #8badc6;
+  outline: 0;
+  box-shadow: inset 0 0 0.25rem rgba(22, 91, 140, 0.75);
 }
 
 #bootscore-navbar.navbar-nav .nav-link {
@@ -156,6 +164,15 @@ body {
 
 #bootscore-navbar.navbar-nav .nav-link:hover {
   color: rgba(255, 255, 255, 1);
+}
+
+/* ==================== */
+/* Search               */
+/* ==================== */
+.search #main article + article {
+  border-top: 1px solid rgba(0, 0, 0, .1);
+  padding-top: 1.5rem;
+  margin-top: 1.5rem;
 }
 
 /* ==================== */

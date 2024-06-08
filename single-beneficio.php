@@ -34,6 +34,7 @@ get_header();
             <footer class="entry-footer clear-both">
               <!-- Related posts using bS Swiper plugin -->
               <?php if (function_exists('bootscore_related_posts')) bootscore_related_posts(); ?>
+              
               <nav aria-label="bS page navigation">
                 <ul class="pagination justify-content-center">
                   <li class="page-item">

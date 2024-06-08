@@ -55,10 +55,7 @@
 									<a href="http://certificaciones.coc-cordoba.org.ar/" class="btn btn-secondary btn-sm" target="_blank"><i class="fa-solid fa-file-lines me-1"></i> Certificaciones</a>
 									<a href="http://www.coc-autogestion.com.ar/" class="btn btn-secondary btn-sm" target="_blank"><i class="fa-solid fa-user me-1"></i> Autogestión Socios</a>
 									
-									<div id="nav-search-wrap" class="input-group input-group-sm">
-										<input type="text" class="form-control bg-secondary text-light" placeholder="Buscar en el sitio..." aria-label="Buscar en el sitio" aria-describedby="button-search" style="--bs-border-opacity: .5;">
-										<button class="btn btn-secondary border-light" type="button" id="button-search" style="--bs-border-opacity: .5;"><i class="fa-solid fa-magnifying-glass"></i><span aria-hidden="true" class="d-none">Buscar</span></button>
-									</div>
+									<?= get_search_form(); ?>
 								</div>
 								
 								<!-- Bootstrap 5 Nav Walker Main Menu -->

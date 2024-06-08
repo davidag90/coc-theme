@@ -153,3 +153,19 @@ function register_ajax_cart() {
 }
 
 add_action('after_setup_theme', 'register_ajax_cart');
+
+// Function to filter what post types should appear in the search results
+function custom_search_filter( $query ) {
+ 
+  // Check query is a search but not from the admin dashboard
+  if ( !is_admin() && $query->is_search ) {
+    // Set the post types to be included in the search results
+    $query->set( 'post_type', array( 'post', 'page', 'beneficio', 'capacitaciones' ) );
+  }
+ 
+// Return the query
+return $query;
+}
+ 
+// Add the new search filter to the pre_get_posts hook
+add_filter( 'pre_get_posts', 'custom_search_filter' );
