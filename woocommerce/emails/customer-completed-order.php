@@ -26,9 +26,44 @@ do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
 <?php /* translators: %s: Customer first name */ ?>
 <p><?php printf( esc_html__( 'Hi %s,', 'woocommerce' ), esc_html( $order->get_billing_first_name() ) ); ?></p>
-<p>Tu pedido de inscripción ha sido procesado correctamente, a continuación, podés ver los detalles del mismo:</p>
-<?php
 
+<?php
+	$variation_check = false;
+
+	$order_items = $order->get_items();
+
+	foreach ($order_items as $order_item) {
+		$item_data = $order_item->get_data();
+		
+		if($item_data['variation_id'] !== 0){
+			$variation_check = true;
+		}
+	}
+?>
+
+<?php if($variation_check): ?>
+	<p>Tu pedido de inscripción ha sido procesado correctamente.</p>
+<?php else: ?>
+	<p>Tu pedido de pre-inscripción ha sido procesado correctamente.</p>
+<?php endif; ?>
+
+<div style="margin-top: 1.5rem; margin-bottom: 1.5rem;">
+	<h3>Información importante</h3>
+
+	<?php if($variation_check): ?>
+		<p>Tener presente que en caso de no asistir a la Actividad, deberá <strong>comunicar vía mail</strong> a <a href="mailto:epo@coc-cordoba.com.ar">epo@coc-cordoba.com.ar</a> con una <strong>anticipación de 72 horas hábiles de la fecha del inicio de la misma</strong>. Dicho importe, quedará pendiente para aplicar a otra actividad de su elección durante el mismo año. De <strong>no optar por ninguna actividad y finalizado el año calendario</strong>, perderá el valor, <strong>sin derecho a reclamos</strong>.</p>
+		
+		<p>La <strong>falta de comunicación</strong> en forma escrita y con la antelación mencionada, hará que <strong>se pierda el importe, sin derecho a reclamos</strong>.</p>
+	<?php else: ?>
+		<p>Tener presente que en caso de no asistir a la Actividad, deberá <strong>comunicar vía mail</strong> a <a href="mailto:epo@coc-cordoba.com.ar">epo@coc-cordoba.com.ar</a> con una <strong>anticipación de 72 horas hábiles de la fecha del inicio de la misma</strong>. Dicho importe, quedará pendiente para aplicar a otra actividad de su elección durante el mismo año. De <strong>no optar por ninguna actividad y finalizado el año calendario</strong>, perderá el valor, <strong>sin derecho a reclamos</strong>.</p>
+
+		<p>La <strong>falta de comunicación</strong> en forma escrita y con la antelación mencionada, hará que <strong>se pierda el importe, sin derecho a reclamos</strong>.</p>
+		
+		<p>El <strong>pago de la cuota</strong> se realiza <strong>48 hs hábiles previas al inicio del Posgrado</strong>, cualquier consulta puede comunicarse al sector contable al <a href="https://api.whatsapp.com/?phone=5493512372986" target="_blank">+54 9 3512 37-2986</a>.</p>
+	<?php endif; ?>
+</div>
+
+<?php
 /*
  * @hooked WC_Emails::order_details() Shows the order details table.
  * @hooked WC_Structured_Data::generate_order_data() Generates structured data.
