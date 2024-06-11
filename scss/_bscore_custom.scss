@@ -105,7 +105,7 @@ body {
   }
 }
 
-.bg-secondary a {
+.bg-secondary a:not(.btn) { // Todos los links en divs bg-secondary que no sean botones
   color: $light;
 }
 
