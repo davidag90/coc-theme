@@ -221,7 +221,7 @@ foreach ($espec_rel as $especialidad_relativa) {
                <img src="<?php echo $img_destacada; ?>" class="mb-4">
                <div class="botonera mb-4 px-4">
                   <?php $whatsapp_params = http_build_query(array(
-                     'phone'  => '3512373661',
+                     'phone'  => '3512376950',
                      'text'   => htmlentities('Hola, me interesa la capacitación ' . get_the_title() . 'dictada por ' . $dictante_principal_txt . ' y agendado para iniciarse ' . $fecha_inicio)
                   ));
                   
