@@ -45,7 +45,7 @@ function createItem(objBeneficio) {
       <div class="card capacitacion border-secondary coc-rubro="${objBeneficio.rubroSlug}">
          <div class="row g-0">
             <div class="col-sm-4">
-               <img src="${objBeneficio.thumbnail}" class="img-fluid rounded-start h-100" />
+               <img src="${objBeneficio.thumbnail}" class="img-fluid rounded-top rounded-sm-start h-100" />
             </div><!-- .col-sm-4 -->
             <div class="col-sm-8">
                <div class="card-body d-flex flex-column h-100">

@@ -251,6 +251,7 @@ function mostrar_capacitaciones_iniciadas() {
 add_shortcode('mostrar-capacitaciones-iniciadas', 'mostrar_capacitaciones_iniciadas');
 
 
+
 function mostrar_beneficios() {
    ob_start();
    
