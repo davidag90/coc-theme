@@ -10,7 +10,6 @@ async function retrieveFeatImg(mediaId) {
    const mediaData = await response.json();
    
    return mediaData.media_details.sizes.medium.source_url;
-   // return mediaData.source_url;
 }
 
 async function setData(url) {
