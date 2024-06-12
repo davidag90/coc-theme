@@ -22,7 +22,7 @@ async function setData(url) {
       post.rubroNombre = element._embedded['wp:term'][0][0].name;
       post.prestador = element.title.rendered;
       post.slug = element.slug;
-      post.resumen = element.excerpt.rendered;
+      post.extracto = element.excerpt.rendered;
       post.detalles = element.acf.detalles;
       post.fechaInicio = element.acf.fecha_inicio;
       post.link = element.link;
@@ -50,7 +50,7 @@ function createItem(objBeneficio) {
             <div class="col-sm-8">
                <div class="card-body d-flex flex-column h-100">
                   <h3 class="card-title h5">${objBeneficio.prestador}</h3>
-                  <p class="card-text">${objBeneficio.resumen}</p>                  
+                  ${objBeneficio.extracto}
                   <button class="btn btn-sm btn-primary d-inline-block ms-auto mt-auto" data-bs-toggle="modal" data-bs-target="#modal-${objBeneficio.slug}">Más información &rarr;</button>
                </div><!-- .card-body -->
             </div><!-- .col-sm-8 -->
