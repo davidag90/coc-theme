@@ -461,11 +461,16 @@ body {
 #beneficios .card img {
   aspect-ratio: 16/6;
   object-fit: cover;
+  border-top-left-radius: $border-radius;
+  border-top-right-radius: $border-radius;
 }
 
 @include media-breakpoint-up(sm) {
   #beneficios .card img {
     aspect-ratio: 4/3.5;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: $border-radius;
   }
 }
 
