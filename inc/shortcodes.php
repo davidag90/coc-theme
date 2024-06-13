@@ -156,10 +156,11 @@ function capacitaciones_inside() {
                echo '</div>';
             }
 
-            echo '<a href="' . home_url() . '/capacitacion/capacitaciones-iniciadas" class="btn btn-success btn-lg d-block my-4" target="_blank"><i class="fa-solid fa-graduation-cap"></i> Ver Capacitaciones Iniciadas</a>';
+            echo '<a href="' . home_url() . '/capacitacion/capacitaciones-iniciadas" class="btn btn-success btn-lg d-block my-4 d-none d-md-block"><i class="fa-solid fa-graduation-cap"></i> Ver Capacitaciones Iniciadas</a>';
          echo '</div>'; // .col
          echo '<div class="col-12 col-md-8">';
             echo '<div id="app-root"></div>';
+            echo '<a href="' . home_url() . '/capacitacion/capacitaciones-iniciadas" class="btn btn-success btn-lg d-block my-4 d-block d-md-none"><i class="fa-solid fa-graduation-cap"></i> Ver Capacitaciones Iniciadas</a>';
          echo '</div>'; // .col
       echo '</div>'; // .row
    echo '</div>'; // #capacitaciones-inside
