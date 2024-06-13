@@ -78,6 +78,8 @@ function fillCapacitaciones(jsonCapacitaciones, especialidad = 'todos') {
       return dateA - dateB;
    });
 
+   console.log(jsonCapacitaciones);
+
    jsonCapacitaciones.forEach((element) => {
       const hoy = new Date();
       
