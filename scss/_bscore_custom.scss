@@ -400,13 +400,18 @@ body {
 }
 
 #capacitaciones-inside .card img {
-  aspect-ratio: 16/9;
+  aspect-ratio: 16/6;
   object-fit: cover;
+  border-top-left-radius: $border-radius;
+  border-top-right-radius: $border-radius;
 }
 
 @include media-breakpoint-up(sm) {
   #capacitaciones-inside .card img {
     aspect-ratio: 4/3.5;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: $border-radius;
   }
 }
 
@@ -489,13 +494,18 @@ body {
 }
 
 #capacitaciones-iniciadas .card img {
-  aspect-ratio: 16/9;
+  aspect-ratio: 16/6;
   object-fit: cover;
+  border-top-left-radius: $border-radius;
+  border-top-right-radius: $border-radius;
 }
 
 @include media-breakpoint-up(sm) {
   #capacitaciones-iniciadas .card img {
     aspect-ratio: 4/3.5;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: $border-radius;
   }
 }
 
@@ -510,17 +520,11 @@ body {
 
 @include media-breakpoint-up(md) {
   #sociedades-filiales #app-root {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@include media-breakpoint-up(lg) {
-  #sociedades-filiales #app-root {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
 
-@include media-breakpoint-up(xxl) {
+@include media-breakpoint-up(lg) {
   #sociedades-filiales #app-root {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
