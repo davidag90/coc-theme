@@ -404,6 +404,7 @@ body {
   object-fit: cover;
   border-top-left-radius: $border-radius;
   border-top-right-radius: $border-radius;
+  width: 100%;
 }
 
 @include media-breakpoint-up(sm) {
@@ -468,6 +469,7 @@ body {
   object-fit: cover;
   border-top-left-radius: $border-radius;
   border-top-right-radius: $border-radius;
+  width: 100%;
 }
 
 @include media-breakpoint-up(sm) {
@@ -498,6 +500,7 @@ body {
   object-fit: cover;
   border-top-left-radius: $border-radius;
   border-top-right-radius: $border-radius;
+  width: 100%;
 }
 
 @include media-breakpoint-up(sm) {
