@@ -42,7 +42,7 @@ async function setData(url) {
 
 function createItem(objBeneficio) {
    let item = `
-      <div class="card capacitacion border-secondary coc-rubro="${objBeneficio.rubroSlug}">
+      <div class="card border-secondary coc-rubro="${objBeneficio.rubroSlug}">
          <div class="row g-0">
             <div class="col-sm-4">
                <img src="${objBeneficio.thumbnail}" class="img-fluid" />
