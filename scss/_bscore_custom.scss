@@ -27,6 +27,7 @@ $clrs-instit: (
   "periodoncia": #7f2625,
   "prevencion": #004393,
   "prostodoncia": #006c32,
+  "laser": #069b99
 );
 
 @each $especialidad, $color in $clrs-instit {
