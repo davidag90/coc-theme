@@ -24,8 +24,8 @@ do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
 <?php /* translators: %s: Customer billing full name */ ?>
 <p><?php printf( esc_html__( 'You’ve received the following order from %s:', 'woocommerce' ), $order->get_formatted_billing_full_name() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
-<?php
 
+<?php
 /*
  * @hooked WC_Emails::order_details() Shows the order details table.
  * @hooked WC_Structured_Data::generate_order_data() Generates structured data.
@@ -33,7 +33,12 @@ do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
  * @since 2.5.0
  */
 do_action( 'woocommerce_email_order_details', $order, $sent_to_admin, $plain_text, $email );
+?> 
 
+<pre><?php print_r($order->get_payment_method_title()); ?></pre>
+<pre><?php print_r($order->get_meta_data()); ?></pre>
+
+<?php
 /*
  * @hooked WC_Emails::order_meta() Shows order meta data.
  */
