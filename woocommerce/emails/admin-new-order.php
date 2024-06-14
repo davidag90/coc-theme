@@ -34,6 +34,7 @@ do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
  */
 do_action( 'woocommerce_email_order_details', $order, $sent_to_admin, $plain_text, $email );
 
+$order_meta = $order->get_meta_data();
 $pay_method = $order->get_payment_method();
 
 if( $pay_method === 'macro_click') { 
@@ -43,6 +44,7 @@ if( $pay_method === 'macro_click') {
 		echo '<p><strong>ID Transacción Macro:</strong> ' . $transac_id . '</p>';
 	}
 } else {
+	echo '<pre style="width:400px; height:600px; overflow:scroll">' . print_r($order_meta) . '</pre>';
 	$transac_id = $order->get_meta('_Mercado_Pago_Payment_IDs');
 
 	if (!empty($transac_id)) {
