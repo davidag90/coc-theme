@@ -33,17 +33,23 @@ do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
  * @since 2.5.0
  */
 do_action( 'woocommerce_email_order_details', $order, $sent_to_admin, $plain_text, $email );
-?>
 
-<?php 
 $pay_method = $order->get_payment_method();
-$macro_click_transac_id = $order->get_meta('macro_click_transac_id');
 
-if( $pay_method === 'macro_click' && !empty($macro_click_transac_id) ): ?>
-	<p><strong>ID Transacción Macro:</strong> <?= $macro_click_transac_id ?></p>
-<?php endif; ?>
+if( $pay_method === 'macro_click') { 
+	$transac_id = $order->get_meta('macro_click_transac_id');
+	
+	if (!empty($transac_id)) {
+		echo '<p><strong>ID Transacción Macro:</strong> ' . $transac_id . '</p>';
+	}
+} else {
+	$transac_id = $order->get_meta('_Mercado_Pago_Payment_IDs');
 
-<?php
+	if (!empty($transac_id)) {
+		echo '<p><strong>ID Transacción MercadoPago:</strong> ' . $transac_id . '</p>';
+	}
+}
+
 /*
  * @hooked WC_Emails::order_meta() Shows order meta data.
  */
