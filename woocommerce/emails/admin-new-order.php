@@ -33,10 +33,15 @@ do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
  * @since 2.5.0
  */
 do_action( 'woocommerce_email_order_details', $order, $sent_to_admin, $plain_text, $email );
-?> 
+?>
 
-<pre><?php print_r($order->get_payment_method_title()); ?></pre>
-<pre><?php print_r($order->get_meta_data()); ?></pre>
+<?php 
+$pay_method = $order->get_payment_method();
+$macro_click_transac_id = $order->get_meta('macro_click_transac_id');
+
+if( $pay_method === 'macro_click' && !empty($macro_click_transac_id) ): ?>
+	<p><strong>ID Transacción Macro:</strong> <?= $macro_click_transac_id ?></p>
+<?php endif; ?>
 
 <?php
 /*
