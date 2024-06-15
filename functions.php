@@ -172,7 +172,8 @@ add_filter( 'pre_get_posts', 'custom_search_filter' );
 
 
 // Autocompletado de ordenes MercadoPago
-/* add_action( 'woocommerce_order_status_processing', 'autocomplete_mercado_pago_orders' );
+add_action( 'woocommerce_order_status_processing', 'autocomplete_mercado_pago_orders' );
+
 function autocomplete_mercado_pago_orders( $order_id ) {
   if ( ! $order_id ) {
     return;
@@ -183,5 +184,10 @@ function autocomplete_mercado_pago_orders( $order_id ) {
   
   if( $pay_method === 'woo-mercado-pago-basic' ) { // Chequea solamente las ordenes de MercadoPago, las demás se procesan en el mismo plugin
     $order->update_status( 'completed' );
+
+    WC()->mailer()->get_emails()['WC_Email_New_Order']->trigger( $order_id );
+
+    // Sending the new Order email notification for an $order_id (order ID)
+    add_filter('woocommerce_new_order_email_allows_resend', '__return_true' );
   }
-} */
+}
