@@ -312,7 +312,9 @@ foreach ($espec_rel as $especialidad_relativa) {
                               'orderby' => 'meta_value',
                               'meta_key' => 'fecha_inicio_dateformat',
                               'meta_type' => 'DATE',
-                              'order' => 'ASC'
+                              'order' => 'ASC',
+                              'meta_value' => date('Ymd'),
+                              'meta_compare' => '>'
                            );
 
                            $capac_rel_query = new WP_Query($capac_rel_args);
@@ -360,8 +362,12 @@ foreach ($espec_rel as $especialidad_relativa) {
                                     'post_type' => 'capacitaciones',
                                     'posts_per_page' => $capac_restantes,
                                     'post__not_in' => $excluir_ids,
-                                    'orderby' => 'date',
+                                    'orderby' => 'meta_value',
+                                    'meta_key' => 'fecha_inicio_dateformat',
+                                    'meta_type' => 'DATE',
                                     'order' => 'ASC',
+                                    'meta_value' => date('Ymd'),
+                                    'meta_compare' => '>'
                                  );
 
                                  $capac_restantes_query = new WP_Query($capac_restantes_args);
