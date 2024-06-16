@@ -42,7 +42,7 @@ async function setData(url) {
 
 function createItem(objCapacitacion) {
    let item = `
-      <div class="card capacitacion border-${objCapacitacion.especialidadSlug}" coc-especialidad="${objCapacitacion.especialidadSlug}">
+      <div class="card capacitacion border-dark-subtle" coc-especialidad="${objCapacitacion.especialidadSlug}">
          <div class="row g-0">
             <div class="col-sm-4">
                <img src="${objCapacitacion.thumbnail}" class="img-fluid" />
@@ -53,7 +53,7 @@ function createItem(objCapacitacion) {
                   <span class="d-block text-secondary mb-3"><small>${objCapacitacion.tipoCapacitacion} en ${objCapacitacion.especialidadNombre}</small></span>
                   <p class="card-text">${objCapacitacion.dictante}</p>
                   <p class="card-text opacity-75">${objCapacitacion.fechaInicio}</p>
-                  <a href="${objCapacitacion.link}" class="btn btn-sm btn-${objCapacitacion.especialidadSlug} d-inline-block ms-auto mt-auto">Más información &rarr;</a>
+                  <a href="${objCapacitacion.link}" class="btn btn-sm btn-dark d-inline-block ms-auto mt-auto">Más información &rarr;</a>
                </div><!-- .card-body -->
             </div><!-- .col-sm-8 -->
          </div><!-- .row -->
