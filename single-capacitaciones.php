@@ -39,6 +39,16 @@ $listado_materiales = get_field('listado_materiales');
 $beneficios = get_field('beneficios');
 $sponsors = get_field('sponsors');
 $extra = get_field('extra');
+
+$fecha_inicio_dateformat = get_field('fecha_inicio_dateformat');
+$iniciada = false;
+$hoy = date('Ymd');
+
+if($fecha_inicio_dateformat <= $hoy) {
+   $iniciada = true;
+}
+
+
 $espec_rel = get_field('especialidades_relativas');
 $espec_rel_arr = [$especialidad_slug];
 
@@ -51,7 +61,10 @@ foreach ($espec_rel as $especialidad_relativa) {
       <div class="row">
          <div class="col-md-8">
             <div class="detalles-header d-flex flex-column justify-content-end pb-4 text-light">
-               <h1 class="mb-0"><?php the_title(); ?></h1>
+               <?php if($iniciada): ?><p><span class="text-bg-light rounded p-2">Capacitacion iniciada</span></p><?php endif; ?>
+               <h1 class="mb-0 position-relative">
+                  <?php the_title(); ?>
+               </h1>
                <p class="subtitulo-capacitacion mb-0 fs-5">
                   <?php echo $tipo_capacitacion; ?> en <strong><?php echo $especialidad_name; ?></strong>
                </p>
@@ -233,7 +246,7 @@ foreach ($espec_rel as $especialidad_relativa) {
                   <a class="btn btn-success w-100 py-2" href="<?= $whatsapp_contact_url ?>" target="_blank"><i class="fa-brands fa-whatsapp"></i> <span class="d-none d-lg-inline">Contactar por </span>WhatsApp</a>
 
                   <div class="inscripcion my-3">
-                  <?php if($estado_inscripciones === 'abiertas'): ?>
+                  <?php if($estado_inscripciones === 'abiertas' && !$iniciada): ?>
                      <?php if($tipo_inscripcion['value'] === 'inscripcion'): ?>
                         <h2>Inscripción</h2>
                         <p>Selecciona una categoría con la cual inscribirte:</p>
@@ -313,7 +326,7 @@ foreach ($espec_rel as $especialidad_relativa) {
                               'meta_key' => 'fecha_inicio_dateformat',
                               'meta_type' => 'DATE',
                               'order' => 'ASC',
-                              'meta_value' => date('Ymd'),
+                              'meta_value' => $hoy,
                               'meta_compare' => '>'
                            );
 
@@ -366,7 +379,7 @@ foreach ($espec_rel as $especialidad_relativa) {
                                     'meta_key' => 'fecha_inicio_dateformat',
                                     'meta_type' => 'DATE',
                                     'order' => 'ASC',
-                                    'meta_value' => date('Ymd'),
+                                    'meta_value' => $hoy,
                                     'meta_compare' => '>'
                                  );
 
