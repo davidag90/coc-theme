@@ -28,8 +28,7 @@ async function setData(url) {
       post.link = element.link;
 
       if(element.featured_media !== 0) {
-         const featImgUrl = await retrieveFeatImg(element.featured_media);
-         post.thumbnail = featImgUrl;
+         post.thumbnail = element._embedded['wp:featuredmedia'][0]['media_details']['sizes']['medium']['source_url']
       } else {
          post.thumbnail = THEME_URL + 'img/capacitaciones/placeholder.jpg';
       }
@@ -78,7 +77,11 @@ function fillCapacitaciones(jsonCapacitaciones, especialidad = 'todos') {
       
       return dateA - dateB;
    });
-
+   
+   let preloader = document.getElementById('preloader');
+   
+   preloader.classList.add('d-none');
+   
    jsonCapacitaciones.forEach((element) => {
       const hoy = new Date();
       const fechaCapacitacion = new Date(
@@ -128,8 +131,9 @@ function setFiltros() {
    });
 }
 
+const preloader = document.getElementById('preloader');
 const appRoot = document.getElementById('app-root');
 const capacitaciones = await setData(API_CAPACITACIONES_URL);
 
-document.addEventListener('DOMContentLoaded', fillCapacitaciones(capacitaciones));
 document.addEventListener('DOMContentLoaded', setFiltros());
+document.addEventListener('DOMContentLoaded', fillCapacitaciones(capacitaciones));

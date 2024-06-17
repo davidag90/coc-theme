@@ -89,7 +89,7 @@ add_shortcode('capacitaciones-front', 'capacitaciones_front');
 function capacitaciones_inside() {
    ob_start();
 
-   $fechaHoy = date('Ymd');
+   $hoy = date('Ymd');
 
    $args = array(
       'post_type' => 'capacitaciones',
@@ -97,7 +97,7 @@ function capacitaciones_inside() {
       'meta_query' => array(
          array(
                'key' => 'fecha_inicio_dateformat',
-               'value' => $fechaHoy,
+               'value' => $hoy,
                'compare' => '>',
                'type' => 'DATE',
          ),
@@ -159,7 +159,11 @@ function capacitaciones_inside() {
             echo '<a href="' . home_url() . '/capacitacion/capacitaciones-iniciadas" class="btn btn-success btn-lg d-block my-4 d-none d-md-block"><i class="fa-solid fa-graduation-cap"></i> Ver Capacitaciones Iniciadas</a>';
          echo '</div>'; // .col
          echo '<div class="col-12 col-md-8">';
-            echo '<div id="app-root"></div>';
+            echo '<div id="preloader" class="d-flex justify-content-center align-items-center">';
+               echo '<div class="spinner-border" role="status"></div>';
+               echo '<div class="d-flex align-items-center ms-2"><span class="d-block">Cargando...</span></p></div>';
+            echo '</div>'; // #preloader
+            echo '<div id="app-root"></div>'; // #app-root
             echo '<a href="' . home_url() . '/capacitacion/capacitaciones-iniciadas" class="btn btn-success btn-lg d-block my-4 d-block d-md-none"><i class="fa-solid fa-graduation-cap"></i> Ver Capacitaciones Iniciadas</a>';
          echo '</div>'; // .col
       echo '</div>'; // .row
