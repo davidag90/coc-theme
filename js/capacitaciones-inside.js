@@ -4,14 +4,6 @@ async function fetchData(url) {
    return await response.json();
 }
 
-async function retrieveFeatImg(mediaId) {
-   const endpoint = API_MEDIA_BASE + mediaId;
-   const response = await fetch(endpoint);
-   const mediaData = await response.json();
-   
-   return mediaData.media_details.sizes.medium.source_url;
-}
-
 async function setData(url) {
    const data = await fetchData(url);
 
@@ -79,7 +71,6 @@ function fillCapacitaciones(jsonCapacitaciones, especialidad = 'todos') {
    });
    
    let preloader = document.getElementById('preloader');
-   
    preloader.classList.add('d-none');
    
    jsonCapacitaciones.forEach((element) => {
@@ -131,9 +122,8 @@ function setFiltros() {
    });
 }
 
-const preloader = document.getElementById('preloader');
 const appRoot = document.getElementById('app-root');
 const capacitaciones = await setData(API_CAPACITACIONES_URL);
 
-document.addEventListener('DOMContentLoaded', setFiltros());
 document.addEventListener('DOMContentLoaded', fillCapacitaciones(capacitaciones));
+document.addEventListener('DOMContentLoaded', setFiltros());

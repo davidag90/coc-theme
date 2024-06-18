@@ -68,6 +68,10 @@ function capacitaciones_front() {
             }
          echo '</div>'; // #filtros-espec-desk
 
+         echo '<div id="preloader" class="d-flex justify-content-center align-items-center">';
+            echo '<div class="spinner-border" role="status"></div>';
+            echo '<div class="d-flex align-items-center ms-2"><span class="d-block">Cargando...</span></p></div>';
+         echo '</div>'; // #preloader         
          echo '<div id="app-root" class="splide mb-5">';
             echo '<div class="splide__track">';
                echo '<ul class="splide__list">';
@@ -245,7 +249,11 @@ function mostrar_capacitaciones_iniciadas() {
             echo '</div>';
          echo '</div>'; // .col
          echo '<div class="col-12 col-md-8">';
-            echo '<div id="app-root"></div>';
+            echo '<div id="preloader" class="d-flex justify-content-center align-items-center">';
+               echo '<div class="spinner-border" role="status"></div>';
+               echo '<div class="d-flex align-items-center ms-2"><span class="d-block">Cargando...</span></p></div>';
+            echo '</div>'; // #preloader
+            echo '<div id="app-root"></div>'; // #app-root
          echo '</div>'; // .col
       echo '</div>'; // .row
    echo '</div>'; // #capacitaciones-inside
@@ -286,7 +294,11 @@ function mostrar_beneficios() {
             }
          echo '</div>'; // .col
          echo '<div class="col-12 col-md-8">';
-            echo '<div id="app-root"></div>';
+            echo '<div id="preloader" class="d-flex justify-content-center align-items-center">';
+               echo '<div class="spinner-border" role="status"></div>';
+               echo '<div class="d-flex align-items-center ms-2"><span class="d-block">Cargando...</span></p></div>';
+            echo '</div>'; // #preloader
+            echo '<div id="app-root"></div>'; // #app-root
          echo '</div>'; // .col
       echo '</div>'; // .row
    echo '</div>'; // #beneficios
@@ -305,7 +317,11 @@ function mostrar_sociedades_filiales() {
    echo '<div id="sociedades-filiales">';
       echo '<div class="row">';
          echo '<div class="col-12">';
-            echo '<div id="app-root"></div>';
+            echo '<div id="preloader" class="d-flex justify-content-center align-items-center">';
+               echo '<div class="spinner-border" role="status"></div>';
+               echo '<div class="d-flex align-items-center ms-2"><span class="d-block">Cargando...</span></p></div>';
+            echo '</div>'; // #preloader
+            echo '<div id="app-root"></div>'; // #app-root
          echo '</div>'; // .col
       echo '</div>'; // .row
    echo '</div>'; // #sociedades-filiales

@@ -4,14 +4,6 @@ async function fetchData(url) {
    return await response.json();
 }
 
-async function retrieveFeatImg(mediaId) {
-   const endpoint = API_MEDIA_BASE + mediaId;
-   const response = await fetch(endpoint);
-   const mediaData = await response.json();
-   
-   return mediaData.media_details.sizes.medium.source_url;
-}
-
 async function setData(url) {
    const data = await fetchData(url);
 
@@ -28,8 +20,7 @@ async function setData(url) {
       post.link = element.link;
 
       if(element.featured_media !== 0) {
-         const featImgUrl = await retrieveFeatImg(element.featured_media);
-         post.thumbnail = featImgUrl;
+         post.thumbnail = element._embedded['wp:featuredmedia'][0]['media_details']['sizes']['medium']['source_url']
       } else {
          post.thumbnail = THEME_URL + 'img/capacitaciones/placeholder.jpg';
       }
@@ -78,7 +69,8 @@ function fillCapacitaciones(jsonCapacitaciones, especialidad = 'todos') {
       return dateA - dateB;
    });
 
-   console.log(jsonCapacitaciones);
+   let preloader = document.getElementById('preloader');
+   preloader.classList.add('d-none');
 
    jsonCapacitaciones.forEach((element) => {
       const hoy = new Date();

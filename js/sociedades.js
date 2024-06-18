@@ -4,14 +4,6 @@ async function fetchData(url) {
    return await response.json();
 }
 
-async function retrieveFeatImg(mediaId) {
-   const endpoint = API_MEDIA_BASE + mediaId;
-   const response = await fetch(endpoint);
-   const mediaData = await response.json();
-   
-   return mediaData.media_details.sizes.medium.source_url;
-}
-
 async function setData(url) {
    const data = await fetchData(url);
 
@@ -24,10 +16,9 @@ async function setData(url) {
       post.infoAdicional = element.acf.info_adicional;
 
       if(element.featured_media !== 0) {
-         const featImgUrl = await retrieveFeatImg(element.featured_media);
-         post.thumbnail = featImgUrl;
+         post.thumbnail = element._embedded['wp:featuredmedia'][0]['media_details']['sizes']['medium']['source_url']
       } else {
-         post.thumbnail = THEME_URL + 'img/sociedades/placeholder.jpg';
+         post.thumbnail = THEME_URL + 'img/capacitaciones/placeholder.jpg';
       }
 
       return post;
@@ -73,6 +64,9 @@ function createModals(objSociedad) {
 }
 
 function fillSociedades(jsonSociedades) {
+   let preloader = document.getElementById('preloader');
+   preloader.classList.add('d-none');
+   
    jsonSociedades.sort((a,b) => {
       let x = a.title.toLowerCase();
       let y = b.title.toLowerCase();
