@@ -48,7 +48,6 @@ if($fecha_inicio_dateformat <= $hoy) {
    $iniciada = true;
 }
 
-
 $espec_rel = get_field('especialidades_relativas');
 $espec_rel_arr = [$especialidad_slug];
 
@@ -239,9 +238,7 @@ foreach ($espec_rel as $especialidad_relativa) {
                      'text'   => 'Hola, me interesa la capacitación ' . html_entity_decode(get_the_title()) . ' dictada por ' . $dictante_principal_txt . ' y agendada para iniciarse ' . $fecha_inicio
                   ));
                   
-                  $whatsapp_contact_url = 'https://api.whatsapp.com/send/?' . $whatsapp_params;
-
-                  ?>
+                  $whatsapp_contact_url = 'https://api.whatsapp.com/send/?' . $whatsapp_params; ?>
 
                   <a class="btn btn-success w-100 py-2" href="<?= $whatsapp_contact_url ?>" target="_blank"><i class="fa-brands fa-whatsapp"></i> <span class="d-none d-lg-inline">Contactar por </span>WhatsApp</a>
 
@@ -266,7 +263,8 @@ foreach ($espec_rel as $especialidad_relativa) {
                               ?>
                            </select>
                         </div>
-                     <a id="btn-inscripcion" class="btn btn-warning w-100 py-2 link-light mb-2 d-block disabled" href="<?php print(home_url() . '/finalizar-compra/?add-to-cart=') ?>"><?php echo $tipo_inscripcion['label'] ?> &rarr;</a>
+                        
+                        <a id="btn-inscripcion" class="btn btn-warning w-100 py-2 link-light mb-2 d-block disabled" href="<?php print(home_url() . '/finalizar-compra/?add-to-cart=') ?>"><?php echo $tipo_inscripcion['label'] ?> &rarr;</a>
                      <?php else: ?>
                         <a class="btn btn-warning w-100 py-2 link-light mb-2" href="<?php print(!empty($producto_relacionado) ? home_url() . '/finalizar-compra/?add-to-cart=' . strval($producto_relacionado->ID) : 'https://wa.me/3512373661'); ?>"><?php echo $tipo_inscripcion['label'] ?> &rarr;</a>
                      <?php endif; ?>
