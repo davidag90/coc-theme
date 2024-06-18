@@ -55,7 +55,11 @@ foreach ($espec_rel as $especialidad_relativa) {
    $espec_rel_arr[] = $especialidad_relativa->slug;
 } ?>
 
+<?php if($estado_inscripciones === 'abiertas' && !$iniciada): ?>
 <header id="header-capacitacion" class="bg-<?php echo $especialidad_slug ?> bg-header-<?php echo $especialidad_slug ?> border-<?php echo $especialidad_slug ?>">
+<?php else: ?>
+<header id="header-capacitacion" class="bg-light bg-header-<?php echo $especialidad_slug ?> border-dark-subtle">
+<?php endif; ?>
    <div class="container">
       <div class="row">
          <div class="col-md-8">
