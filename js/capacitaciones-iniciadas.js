@@ -33,7 +33,7 @@ async function setData(url) {
 
 function createItem(objCapacitacion) {
    let item = `
-      <div class="card capacitacion border-dark-subtle" coc-especialidad="${objCapacitacion.especialidadSlug}">
+      <div class="card capacitacion border-dark-subtle bg-dark bg-opacity-10" coc-especialidad="${objCapacitacion.especialidadSlug}">
          <div class="row g-0">
             <div class="col-sm-4">
                <img src="${objCapacitacion.thumbnail}" class="img-fluid" />
