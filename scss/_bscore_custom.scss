@@ -49,6 +49,8 @@ $clrs-instit: (
   }
 
   .bg-header-#{$especialidad} {
+    background-image: url("../img/capacitaciones/header-#{$especialidad}.jpg"), -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.5)));
+    background-image: url("../img/capacitaciones/header-#{$especialidad}.jpg"), -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
     background-image: url("../img/capacitaciones/header-#{$especialidad}.jpg"), linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
     background-position: center;
     background-repeat: none;
@@ -57,6 +59,15 @@ $clrs-instit: (
   }
 }
 
+
+background-image: url("../img/capacitaciones/header-especialidad.jpg"), -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.5)));
+background-image: url("../img/capacitaciones/header-especialidad.jpg"), -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+background-image: url("../img/capacitaciones/header-especialidad.jpg"), linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+background-position: center;
+background-repeat: none;
+background-size: cover;
+background-blend-mode: multiply;
+}
 /* ==================== */
 /* Custom Fonts */
 /* ==================== */
