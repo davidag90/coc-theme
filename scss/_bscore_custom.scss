@@ -171,6 +171,12 @@ body {
   color: rgba(255, 255, 255, 1);
 }
 
+#accesos-directos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-size: 0.9rem;
+}
+
 /* ==================== */
 /* Search               */
 /* ==================== */

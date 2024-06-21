@@ -91,13 +91,14 @@
 						</div><!-- .header-actions -->
 					</div><!-- bootscore_container_class(); -->
 				</nav><!-- .navbar -->
+				<div id="accesos-directos" class="d-lg-none">
+					<div class="p-2 text-center text-bg-secondary">
+						<a href="http://certificaciones.coc-cordoba.org.ar/" class="link-light text-decoration-none" target="_blank"><i class="fa-solid fa-file-lines me-1"></i> Certificaciones</a>
+					</div>
+					<div class="p-2 text-center text-bg-light">
+						<a href="http://www.coc-autogestion.com.ar/" class="link-dark text-decoration-none" target="_blank"><i class="fa-solid fa-user me-1"></i> Autogestión Socios</a>
+					</div>
+				</div><!-- #accesos-directos -->
 			</div><!-- .fixed-top .bg-light -->
-
-			<!-- Offcanvas User and Cart -->
-			<?php
-			if (class_exists('WooCommerce')) :
-				get_template_part('template-parts/header/offcanvas', 'woocommerce');
-			endif;
-			?>
 
 		</header><!-- #masthead -->
