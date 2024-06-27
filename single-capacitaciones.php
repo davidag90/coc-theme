@@ -1,9 +1,8 @@
 <?php
 
 /**
- * Template Post Type: post
+ * Template Post Type: capacitaciones
  *
- * @version 5.3.1
  */
 
 get_header();

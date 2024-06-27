@@ -1,8 +1,7 @@
 <?php
 /**
- * Template Post Type: post
+ * Template Post Type: beneficio
  *
- * @version 5.3.1
  */
 
 get_header();
