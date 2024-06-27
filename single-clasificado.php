@@ -18,7 +18,7 @@ get_header();
             </header>
 
             <div class="entry-content">
-              <?php the_post_thumbnail(); ?>
+              <?php the_post_thumbnail('thumbnail'); ?>
               <?= get_field('detalles'); ?>
             </div>
           </main>
