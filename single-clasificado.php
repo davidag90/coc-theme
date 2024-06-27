@@ -18,8 +18,10 @@ get_header();
             </header>
 
             <div class="entry-content">
-              <?php the_post_thumbnail(); ?>
-              <?= get_field('detalles'); ?>
+              <div class="row">
+                <div class="col-12 col-md-4"><?php the_post_thumbnail(); ?></div>
+                <div class="col-12 col-md-8"><?= get_field('detalles'); ?></div>
+              </div>
             </div>
           </main>
         </div>
