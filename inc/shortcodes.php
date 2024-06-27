@@ -179,7 +179,6 @@ function capacitaciones_inside() {
 add_shortcode('capacitaciones-inside', 'capacitaciones_inside');
 
 
-
 function mostrar_capacitaciones_iniciadas() {
    ob_start();
 
@@ -264,7 +263,6 @@ function mostrar_capacitaciones_iniciadas() {
 add_shortcode('mostrar-capacitaciones-iniciadas', 'mostrar_capacitaciones_iniciadas');
 
 
-
 function mostrar_beneficios() {
    ob_start();
    
@@ -332,3 +330,46 @@ function mostrar_sociedades_filiales() {
 }
 
 add_shortcode('mostrar-sociedades-filiales', 'mostrar_sociedades_filiales');
+
+
+function mostrar_clasificados() {
+   ob_start();
+
+   $args = array(
+      'post_type' => 'clasficado'
+   );
+
+   $query = new WP_Query($args);
+
+   if($query->have_posts()) {
+      echo '<div id="clasificados">';
+      
+      while($query->have_posts()) {
+         $query->the_post();
+         
+         echo '<div class="card border-primary">';
+            echo '<div class="row g-0">';
+               echo '<div class="col-sm-4">';
+                  echo '<img src="' . get_the_post_thumbnail_url() . '" class="img-fluid">';
+               echo '</div><!-- .col-sm-4 -->';
+               echo '<div class="col-sm-8">';
+                  echo '<div class="card-body d-flex flex-column h-100">';
+                     echo '<h3 class="card-title h5">' . get_the_title() . '</h3>'; 
+                     echo '<p>' . get_the_excerpt() . '</p>'; 
+                     echo '<a href="' . get_permalink() . '" class="btn btn-sm btn-primary d-inline-block ms-auto mt-auto">Ver clasificado →</a>'; 
+                  echo '</div>'; // .card-body
+               echo '</div>'; // .col-sm-8
+            echo '</div>'; // .row
+         echo '</div>'; // .card
+      }
+      echo '</div>'; // #clasificados
+
+      wp_reset_postdata();
+   } else {
+      echo '<p>No se han encontrado contenidos de esta clase en el sitio.</p>';
+   }
+
+   return ob_get_clean();
+}
+
+add_shortcode('mostrar-clasificados', 'mostrar_clasificados');
