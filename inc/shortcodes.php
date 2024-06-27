@@ -336,7 +336,7 @@ function mostrar_clasificados() {
    ob_start();
 
    $args = array(
-      'post_type' => 'clasficado'
+      'post_type' => 'clasificado'
    );
 
    $query = new WP_Query($args);
