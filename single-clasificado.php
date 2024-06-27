@@ -20,7 +20,7 @@ get_header();
             <div class="entry-content">
               <div class="row">
                 <div class="col-12 col-md-4">
-                  <a href="<?= get_the_post_thumbnail_url('large'); ?>" target="_blank"><?php the_post_thumbnail(); ?></a>
+                  <a href="<?= get_the_post_thumbnail_url(); ?>" target="_blank"><?php the_post_thumbnail(); ?></a>
                 </div>
                 <div class="col-12 col-md-8">
                   <p><strong>Contacto:</strong> <?= get_field('contacto'); ?> (<a href="mailto:<?= get_field('email') ?>" target="_blank"><?= get_field('correo_electronico') ?></a> - <?= get_field('telefono') ?>)</p>
