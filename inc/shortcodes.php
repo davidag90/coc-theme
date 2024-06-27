@@ -350,7 +350,7 @@ function mostrar_clasificados() {
          echo '<div class="card border-primary">';
             echo '<div class="row g-0">';
                echo '<div class="col-sm-4">';
-                  echo '<img src="' . get_the_post_thumbnail_url() . '" class="img-fluid">';
+                  echo '<img src="' . get_the_post_thumbnail_url() . '" class="img-fluid h-100">';
                echo '</div><!-- .col-sm-4 -->';
                echo '<div class="col-sm-8">';
                   echo '<div class="card-body d-flex flex-column h-100">';
