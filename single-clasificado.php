@@ -19,8 +19,16 @@ get_header();
 
             <div class="entry-content">
               <div class="row">
-                <div class="col-12 col-md-4"><?php the_post_thumbnail(); ?></div>
-                <div class="col-12 col-md-8"><?= get_field('detalles'); ?></div>
+                <div class="col-12 col-md-4">
+                  <a href="<?= get_the_post_thumbnail_url('full'); ?>" target="_blank"><?php the_post_thumbnail(); ?></a>
+                </div>
+                <div class="col-12 col-md-8">
+                  <p><strong>Contacto:</strong> <?= get_field('contacto'); ?> (<a href="mailto:<?= get_field('email') ?>" target="_blank"><?= get_field('correo_electronico') ?></a> - <?= get_field('telefono') ?>)</p>
+                  <p><strong>Tipo de publicación:</strong> <?= get_field('modalidad'); ?></p>
+                  <p><strong>Ubicación:</strong> <?= get_field('ubicacion'); ?></p>
+                  <h2>Detalles</h2>
+                  <?= get_field('detalles'); ?>
+                </div>
               </div>
             </div>
           </main>
