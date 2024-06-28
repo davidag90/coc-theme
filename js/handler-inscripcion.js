@@ -1,10 +1,10 @@
-const selectInscripcion = document.getElementById('tipo-estudiante');
-const btnInscripcion = document.getElementById('btn-inscripcion');
+const selectVariableProd = document.getElementById('select-variable-prod');
+const btnVariableProd = document.getElementById('btn-variable-prod');
 
-selectInscripcion.addEventListener('change', (event) => {   
+selectVariableProd.addEventListener('change', (event) => {   
    let variationID = event.target.value;
-   let btnInscripcionHREF = CHECKOUT_URL + variationID;
+   let btnVariableProdHREF = CHECKOUT_URL + variationID;
 
-   btnInscripcion.setAttribute('href', btnInscripcionHREF);
-   btnInscripcion.classList.remove('disabled');
+   btnVariableProd.setAttribute('href', btnVariableProdHREF);
+   btnVariableProd.classList.remove('disabled');
 });
