@@ -165,36 +165,20 @@ function set_inscripcion_data($product_id, $inscripcion_value, $inscripcion_labe
 
    if($state_inscripcion === 'abiertas' && !$iniciada) {   
       if($is_variable) {
+         $variations_ids = $product->get_children();
+         
          echo '<h2>Inscripción</h2>';
-         if($inscripcion_value === 'inscripcion') {
-            $variations_ids = $product->get_children();
-            
-            echo '<p>Selecciona una categoría con la cual inscribirte:</p>';
-            echo '<div class="wrap-variable-prod mb-3">';
-               echo '<select class="form-select" name="select-variable-prod" id="select-variable-prod">';
-                  echo '<option selected>Selecciona una categoría</option>';
-                  foreach ($variations_ids as $variation) {
-                     $variation_product = wc_get_product($variation);
-                     echo '<option value="' . $variation_product->get_id() . '">' . $variation_product->get_attribute('inscripcion') . '</option>';
-                  }
-               echo '</select>';
-            echo '</div>';
-            echo '<a id="btn-variable-prod" class="btn btn-warning w-100 py-2 link-light mb-2 d-block disabled" href="' . esc_url(home_url() . '/finalizar-compra/?add-to-cart=') . '">' . $inscripcion_label . ' &rarr;</a>';
-         } else {
-            $variations_ids = $product->get_children();
-            
-            echo '<p>Selecciona la modalidad a la que deseas inscribirte:</p>';
-            echo '<div class="wrap-variable-prod mb-3">';
-               echo '<select class="form-select" name="select-variable-prod" id="select-variable-prod">';
-                  echo '<option selected>Selecciona una modalidad</option>';
-                  foreach ($variations_ids as $variation) {
-                     $variation_product = wc_get_product($variation);
-                     echo '<option value="' . $variation_product->get_id() . '">' . $variation_product->get_attribute('modalidad') . '</option>';
-                  }
-               echo '</select>';
-            echo '</div>';
-            echo '<a id="btn-variable-prod" class="btn btn-warning w-100 py-2 link-light mb-2 d-block disabled" href="' . esc_url(home_url() . '/finalizar-compra/?add-to-cart=') . '">' . $inscripcion_label . ' &rarr;</a>';
-         }
+         echo '<p>Selecciona una categoría con la cual inscribirte:</p>';
+         echo '<div class="wrap-variable-prod mb-3">';
+            echo '<select class="form-select" name="select-variable-prod" id="select-variable-prod">';
+               echo '<option selected>Seleccionar categoría...</option>';
+               foreach ($variations_ids as $variation) {
+                  $variation_product = wc_get_product($variation);
+                  echo '<option value="' . $variation_product->get_id() . '">' . $variation_product->get_attribute('inscripcion') . '</option>';
+               }
+            echo '</select>';
+         echo '</div>';
+         echo '<a id="btn-variable-prod" class="btn btn-warning w-100 py-2 link-light mb-2 d-block disabled" href="' . esc_url(home_url() . '/finalizar-compra/?add-to-cart=') . '">' . $inscripcion_label . ' &rarr;</a>';
       } else {
          echo '<a class="btn btn-warning w-100 py-2 link-light mb-2" href="' . esc_url(!empty($product_id) ? home_url() . '/finalizar-compra/?add-to-cart=' . strval($product_id) : 'https://wa.me/3512373661') . '">' . $inscripcion_label . ' &rarr;</a>';
       }
