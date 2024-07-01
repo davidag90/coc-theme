@@ -37,6 +37,7 @@ function set_related_especialidades($related_especialidades, $especialidad_base_
 }
 
 function get_related_capacitaciones($limit, $related_especialidades, $id_capacitacion) {
+   
 
    ob_start();
    $query_args = array(

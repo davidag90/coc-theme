@@ -208,7 +208,11 @@ $related_especialidades = set_related_especialidades($capacitacion_data['especia
                   <a class="btn btn-success w-100 py-2" href="<?= $whatsapp_contact_url ?>" target="_blank"><i class="fa-brands fa-whatsapp"></i> <span class="d-none d-lg-inline">Contactar por </span>WhatsApp</a>
 
                   <div class="inscripcion my-3">
-                     <?= set_inscripcion_data($capacitacion_data['producto_relacionado']->ID, $capacitacion_data['tipo_inscripcion']['value'], $capacitacion_data['tipo_inscripcion']['label'], $capacitacion_data['estado_inscripciones'], $iniciada); ?>
+                     <?php
+                        if(!empty($capacitacion_data['producto_relacionado'])) {
+                           echo set_inscripcion_data($capacitacion_data['producto_relacionado']->ID, $capacitacion_data['tipo_inscripcion']['value'], $capacitacion_data['tipo_inscripcion']['label'], $capacitacion_data['estado_inscripciones'], $iniciada);
+                        }
+                     ?>
                   </div><!-- .inscripcion -->
                </div><!-- .botonera -->
                <div id="detalles-aranceles" class="px-4">
@@ -242,7 +246,7 @@ $related_especialidades = set_related_especialidades($capacitacion_data['especia
                         <h2 class="text-center mb-4">Otras capacitaciones que podrían interesarte</h2>
                         
                         <div id="capacitaciones-sugeridas" class="mb-5">
-                           <?= get_related_capacitaciones(4, $capacitacion_data['especialidades_relativas'], get_the_ID()) ?>
+                           <?= get_related_capacitaciones(4, $related_especialidades, get_the_ID()) ?>
                         </div><!-- #capacitaciones-sugeridas -->
                         
                         <div id="acceso-capacitaciones-full" class="d-flex justify-content-center">
