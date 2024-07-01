@@ -159,9 +159,13 @@ function get_related_capacitaciones($limit, $related_especialidades, $id_capacit
 
 function set_inscripcion_data($product_id, $inscripcion_value, $inscripcion_label, $state_inscripcion, $iniciada) {
    ob_start();
-   
+
    $product = wc_get_product( $product_id );
-   $is_variable = $product->has_child();
+   $is_variable = false;
+   
+   if($product) {
+      $is_variable = $product->has_child();
+   }
 
    if($state_inscripcion === 'abiertas' && !$iniciada) {   
       if($is_variable) {
