@@ -17,13 +17,9 @@ function get_capacitacion_data($id_capacitacion) {
 }
 
 function check_started($inicio) {
-   $limite = date('Ymd', time() - (60*60*24));
+   $hoy = date('Ymd');
 
-   if($inicio < $limite) {
-      return true;
-   }
-
-   return false;
+   return $inicio <= $hoy;
 }
 
 function set_related_especialidades($related_especialidades, $especialidad_base_slug) {

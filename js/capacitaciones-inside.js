@@ -74,14 +74,21 @@ function fillCapacitaciones(jsonCapacitaciones, especialidad = 'todos') {
    preloader.classList.add('d-none');
    
    jsonCapacitaciones.forEach((element) => {
-      const hoy = new Date();
+      const minuto = 1000 * 60;
+      const hora = minuto * 60;
+      const dia = hora * 24;
+
+      const hoy = new Date().valueOf();
+      const limite = new Date(hoy - (dia*2));
+      console.log(limite.toString());
+
       const fechaCapacitacion = new Date(
          element.fechaInicioDF.slice(0, 4),
          element.fechaInicioDF.slice(4, 6) - 1,
          element.fechaInicioDF.slice(6, 8)
       );
       
-      if(hoy < fechaCapacitacion) {
+      if(limite < fechaCapacitacion) {
          if(especialidad === 'todos') {
             createItem(element);
          } else {
