@@ -19,7 +19,7 @@ function get_capacitacion_data($id_capacitacion) {
 function check_started($inicio) {
    $hoy = date('Ymd');
 
-   if($inicio <= $hoy) {
+   if($inicio < $hoy) {
       return true;
    }
 
