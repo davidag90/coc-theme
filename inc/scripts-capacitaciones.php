@@ -17,9 +17,9 @@ function get_capacitacion_data($id_capacitacion) {
 }
 
 function check_started($inicio) {
-   $hoy = date('Ymd');
+   $limite = date('Ymd', time() - (60*60*24));
 
-   if($inicio < $hoy) {
+   if($inicio < $limite) {
       return true;
    }
 
