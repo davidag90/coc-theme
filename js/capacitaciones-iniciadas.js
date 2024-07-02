@@ -66,7 +66,7 @@ function fillCapacitaciones(jsonCapacitaciones, especialidad = 'todos') {
          b.fechaInicioDF.slice(4, 6) - 1,
          b.fechaInicioDF.slice(6, 8)
       );
-      return dateA - dateB;
+      return dateB - dateA;
    });
 
    let preloader = document.getElementById('preloader');
