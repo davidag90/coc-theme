@@ -20,7 +20,7 @@ async function setData(url) {
       post.fechaInicioDF = element.acf.fecha_inicio_dateformat;
       post.link = element.link;
 
-      if(element.hasOwnProperty('sizes')) {
+      if(element.featured_media != 0) {
          post.thumbnail = element._embedded['wp:featuredmedia'][0]['media_details']['sizes']['medium']['source_url']
       } else {
          post.thumbnail = THEME_URL + 'img/capacitaciones/placeholder.jpg';
