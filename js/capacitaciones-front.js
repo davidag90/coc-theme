@@ -106,7 +106,6 @@ function fillCapacitaciones(jsonCapacitaciones, especialidad = 'todos') {
 
       const hoy = new Date().valueOf();
       const limite = new Date(hoy - (dia*2));
-      console.log(limite.toString());
 
       const fechaCapacitacion = new Date(
          element.fechaInicioDF.slice(0, 4),
