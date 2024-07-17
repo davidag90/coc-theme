@@ -21,7 +21,7 @@ async function setData(url) {
       post.link = element.link;
 
       if(element.featured_media !== 0) {
-         post.thumbnail = element._embedded['wp:featuredmedia'][0]['media_details']['sizes']['medium']['source_url']
+         post.thumbnail = element._embedded['wp:featuredmedia'][0]['media_details']['sizes']['medium']['source_url'];
       } else {
          post.thumbnail = THEME_URL + 'img/capacitaciones/placeholder.jpg';
       }
