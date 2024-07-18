@@ -1,34 +1,34 @@
 async function fetchData(url) {
-   const response = await fetch(url);
-   
-   return await response.json();
+  const response = await fetch(url);
+
+  return await response.json();
 }
 
 async function setData(url) {
-   const data = await fetchData(url);
+  const data = await fetchData(url);
 
-   const posts = data.map( async(element) => {
-      let post = {};
+  const posts = data.map(async (element) => {
+    let post = {};
 
-      post.slug = element.slug;
-      post.title = element.title.rendered;
-      post.integrantes = element.acf.integrantes;
-      post.infoAdicional = element.acf.info_adicional;
+    post.slug = element.slug;
+    post.title = element.title.rendered;
+    post.integrantes = element.acf.integrantes;
+    post.infoAdicional = element.acf.info_adicional;
 
-      if(element.featured_media !== 0) {
-         post.thumbnail = element._embedded['wp:featuredmedia'][0]['media_details']['sizes']['medium']['source_url']
-      } else {
-         post.thumbnail = THEME_URL + 'img/capacitaciones/placeholder.jpg';
-      }
+    if (element.featured_media !== 0) {
+      post.thumbnail = element._embedded["wp:featuredmedia"][0]["media_details"]["sizes"]["medium"]["source_url"];
+    } else {
+      post.thumbnail = THEME_URL + "img/sociedades/placeholder.jpg";
+    }
 
-      return post;
-   });
-  
+    return post;
+  });
+
   return Promise.all(posts);
 }
 
 function createItem(objSociedad) {
-   let item = `
+  let item = `
       <div class="card bg-secondary bg-opacity-10 capacitacion border-secondary h-100">
          <img src="${objSociedad.thumbnail}" class="card-img-top border-secondary border-bottom" />
          <div class="card-body d-flex flex-column">
@@ -38,11 +38,11 @@ function createItem(objSociedad) {
       </div><!-- .card -->
    `;
 
-   appRoot.innerHTML += item;
+  appRoot.innerHTML += item;
 }
 
 function createModals(objSociedad) {
-   let modal = `
+  let modal = `
       <div class="modal fade" id="modal-${objSociedad.slug}" tabindex="-1" aria-labelledby="modal-${objSociedad.slug}-label" aria-hidden="true">
          <div class="modal-dialog">
             <div class="modal-content">
@@ -60,32 +60,36 @@ function createModals(objSociedad) {
       </div>
    `;
 
-   modals.innerHTML += modal;
+  modals.innerHTML += modal;
 }
 
 function fillSociedades(jsonSociedades) {
-   let preloader = document.getElementById('preloader');
-   preloader.classList.add('d-none');
-   
-   jsonSociedades.sort((a,b) => {
-      let x = a.title.toLowerCase();
-      let y = b.title.toLowerCase();
-      
-      if (x < y) { return -1 }
-      if (x > y) { return 1 }
-      
-      return 0;
-   });
+  let preloader = document.getElementById("preloader");
+  preloader.classList.add("d-none");
 
-   jsonSociedades.forEach((element) => {
-      createItem(element);
-      createModals(element);
-   });
+  jsonSociedades.sort((a, b) => {
+    let x = a.title.toLowerCase();
+    let y = b.title.toLowerCase();
+
+    if (x < y) {
+      return -1;
+    }
+    if (x > y) {
+      return 1;
+    }
+
+    return 0;
+  });
+
+  jsonSociedades.forEach((element) => {
+    createItem(element);
+    createModals(element);
+  });
 }
 
-const appRoot = document.getElementById('app-root');
-const modals = document.getElementById('modals');
+const appRoot = document.getElementById("app-root");
+const modals = document.getElementById("modals");
 const sociedades = await setData(API_SOCIEDADES_URL);
 
-document.addEventListener('DOMContentLoaded', fillSociedades(sociedades));
-document.addEventListener('DOMContentLoaded', setFiltros());
+document.addEventListener("DOMContentLoaded", fillSociedades(sociedades));
+document.addEventListener("DOMContentLoaded", setFiltros());
