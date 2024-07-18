@@ -15,10 +15,12 @@ async function setData(url) {
     post.integrantes = element.acf.integrantes;
     post.infoAdicional = element.acf.info_adicional;
 
-    if (element.featured_media !== 0) {
-      post.thumbnail = element._embedded["wp:featuredmedia"][0]["media_details"]["sizes"]["medium"]["source_url"];
+    const thumbURL = element?._embedded?.["wp:featuredmedia"]?.[0]?.["media_details"]?.["sizes"]?.["medium"]?.["source_url"] ?? null;
+
+    if (element.featured_media !== null) {
+      post.thumbnail = thumbURL;
     } else {
-      post.thumbnail = THEME_URL + "img/sociedades/placeholder.jpg";
+      post.thumbnail = THEME_URL + "img/beneficios/placeholder.jpg";
     }
 
     return post;
