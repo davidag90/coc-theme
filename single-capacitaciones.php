@@ -233,10 +233,14 @@ $related_especialidades = set_related_especialidades($capacitacion_data['especia
                      </div>
                      <?php if ($capacitacion_data['certificaciones'] === 'ucc') : ?>
                         <div id="aclaracion-ucc" class="text-center">
-                           <p class="h5 bg-primary text-light p-2 mt-4 mb-2">Curso con Aval Universitario</p>
-                           <p><strong>Certificación UCC opcional</strong><em> (solicitar trámite y presupuesto en Secretaría de la EPO)</em></p>
+                           <p class="h6 text-bg-primary p-2 mt-4 mb-2 rounded">Posgrado con Aval Universitario - UCC*</p>
+                           <p><small><strong>*Certificación UCC opcional</strong><em> (solicitar trámite y presupuesto en Secretaría de la EPO)</em></small></p>
                         </div>
                      <?php endif; ?>
+                     <div class="alert alert-info d-flex align-items-center" role="alert">
+                        <div><i class="fa-solid fa-info-circle fa-lg me-3"></i></div>
+                        <div>Actividad válida para Reválida Ética de la Matricula</div>
+                     </div>
                   </aside>
                </div><!-- .col-md-4 -->
             </div><!-- .row -->
