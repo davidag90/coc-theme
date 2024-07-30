@@ -126,35 +126,6 @@ function single_item_cart($new_item, $product_id, $quantity)
 
 add_filter('woocommerce_add_to_cart_validation', 'single_item_cart', 20, 3);
 
-/* 
-Agregado de campos adicionales a mail para un plugin en desuso
-
-function add_custom_checkout_field_to_emails_notifications( $order, $sent_to_admin, $plain_text, $email ) {
-  echo '<h3>Datos adicionales</h3>';
-
-  $order_data = $order->get_data();
-  $order_metadata = $order_data['meta_data'];
-
-  foreach ($order_metadata as $metadata_obj) {
-    $metadata_obj_arr = $metadata_obj->get_data();
-
-    $metadata_obj_key = $metadata_obj_arr['key'];
-
-    switch ($metadata_obj_key) {
-      case '_billing_wooccm11':
-        echo '<p><strong>Categoría</strong> ' . $metadata_obj_arr['value'] . '</p>';
-      break;
-
-      case '_billing_wooccm12':
-        echo '<p><strong>DNI</strong> ' . $metadata_obj_arr['value'] . '</p>';
-      break;
-    }
-  }
-  
-}
-
-add_action('woocommerce_email_customer_details','add_custom_checkout_field_to_emails_notifications', 25, 4 ); */
-
 // Disable AJAX Cart
 function register_ajax_cart()
 {
