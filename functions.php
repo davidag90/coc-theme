@@ -12,6 +12,10 @@ function bootscore_child_enqueue_styles()
 	wp_enqueue_style('main', get_stylesheet_directory_uri() . '/css/main.css', array('parent-style'), $modified_bootscoreChildCss);
 }
 
+// Prevent CF7 JS and CSS loading in pages where isn't need
+add_filter('wpcf7_load_js', '__return_false');
+add_filter('wpcf7_load_css', '__return_false');
+
 add_action('wp_enqueue_scripts', 'custom_scripts_libs');
 
 function custom_scripts_libs()
@@ -53,6 +57,17 @@ function custom_scripts_libs()
 		wp_enqueue_script('handler-inscripcion', get_stylesheet_directory_uri() . '/js/handler-inscripcion.js', array('env'), null, true);
 	endif;
 
+	// Load CF7 libs only in specific pages
+	if (is_page('contacto')) {
+		if (function_exists('wpcf7_enqueue_scripts')) {
+			wpcf7_enqueue_scripts();
+		}
+
+		if (function_exists('wpcf7_enqueue_styles')) {
+			wpcf7_enqueue_styles();
+		}
+	}
+
 	function add_module_attribute($tag, $handle, $src)
 	{
 		$handle_check = (
@@ -77,6 +92,7 @@ function custom_scripts_libs()
 
 
 add_action('after_setup_theme', 'include_custom_shortcodes');
+
 function include_custom_shortcodes()
 {
 	require_once(__DIR__ . '/inc/shortcodes.php');
