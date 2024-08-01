@@ -181,8 +181,5 @@ function autocomplete_mercado_pago_orders($order_id)
 
 	if ($pay_method === 'woo-mercado-pago-basic') { // Chequea solamente las ordenes de MercadoPago
 		$order->update_status('completed');
-
-		$order_completed_email = WC()->mailer()->emails['WC_Email_Customer_Completed_Order'];
-		$order_completed_email->trigger($order_id);
 	}
 }
