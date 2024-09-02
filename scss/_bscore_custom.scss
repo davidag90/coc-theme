@@ -569,3 +569,22 @@ body {
 #clasificados .card img {
   object-fit: cover;
 }
+
+/* ======================== */
+/* WhatsApp Shortcut        */
+/* ======================== */
+#whatsapp-shortcut {
+  position: fixed;
+  display: block;
+  bottom: 1rem;
+  right: 1rem;
+  line-height: 1;
+  font-size: 2rem;
+  opacity: 0.75;
+  padding: 12px 14px;
+  transition: all 0.5s;
+}
+
+#whatsapp-shortcut:hover {
+  opacity: 1;
+}
