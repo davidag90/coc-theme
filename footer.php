@@ -87,7 +87,13 @@
 <a href="#" class="btn btn-primary shadow top-button position-fixed zi-1020"><i class="fa-solid fa-chevron-up"></i><span class="visually-hidden-focusable">To top</span></a>
 -->
 
-<a href="https://api.whatsapp.com/send/?phone=5493512373748" target="_blank" id="whatsapp-shortcut" class="bg-success rounded-circle link-light"><i class="fa-brands fa-whatsapp"></i></a>
+<?php if (is_front_page() || is_page('especialidades')):
+  $tel_mesa_entradas = "5493512373748";
+  $tel_epo = "5493512376950";
+?>
+  <!-- Check which number to use for each page -->
+  <a href="https://api.whatsapp.com/send/?phone=<?php print(is_front_page() ? $tel_mesa_entradas : $tel_epo) ?>" target="_blank" id="whatsapp-shortcut" class="bg-success rounded-circle link-light"><i class="fa-brands fa-whatsapp"></i></a>
+<?php endif; ?>
 
 </div><!-- #page -->
 
