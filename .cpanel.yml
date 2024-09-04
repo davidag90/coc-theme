@@ -1,5 +1,0 @@
----
-deployment:
-  tasks:
-    - export DEPLOYPATH=/home/coccordo/public_html/wp-content/themes/coc-theme
-    - /bin/cp -r * $DEPLOYPATH
