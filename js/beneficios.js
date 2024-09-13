@@ -77,7 +77,17 @@ function fillBeneficios(jsonBeneficios, rubro = "todos") {
   let preloader = document.getElementById("preloader");
   preloader.classList.add("d-none");
 
-  jsonBeneficios.forEach((element) => {
+  const reorderArr = (arr, key) => {
+    return arr.sort((a, b) => {
+      if (a[key] < b[key]) return -1;
+      if (a[key] > b[key]) return 1;
+      return 0;
+    });
+  };
+
+  const sortedData = reorderArr(jsonBeneficios, "rubroSlug");
+
+  sortedData.forEach((element) => {
     if (rubro === "todos") {
       createItem(element);
       createModals(element);
