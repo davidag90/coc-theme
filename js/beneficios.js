@@ -77,6 +77,7 @@ function fillBeneficios(jsonBeneficios, rubro = "todos") {
   let preloader = document.getElementById("preloader");
   preloader.classList.add("d-none");
 
+  // Util function for custom array sorting
   const reorderArr = (arr, key) => {
     return arr.sort((a, b) => {
       if (a[key] < b[key]) return -1;
