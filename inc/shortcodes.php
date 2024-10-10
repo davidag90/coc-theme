@@ -391,7 +391,7 @@ function show_sv_galleries() {
          $query->the_post();
 
          echo '<a href="' . get_the_permalink() . '" class="sv_gallery_access d-flex justify-content-center align-items-center p-3" style="background-image: url(' . get_the_post_thumbnail_url() . ')">';
-         echo '<h2 class="h4">' . get_the_title() . '</h2>';
+         echo '<h2 class="h4 text-center">' . get_the_title() . '</h2>';
          echo '</a>'; // .sv_gallery_access
       }
       echo '</div>'; // #show_sv_galleries
