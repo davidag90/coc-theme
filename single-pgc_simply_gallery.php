@@ -9,9 +9,8 @@
 get_header();
 ?>
 
-<div id="content" class="site-content <?= bootscore_container_class(); ?>">
+<div id="content" class="site-content <?= bootscore_container_class(); ?> py-3">
   <div id="primary" class="content-area">
-
     <!-- Hook to add something nice -->
     <div class="row">
       <div class="col-12">
