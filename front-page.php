@@ -6,6 +6,8 @@
 	 * @package Bootscore
 	 */
 
+	use function PHPSTORM_META\map;
+
 	get_header();
 	?>
 
@@ -13,7 +15,10 @@
   	<div id="hero-unit">
   		<?php $args = array(
 				'post_type' => 'home_slides',
-				'posts_per_page' => 3
+				'posts_per_page' => -1,
+				'order' => 'ASC',
+				'order_by' => 'meta_value_num',
+				'meta_key' => 'orden_publicacion'
 			);
 
 			$slide_query = new WP_Query($args);
@@ -25,9 +30,10 @@
   					<?php while ($slide_query->have_posts()) : $slide_query->the_post(); ?>
   						<div class="carousel-item <?php if ($c == 0) : ?>active<?php endif; ?> position-relative">
   							<?php $link = get_field('content_link');
-							if ($link) : // Verifica si el slide tiene un link asociado ?>
-								<a class="d-block w-100" href="<?php echo $link['url']; ?>">
-							<?php endif; ?>
+								if ($link) : // Verifica si el slide tiene un link asociado 
+								?>
+  								<a class="d-block w-100" href="<?php echo $link['url']; ?>">
+  								<?php endif; ?>
   								<picture>
   									<?php
 										$slide_desktop = get_field('slide_desktop');
@@ -37,23 +43,24 @@
   									<source srcset="<?php echo esc_url($slide_mobile['url']); ?>" class="d-block w-100" media="(max-width:768px)">
   									<img src="<?php echo esc_url($slide_desktop['url']); ?>" class="d-block w-100">
   								</picture>
-							<?php if ($link) : // Verificación para cerrar el <a> y agregar un boton ?>
-								</a>
-							<?php endif; ?>
+  								<?php if ($link) : // Verificación para cerrar el <a> y agregar un boton 
+									?>
+  								</a>
+  							<?php endif; ?>
   						</div><!-- .carousel-item -->
   						<?php $c++; ?>
   					<?php endwhile; ?>
   				</div><!-- .carousel-inner -->
-				
-				<button class="carousel-control-prev" type="button" data-bs-target="#front-carousel" data-bs-slide="prev">
-					<span class="carousel-control-prev-icon" aria-hidden="true"><i class="fa-solid fa-circle-chevron-left"></i></span>
-					<span class="visually-hidden">Anterior</span>
-				</button>
-				
-				<button class="carousel-control-next" type="button" data-bs-target="#front-carousel" data-bs-slide="next">
-					<span class="carousel-control-next-icon" aria-hidden="true"><i class="fa-solid fa-circle-chevron-right"></i></span>
-					<span class="visually-hidden">Siguiente</span>
-				</button>
+
+  				<button class="carousel-control-prev" type="button" data-bs-target="#front-carousel" data-bs-slide="prev">
+  					<span class="carousel-control-prev-icon" aria-hidden="true"><i class="fa-solid fa-circle-chevron-left"></i></span>
+  					<span class="visually-hidden">Anterior</span>
+  				</button>
+
+  				<button class="carousel-control-next" type="button" data-bs-target="#front-carousel" data-bs-slide="next">
+  					<span class="carousel-control-next-icon" aria-hidden="true"><i class="fa-solid fa-circle-chevron-right"></i></span>
+  					<span class="visually-hidden">Siguiente</span>
+  				</button>
   			</div><!-- #front-carousel -->
 
   			<?php wp_reset_postdata(); ?>
