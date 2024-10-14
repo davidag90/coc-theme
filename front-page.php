@@ -17,8 +17,8 @@
 				'post_type' => 'home_slides',
 				'posts_per_page' => -1,
 				'order' => 'ASC',
+				'meta_key' => 'orden_publicacion',
 				'order_by' => 'meta_value_num',
-				'meta_key' => 'orden_publicacion'
 			);
 
 			$slide_query = new WP_Query($args);
@@ -28,7 +28,7 @@
   				<div class="carousel-inner">
   					<?php $c = 0; ?>
   					<?php while ($slide_query->have_posts()) : $slide_query->the_post(); ?>
-  						<div class="carousel-item <?php if ($c == 0) : ?>active<?php endif; ?> position-relative">
+  						<div class="carousel-item <?php if ($c == 0) : ?>active<?php endif; ?> position-relative" data-order="<?php echo get_post_meta(get_the_ID(), 'orden_publicacion', true) ?>">
   							<?php $link = get_field('content_link');
 								if ($link) : // Verifica si el slide tiene un link asociado 
 								?>
