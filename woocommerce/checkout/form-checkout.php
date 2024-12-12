@@ -14,7 +14,7 @@
  * @see https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
  * @version 9.4.0
- */P
+ */
 
 if (!defined('ABSPATH')) {
   exit;
@@ -28,10 +28,10 @@ if (!$checkout->is_registration_enabled() && $checkout->is_registration_required
   return;
 }
 
-if(isset($_GET['order_canceled'])) {
-   if ($_GET['order_canceled']) {
-      wc_print_notice('Procedimiento de pago cancelado o fallido. Por favor, intenta nuevamente con otro medio de pago', 'error');
-   }
+if (isset($_GET['order_canceled'])) {
+  if ($_GET['order_canceled']) {
+    wc_print_notice('Procedimiento de pago cancelado o fallido. Por favor, intenta nuevamente con otro medio de pago', 'error');
+  }
 }
 
 ?>
