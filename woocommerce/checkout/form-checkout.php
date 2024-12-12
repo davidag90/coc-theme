@@ -13,8 +13,8 @@
  *
  * @see https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
- * @version 3.5.0
- */
+ * @version 9.4.0
+ */P
 
 if (!defined('ABSPATH')) {
   exit;
@@ -36,7 +36,7 @@ if(isset($_GET['order_canceled'])) {
 
 ?>
 
-<form name="checkout" method="post" class="row checkout woocommerce-checkout" action="<?php echo esc_url(wc_get_checkout_url()); ?>" enctype="multipart/form-data">
+<form name="checkout" method="post" class="row checkout woocommerce-checkout" action="<?php echo esc_url(wc_get_checkout_url()); ?>" enctype="multipart/form-data" aria-label="<?php echo esc_attr__('Checkout', 'woocommerce'); ?>">
 
   <?php if ($checkout->get_checkout_fields()) : ?>
 
