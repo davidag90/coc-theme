@@ -16,19 +16,20 @@ $clrs-instit: (
   "farmacologia": #ef8b9d,
   "fotografia": #ffaa56,
   "implantologia": #22bbe8,
+  "laser": #069b99,
   "marketing": #ffaa56,
   "multidisciplinario": #b194c0,
   "odontologia-digital": #0e90d0,
+  "odontologia-general": #538daa,
   "odontopediatria": #c70119,
   "operatoria": #0e2068,
   "ortodoncia-ortopedia": #86177f,
   "ortodoncia": #86177f,
   "ozonoterapia": #9ab0bc,
-  "todos": $primary,
   "periodoncia": #7f2625,
   "prevencion": #004393,
   "prostodoncia": #006c32,
-  "laser": #069b99
+  "todos": $primary,
 );
 
 @each $especialidad, $color in $clrs-instit {
