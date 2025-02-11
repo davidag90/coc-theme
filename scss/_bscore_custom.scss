@@ -33,11 +33,13 @@ $clrs-instit: (
 );
 
 @each $especialidad, $color in $clrs-instit {
+
   // Generar una clase personalizada basada en el color actual
   .btn-#{$especialidad} {
     background-color: #{$color};
     color: white;
   }
+
   .btn-#{$especialidad}:hover {
     border: 1px solid #{$color};
   }
@@ -51,49 +53,61 @@ $clrs-instit: (
   }
 
   .bg-header-#{$especialidad} {
-    background-image: url("../img/capacitaciones/header-#{$especialidad}.jpg"), -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.5)));
-    background-image: url("../img/capacitaciones/header-#{$especialidad}.jpg"), -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
-    background-image: url("../img/capacitaciones/header-#{$especialidad}.jpg"), linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+    background-image: url("../img/capacitaciones/header-#{$especialidad}.jpg"),
+    -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.5)));
+    background-image: url("../img/capacitaciones/header-#{$especialidad}.jpg"),
+    -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+    background-image: url("../img/capacitaciones/header-#{$especialidad}.jpg"),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     background-blend-mode: multiply;
   }
 }
+
 /* ==================== */
 /* Custom Fonts */
 /* ==================== */
 
 @font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-display: swap;
+  /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
   font-family: "Albert Sans";
   font-style: normal;
   font-weight: 400;
-  src: url("../fonts/albert-sans-v1-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("../fonts/albert-sans-v1-latin-regular.woff2") format("woff2");
+  /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
 @font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-display: swap;
+  /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
   font-family: "Albert Sans";
   font-style: italic;
   font-weight: 400;
-  src: url("../fonts/albert-sans-v1-latin-italic.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("../fonts/albert-sans-v1-latin-italic.woff2") format("woff2");
+  /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
 @font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-display: swap;
+  /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
   font-family: "Albert Sans";
   font-style: normal;
   font-weight: 700;
-  src: url("../fonts/albert-sans-v1-latin-700.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("../fonts/albert-sans-v1-latin-700.woff2") format("woff2");
+  /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
 @font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-display: swap;
+  /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
   font-family: "Albert Sans";
   font-style: italic;
   font-weight: 700;
-  src: url("../fonts/albert-sans-v1-latin-700italic.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("../fonts/albert-sans-v1-latin-700italic.woff2") format("woff2");
+  /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
 /* ==================== */
@@ -109,7 +123,8 @@ body {
   }
 }
 
-.bg-secondary a:not(.btn) { // Todos los links en divs bg-secondary que no sean botones
+.bg-secondary a:not(.btn) {
+  // Todos los links en divs bg-secondary que no sean botones
   color: $light;
 }
 
@@ -151,9 +166,9 @@ body {
 
 #plus-nav .searchform {
   max-width: 250px;
-} 
+}
 
-#plus-nav .searchform > input::placeholder {
+#plus-nav .searchform>input::placeholder {
   color: $light;
   opacity: 0.5;
 }
@@ -183,7 +198,7 @@ body {
 /* ==================== */
 /* Search               */
 /* ==================== */
-.search #main article + article {
+.search #main article+article {
   border-top: 1px solid rgba(0, 0, 0, .1);
   padding-top: 1.5rem;
   margin-top: 1.5rem;
@@ -193,11 +208,11 @@ body {
 /* Footer               */
 /* ==================== */
 
-.footer-menu > .menu-item {
+.footer-menu>.menu-item {
   margin-bottom: 1rem;
 }
 
-#menu-coc-social-media > .menu-item > .nav-link::before {
+#menu-coc-social-media>.menu-item>.nav-link::before {
   display: inline-block;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
@@ -205,15 +220,15 @@ body {
   margin-right: $spacer * 0.5;
 }
 
-#menu-coc-social-media > .menu-item.facebook > .nav-link::before {
+#menu-coc-social-media>.menu-item.facebook>.nav-link::before {
   content: "\f09a";
 }
 
-#menu-coc-social-media > .menu-item.instagram > .nav-link::before {
+#menu-coc-social-media>.menu-item.instagram>.nav-link::before {
   content: "\f16d";
 }
 
-#menu-coc-social-media > .menu-item.youtube > .nav-link::before {
+#menu-coc-social-media>.menu-item.youtube>.nav-link::before {
   content: "\f167";
 }
 
@@ -229,14 +244,14 @@ body {
 }
 
 @include media-breakpoint-up(md) {
-	#front-carousel {
-		aspect-ratio: 16 / 6;
-	}
+  #front-carousel {
+    aspect-ratio: 16 / 6;
+  }
 }
 
 #front-carousel .carousel-control-prev-icon,
 #front-carousel .carousel-control-next-icon {
-	background-image: none;
+  background-image: none;
   font-size: 3rem;
   color: var(--bs-dark);
   width: 3rem;
@@ -312,7 +327,7 @@ body {
   transition: all 250ms;
 }
 
-#servicios-extension-title > img {
+#servicios-extension-title>img {
   width: 100% !important;
   max-width: 320px;
 }
@@ -340,7 +355,7 @@ body {
   }
 }
 
-#detalles-inscripcion > img {
+#detalles-inscripcion>img {
   aspect-ratio: 16/10;
   object-fit: cover;
 }
@@ -405,7 +420,7 @@ body {
 /* ==================== */
 /* Especialidades       */
 /* ==================== */
-#capacitaciones-inside .card + .card {
+#capacitaciones-inside .card+.card {
   margin-top: $spacer;
 }
 
@@ -454,14 +469,14 @@ body {
   height: 24px;
 }
 
-.wc_payment_method + .wc_payment_method {
+.wc_payment_method+.wc_payment_method {
   margin-top: .75rem !important;
   padding-top: .75rem !important;
   border-top: 1px solid $border-color;
 }
 
 .mp-checkout-pro-checkout-benefits {
-	display: none;
+  display: none;
 }
 
 .mp-checkout-pro-payment-methods {
@@ -471,7 +486,7 @@ body {
 /* ==================== */
 /* Beneficios           */
 /* ==================== */
-#beneficios .card + .card {
+#beneficios .card+.card {
   margin-top: $spacer;
 }
 
@@ -503,7 +518,7 @@ body {
 /* ======================== */
 /* Capacitaciones iniciadas */
 /* ======================== */
-#capacitaciones-iniciadas .card + .card {
+#capacitaciones-iniciadas .card+.card {
   margin-top: $spacer;
 }
 
@@ -601,13 +616,13 @@ body {
   grid-template-columns: 1fr;
 }
 
-@include media-breakpoint-up(md){
+@include media-breakpoint-up(md) {
   #show_sv_galleries {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@include media-breakpoint-up(lg){
+@include media-breakpoint-up(lg) {
   #show_sv_galleries {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -630,4 +645,8 @@ body {
   opacity: 1;
   background-color: none;
   background-blend-mode: normal;
+}
+
+.payment_method_macro_click>label>img {
+  height: 32px;
 }
