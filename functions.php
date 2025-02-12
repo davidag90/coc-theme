@@ -1,7 +1,8 @@
 <?php
 // Base style and scripts
 add_action('wp_enqueue_scripts', 'bootscore_child_enqueue_styles');
-function bootscore_child_enqueue_styles() {
+function bootscore_child_enqueue_styles()
+{
 	// style.css
 	wp_enqueue_style('parent-style', get_template_directory_uri() . '/style.css');
 
@@ -17,7 +18,8 @@ add_filter('wpcf7_load_css', '__return_false');
 // Include custom scripts and libs
 add_action('wp_enqueue_scripts', 'custom_scripts_libs');
 
-function custom_scripts_libs() {
+function custom_scripts_libs()
+{
 	wp_enqueue_script('custom-js', get_stylesheet_directory_uri() . '/js/custom.js', false, '', true);
 	wp_localize_script('custom-js', 'envParams', array(
 		'SITE_URL' => esc_url(home_url()) . '/'
@@ -66,7 +68,12 @@ function custom_scripts_libs() {
 		}
 	}
 
-	function add_module_attribute($tag, $handle, $src) {
+	if (is_checkout()) {
+		wp_enqueue_script('coc-checkout', get_stylesheet_directory_uri() . '/js/coc-checkout.js', array(), null, true);
+	}
+
+	function add_module_attribute($tag, $handle, $src)
+	{
 		$handle_check = (
 			$handle === 'capacitaciones-inside' ||
 			$handle === 'capacitaciones-front' ||
@@ -90,14 +97,16 @@ function custom_scripts_libs() {
 
 add_action('after_setup_theme', 'include_custom_shortcodes');
 
-function include_custom_shortcodes() {
+function include_custom_shortcodes()
+{
 	require_once(__DIR__ . '/inc/shortcodes.php');
 }
 
 
 add_action('widgets_init', 'manage_custom_sidebars', 11);
 // Desactiva Footer Widget 4 que viene por defecto para evitar confusiones
-function manage_custom_sidebars() {
+function manage_custom_sidebars()
+{
 	unregister_sidebar('footer-2');
 	unregister_sidebar('footer-3');
 	unregister_sidebar('footer-4');
@@ -112,7 +121,8 @@ function manage_custom_sidebars() {
 }
 
 
-function register_footer_menus() {
+function register_footer_menus()
+{
 	register_nav_menus(
 		array(
 			'footer-menu-01' => 'Footer Menu 01',
@@ -125,7 +135,8 @@ add_action('after_setup_theme', 'register_footer_menus', 0);
 
 /* Empty cart before adding any new product to prevent buying multiple items
 since its no allowed buy the site owner */
-function single_item_cart($new_item, $product_id, $quantity) {
+function single_item_cart($new_item, $product_id, $quantity)
+{
 	if (!WC()->cart->is_empty()) {
 		WC()->cart->empty_cart();
 	}
@@ -136,13 +147,13 @@ function single_item_cart($new_item, $product_id, $quantity) {
 add_filter('woocommerce_add_to_cart_validation', 'single_item_cart', 20, 3);
 
 // Disable AJAX Cart
-function register_ajax_cart() {
-}
+function register_ajax_cart() {}
 
 add_action('after_setup_theme', 'register_ajax_cart');
 
 // Filter what post types should appear in the search results
-function custom_search_filter($query) {
+function custom_search_filter($query)
+{
 
 	// Check query is a search but not from the admin dashboard
 	if (!is_admin() && $query->is_search) {
@@ -161,7 +172,8 @@ add_filter('pre_get_posts', 'custom_search_filter');
 // Set orders payed with MercadoPago to "completed" status
 add_action('woocommerce_payment_complete', 'autocomplete_mercado_pago_orders');
 
-function autocomplete_mercado_pago_orders($order_id) {
+function autocomplete_mercado_pago_orders($order_id)
+{
 	if (!$order_id) {
 		return;
 	}
