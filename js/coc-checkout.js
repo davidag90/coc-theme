@@ -11,3 +11,24 @@ selectCategoria.addEventListener('change', (event) => {
     inputInstitucion.value = 'No procede';
   }
 });
+
+function formatCuitCuil(cuitCuil) {
+  const inputBase = cuitCuil.replace(/[^0-9]/g, '');
+  let formattedCuitCuil = inputBase;
+
+  if (inputBase.length > 2) {
+    formattedCuitCuil = `${inputBase.slice(0, 2)}-${inputBase.slice(2)}`;
+  }
+
+  if (inputBase.length > 10) {
+    formattedCuitCuil = `${formattedCuitCuil.slice(0, 11)}-${inputBase.slice(10)}`;
+  }
+
+  return formattedCuitCuil.slice(0, 13);
+}
+
+const inputCuitCuil = document.getElementById('billing_cuit_cuil');
+
+inputCuitCuil.addEventListener('input', (event) => {
+  event.target.value = formatCuitCuil(event.target.value);
+});
