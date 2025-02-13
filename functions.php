@@ -185,3 +185,15 @@ function autocomplete_mercado_pago_orders($order_id)
 		$order->update_status('completed');
 	}
 }
+
+
+// Validate CUIT/CUIL checkout field
+add_action('woocommerce_after_checkout_validation', 'coc_validate_checkout_cuit_cuil', 10, 2);
+
+function coc_validate_checkout_cuit_cuil($fields, $errors)
+{
+
+	if (strlen($fields['billing_cuit_cuil']) < 13) {
+		$errors->add('validation', '<strong>Numero de CUIT/CUIL incorrecto:</strong> revise que conste de exactamente 13 caracteres');
+	}
+}

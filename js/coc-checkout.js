@@ -32,3 +32,16 @@ const inputCuitCuil = document.getElementById('billing_cuit_cuil');
 inputCuitCuil.addEventListener('input', (event) => {
   event.target.value = formatCuitCuil(event.target.value);
 });
+
+
+jQuery(function ($) {
+  $('body').on('blur change', '#billing_cuit_cuil', function () {
+    const wrapper = $(this).closest('.form-row');
+
+    if (/[^0-9-]/g.test($(this).val()) || $(this).val().length < 13) {
+      wrapper.addClass('woocommerce-invalid'); // error
+    } else {
+      wrapper.addClass('woocommerce-validated'); // success
+    }
+  });
+});
