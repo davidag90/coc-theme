@@ -200,7 +200,7 @@ $related_especialidades = set_related_especialidades($capacitacion_data['especia
 
                      <div class="botonera mb-4 px-4">
                         <?php $whatsapp_params = http_build_query(array(
-                           'phone'  => '3512484240',
+                           'phone'  => '3512376950',
                            'text'   => 'Hola, me interesa la capacitación ' . html_entity_decode(get_the_title()) . ' dictada por ' . $capacitacion_data['dictante_principal_txt'] . ' y agendada para iniciarse ' . $capacitacion_data['fecha_inicio']
                         ));
 
