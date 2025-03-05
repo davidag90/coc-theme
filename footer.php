@@ -89,7 +89,7 @@
 
 <?php if (is_front_page() || is_page('especialidades')):
   $tel_mesa_entradas = "5493512373748";
-  $tel_epo = "5493512376950";
+  $tel_epo = "5493517016644";
 ?>
   <!-- Check which number to use for each page -->
   <a href="https://api.whatsapp.com/send/?phone=<?php print(is_front_page() ? $tel_mesa_entradas : $tel_epo) ?>" target="_blank" id="whatsapp-shortcut" class="bg-success rounded-circle link-light"><i class="fa-brands fa-whatsapp"></i></a>
