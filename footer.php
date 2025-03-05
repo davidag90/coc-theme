@@ -83,10 +83,6 @@
 
 </footer>
 
-<!-- To top button // Temporarily out of service
-<a href="#" class="btn btn-primary shadow top-button position-fixed zi-1020"><i class="fa-solid fa-chevron-up"></i><span class="visually-hidden-focusable">To top</span></a>
--->
-
 <?php if (is_front_page() || is_page('especialidades')):
   $tel_mesa_entradas = "5493512373748";
   $tel_epo = "5493517016644";
